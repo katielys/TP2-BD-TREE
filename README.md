@@ -3,9 +3,15 @@ Este trabalho consiste na implementação de programas para armazenamento e pesq
 
 
 ##TO-DO
+
 [ ] Parser
+
 [ ] upload <file> 
+  
 [ ] findrec 
+
 [ ] seek1
+
 [ ] seek2
+
 [ ] Relatório
