@@ -35,6 +35,10 @@ class Article{
 		int getYear();
 		int getID();
 		int getQuotes();
+		char* getTitle();
+		char* getAutors();
+		char* getSnipped();
+		char* getDate();
 };
 
 #endif

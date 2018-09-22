@@ -53,6 +53,20 @@ int Article::getID(){
 int Article::getQuotes(){
 	return quotes;
 }
+
+char* Article::getTitle(){
+	return title;
+}
+char* Article::getAutors(){
+	return autorList;
+}
+char* Article::getDate(){
+	return date;
+}
+
+char* Article::getSnipped(){
+	return snippet;
+}
 std::string Article::toString(){
 	string ret ;
 	ostringstream str1; 
@@ -61,9 +75,8 @@ std::string Article::toString(){
   	ostringstream s; 
 	ret.append("\nID: ");
 	ret.append(str1.str() );
-	
 	ret.append("\nTitle: ");
-	ret.append(title);
+	ret.append(getTitle());
 	ret.append("\nYear: ");
 	st<< getYear();
 	ret.append(st.str());
@@ -71,17 +84,18 @@ std::string Article::toString(){
 	s<< getQuotes();
 	ret.append(s.str());
 	ret.append("\nAutors: ");
-	ret.append(autorList);
+	ret.append(getAutors());
 	ret.append("\nSnipped: ");
-	ret.append(snippet);
+	ret.append(getSnipped());
 	ret.append("\nDate:");
-	ret.append(date);
+	ret.append(getDate());
 	return ret;
 }
 
 int main (){
 	Article *teste ;
-	teste = new Article(1,6,10,"tidtu","ALTIGRAN,NAKAMURA ","melhor aritgo do unibverso","10.09.09 29/32" ) ;
+
+	teste = new Article(1,6,10,"Titulo","ALTIGRAN,NAKAMURA ","melhor aritgo do unibverso","10.09.09 29/32" ) ;
 	cout << teste->toString() ;
 }
 
