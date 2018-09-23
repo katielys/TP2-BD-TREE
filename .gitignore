@@ -20,3 +20,9 @@ Article\.exe
 \.idea/
 
 Article\.h\.gch
+
+cmake-build-debug/CMakeFiles/TP2_BD\.exe\.dir/
+
+cmake-build-debug/CMakeFiles/
+
+cmake-build-debug/

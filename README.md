@@ -14,4 +14,4 @@ Este trabalho consiste na implementação de programas para armazenamento e pesq
 
 [ ] seek2
 
-[ ] Relatório
+[ ] Relatório  : https://v2.overleaf.com/7611138499gsrjvwcynsct

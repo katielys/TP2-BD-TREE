@@ -5,8 +5,10 @@
 #include <stdio.h>
 #include <string.h>
 using namespace std;
+
+
 Article::Article(){
-//	return NULL;
+/* Deafult constructor from class article*/
 }
 
 Article::~Article(){
@@ -69,10 +71,10 @@ char* Article::getSnipped(){
 }
 std::string Article::toString(){
 	string ret ;
-	ostringstream str1; 
-    str1 << getID(); 
-  	ostringstream st; 
-  	ostringstream s; 
+	ostringstream str1;
+    ostringstream st;
+    ostringstream s;
+    str1 << getID();
 	ret.append("\nID: ");
 	ret.append(str1.str() );
 	ret.append("\nTitle: ");
@@ -91,12 +93,15 @@ std::string Article::toString(){
 	ret.append(getDate());
 	return ret;
 }
-
-int main (){
-	Article *teste ;
-
-	teste = new Article(1,6,10,"Titulo","ALTIGRAN,NAKAMURA ","melhor aritgo do unibverso","10.09.09 29/32" ) ;
-	cout << teste->toString() ;
+/*Fuction to test an article instance from class Article */
+void teste (){
+    Article *teste ;
+    teste = new Article(1,6,10,"Titulo","ALTIGRAN,NAKAMURA ","melhor aritgo do unibverso","10.09.09 29/32" ) ;
+    cout << teste->toString() <<endl;
+    cout<< sizeof(*teste);
 }
+//int main (){
+//	teste();
+//}
 
 
