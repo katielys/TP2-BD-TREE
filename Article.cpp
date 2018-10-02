@@ -36,7 +36,7 @@ void Article::setDate(char d[MAX_SIZE_DATE]){
 void Article::setAutors(char autor[ MAX_SIZE_AUTOR]){
 	strcpy(autorList,autor);
 }
-Article::Article(int id_,int year_, int quote, char title[MAX_SIZE_TITLE] , char autorList[MAX_SIZE_AUTOR] , char snippet[MAX_SIZE_SNIPPET] , char date[ MAX_SIZE_DATE] ) {
+Article::Article(int id_, unsigned short int year_, int quote, char title[MAX_SIZE_TITLE] , char autorList[MAX_SIZE_AUTOR] , char snippet[MAX_SIZE_SNIPPET] , char date[ MAX_SIZE_DATE] ) {
 	setID(id_);
 	setYear(year_);
 	setTitle(title);
@@ -46,7 +46,7 @@ Article::Article(int id_,int year_, int quote, char title[MAX_SIZE_TITLE] , char
 	setAutors(autorList);
 	
 }
-int Article::getYear(){
+unsigned short Article::getYear(){
 	return year;
 }
 int Article::getID(){

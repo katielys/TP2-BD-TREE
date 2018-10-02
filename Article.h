@@ -7,24 +7,24 @@
 #define MAX_SIZE_TITLE 300
 #define MAX_SIZE_AUTOR 150
 #define MAX_SIZE_SNIPPET 1024
-#define MAX_SIZE_DATE 50
+#define MAX_SIZE_DATE 19
 
 using namespace std;
 
 class Article{
 	public:
 		Article (); // construtor sem parametro
-		Article (int,int,int,char[MAX_SIZE_TITLE],char[MAX_SIZE_AUTOR],char[MAX_SIZE_SNIPPET],char[MAX_SIZE_DATE]); //
+		Article (int,unsigned short int,int,char[MAX_SIZE_TITLE],char[MAX_SIZE_AUTOR],char[MAX_SIZE_SNIPPET],char[MAX_SIZE_DATE]); //
 		~Article (); //Destrutor
 		string toString();
 	private :
-		int id; // Codigo identificador do artigo
-		int year ;// ano da publicação do artigo
+		unsigned int id; // Codigo identificador do artigo
+		unsigned short int year ;// ano da publicacaoo do artigo
 		int quotes ; // numero de vezes que o artigo foi citado
 		char title[MAX_SIZE_TITLE]; //nome do artigo
 		char autorList[MAX_SIZE_AUTOR]; //lista dos autores
 		char snippet[MAX_SIZE_SNIPPET] ; //resumo textual
-		char date[MAX_SIZE_DATE]; //data e hora das atualizações
+		char date[MAX_SIZE_DATE]; //data e hora das atualizaï¿½ï¿½es
 		void setYear(int);
 		void setQuotes(int);
 		void setID(int);
@@ -32,7 +32,7 @@ class Article{
 		void setSnippet(char[MAX_SIZE_SNIPPET]);
 		void setAutors(char[ MAX_SIZE_AUTOR]);
 		void setDate(char [ MAX_SIZE_DATE]);
-		int getYear();
+		unsigned short int getYear();
 		int getID();
 		int getQuotes();
 		char* getTitle();
