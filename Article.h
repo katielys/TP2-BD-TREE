@@ -9,6 +9,8 @@
 #define MAX_SIZE_SNIPPET 1024
 #define MAX_SIZE_DATE 19
 
+//"2016-09-17 12:33:48"
+
 using namespace std;
 
 class Article{
@@ -16,7 +18,7 @@ class Article{
 		Article (); // construtor sem parametro
 		Article (int,unsigned short int,int,char[MAX_SIZE_TITLE],char[MAX_SIZE_AUTOR],char[MAX_SIZE_SNIPPET],char[MAX_SIZE_DATE]); //
 		~Article (); //Destrutor
-		string toString();
+		string toString();// Function to return all information from a instance at this class
 	private :
 		unsigned int id; // Codigo identificador do artigo
 		unsigned short int year ;// ano da publicacaoo do artigo

@@ -4,9 +4,19 @@
 #include <sstream>
 #include <stdio.h>
 #include <string.h>
+
 using namespace std;
 
+Article::Article(int id_, unsigned short int year_, int quote, char title[MAX_SIZE_TITLE] , char autorList[MAX_SIZE_AUTOR] , char snippet[MAX_SIZE_SNIPPET] , char date[ MAX_SIZE_DATE] ) {
+    setID(id_);
+    setYear(year_);
+    setTitle(title);
+    setQuotes(quote);
+    setSnippet(snippet);
+    setDate(date);
+    setAutors(autorList);
 
+}
 Article::Article(){
 /* Deafult constructor from class article*/
 }
@@ -36,16 +46,7 @@ void Article::setDate(char d[MAX_SIZE_DATE]){
 void Article::setAutors(char autor[ MAX_SIZE_AUTOR]){
 	strcpy(autorList,autor);
 }
-Article::Article(int id_, unsigned short int year_, int quote, char title[MAX_SIZE_TITLE] , char autorList[MAX_SIZE_AUTOR] , char snippet[MAX_SIZE_SNIPPET] , char date[ MAX_SIZE_DATE] ) {
-	setID(id_);
-	setYear(year_);
-	setTitle(title);
-	setQuotes(quote);
-	setSnippet(snippet);
-	setDate(date);
-	setAutors(autorList);
-	
-}
+
 unsigned short Article::getYear(){
 	return year;
 }
@@ -69,11 +70,13 @@ char* Article::getDate(){
 char* Article::getSnipped(){
 	return snippet;
 }
+/*Function to return a string which contains all data from Article's object*/
 std::string Article::toString(){
 	string ret ;
 	ostringstream str1;
     ostringstream st;
     ostringstream s;
+    //These variables from class ostringstream are used to convert int to string =D
     str1 << getID();
 	ret.append("\nID: ");
 	ret.append(str1.str() );

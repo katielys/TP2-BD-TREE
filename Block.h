@@ -10,6 +10,7 @@ class Block {
     public:
       //  int  isValid();
         Block();
+
    // private:
     // *Article getArticle();
 
