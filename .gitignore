@@ -26,3 +26,5 @@ cmake-build-debug/CMakeFiles/TP2_BD\.exe\.dir/
 cmake-build-debug/CMakeFiles/
 
 cmake-build-debug/
+
+*.csv
