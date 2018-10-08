@@ -1,3 +1,4 @@
+///\file Article.cpp
 #include "Article.h"
 #include <string>
 #include <iostream>
@@ -6,7 +7,13 @@
 #include <string.h>
 
 using namespace std;
-
+///\param id its a integer to represent a id from a article
+///\param year_ its a short integer to represent a year that article has been publicated
+///\param quote its a integer that represent number of citations from article
+///\param title[MAX_SIZE_TITLE] its a char's array to represent a title from a  article
+///\param autorList char array to represent a autor's list from a article
+///\param snippet[MAX_SIZE_SNIPPED] char array to represent a resume from a article.
+///\param date[MAX_SIZE] char array to represent the last update date from a article.
 Article::Article(int id_, unsigned short int year_, int quote, char title[MAX_SIZE_TITLE] , char autorList[MAX_SIZE_AUTOR] , char snippet[MAX_SIZE_SNIPPET] , char date[ MAX_SIZE_DATE] ) {
     setID(id_);
     setYear(year_);
@@ -18,11 +25,11 @@ Article::Article(int id_, unsigned short int year_, int quote, char title[MAX_SI
 
 }
 Article::Article(){
-/* Deafult constructor from class article*/
+//* Deafult constructor from class article*/
 }
 
 Article::~Article(){
-	
+
 }
 void Article::setYear(int year_){
 	year = year_;
@@ -96,10 +103,18 @@ std::string Article::toString(){
 	ret.append(getDate());
 	return ret;
 }
-/*Fuction to test an article instance from class Article */
+/**Fuction to test an article instance from class Article */
 void teste (){
     Article *teste ;
-    teste = new Article(1,6,10,"Titulo","ALTIGRAN,NAKAMURA ","melhor aritgo do unibverso","10.09.09 29/32" ) ;
+    char autorlist[MAX_SIZE_AUTOR];
+    char snipped[MAX_SIZE_SNIPPET];
+    char title[MAX_SIZE_TITLE];
+    char date[MAX_SIZE_DATE];
+    strcpy(autorlist,"Altigran|Nakamura|Edleno|Joao Marcos");
+    strcpy(title,"Titulo artigo");
+    strcpy(snipped,"Best article from universe");
+    strcpy(date,"10.10.2018 23:23:09");
+    teste = new Article(1,6,10,title,autorlist,snipped,date ) ;
     cout << teste->toString() <<endl;
     cout<< sizeof(*teste);
 }
