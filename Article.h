@@ -20,6 +20,7 @@ class Article{
 		Article (int,unsigned short int,int,char[MAX_SIZE_TITLE],char[MAX_SIZE_AUTOR],char[MAX_SIZE_SNIPPET],char[MAX_SIZE_DATE]); ///Constructor deafult
 		~Article (); //Destrutor
 		string toString();/// Function to return all information from a instance at this class
+		int getID();
 	private :
 		unsigned int id; /// Codigo identificador do artigo
 		unsigned short int year ;/// ano da publicacaoo do artigo
@@ -37,7 +38,7 @@ class Article{
 		void setAutors(char[ MAX_SIZE_AUTOR]);
 		void setDate(char [ MAX_SIZE_DATE]);
 		unsigned short int getYear();
-		int getID();
+
 		int getQuotes();
 		char* getTitle();
 		char* getAutors();

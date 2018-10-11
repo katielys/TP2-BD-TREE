@@ -4,7 +4,7 @@ Este trabalho consiste na implementação de programas para armazenamento e pesq
 
 ##TO-DO
 
-[ ] Parser
+[X] Parser
 
 [ ] upload <file> 
   
