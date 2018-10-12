@@ -1,4 +1,4 @@
-///\file Article.cpp
+///\file Article.cpp classe para representar o artigo
 #include "Article.h"
 #include <string>
 #include <iostream>

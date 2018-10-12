@@ -17,10 +17,13 @@ class Article{
 	public:
     /// Constructor without param
 		Article ();
-		Article (int,unsigned short int,int,char[MAX_SIZE_TITLE],char[MAX_SIZE_AUTOR],char[MAX_SIZE_SNIPPET],char[MAX_SIZE_DATE]); ///Constructor deafult
+		Article (int id,unsigned short int year,int,char[MAX_SIZE_TITLE],char[MAX_SIZE_AUTOR],char[MAX_SIZE_SNIPPET],char[MAX_SIZE_DATE]); ///Constructor deafult
 		~Article (); //Destrutor
 		string toString();/// Function to return all information from a instance at this class
 		int getID();
+        void setID(int id);
+	    unsigned short int getYear();
+	    char* getTitle();
 	private :
 		unsigned int id; /// Codigo identificador do artigo
 		unsigned short int year ;/// ano da publicacaoo do artigo
@@ -32,15 +35,15 @@ class Article{
 		/** Setters and getters from object article*/
 		void setYear(int);
 		void setQuotes(int);
-		void setID(int);
+
 		void setTitle(char[MAX_SIZE_TITLE]);	
 		void setSnippet(char[MAX_SIZE_SNIPPET]);
 		void setAutors(char[ MAX_SIZE_AUTOR]);
 		void setDate(char [ MAX_SIZE_DATE]);
-		unsigned short int getYear();
+
 
 		int getQuotes();
-		char* getTitle();
+
 		char* getAutors();
 		char* getSnipped();
 		char* getDate();

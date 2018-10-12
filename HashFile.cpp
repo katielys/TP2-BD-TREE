@@ -99,12 +99,17 @@ void HashFile::createHash(char** argv){
     pFile = nullptr;
     this->hash_size = totalReg;
     Block current_block ;
-    pFile =fopen("/home/katiely/Documents/BD/TP2-BD-TREE/fileHash.bin", "w+");
+    //Article artAux;
+    pFile =fopen("/home/katiely/Documents/BD/TP2-BD-TREE/fileHash.bin", "wb");
+    //cout<< pFile;
     for (int i = 0;i < v.size();i++ ){
         current_block.insertArticleInTheBlock(v[i]);
-        int position = v[i].getID() * sizeof(Block);
+        cout<<current_block.article.toString()<<endl;
+        int position = v[i].getID() ;//* sizeof(Block);
+
         fseek(pFile, position, SEEK_SET);
         fwrite(&current_block, sizeof(Block), 1, pFile);
+
     }
     v.clear();
     fclose(pFile);
@@ -114,10 +119,24 @@ void HashFile::createHash(char** argv){
 
 Article HashFile::getArticleFromDisk(int id) {
     FILE *fp;
-    fp = fopen("/home/katiely/Documents/BD/TP2-BD-TREE/fileHash.bin", "r");
-    Block article;
-    Article a;
-    fseek(fp,id,SEEK_SET);
-    fread(&article, sizeof(Block), 1,fp);
-    return article.article;
+    fp = fopen("/home/katiely/Documents/BD/TP2-BD-TREE/fileHash.bin", "rb");
+    if (fp==NULL){
+        cout<<"Cant open the file"<<endl<<endl;
+        return Article();
+    }
+
+    Block aux;
+    Article top;
+    fseek(fp,id*sizeof(Block),SEEK_SET);
+    size_t  a =fread(&aux, sizeof(Block), 1, fp);
+    top = aux.article;
+    if(a ==1 ){
+
+        return top;
+    }
+    cout<< "Error : cant read the file" <<endl;
+    return Article();
 }
+
+
+
