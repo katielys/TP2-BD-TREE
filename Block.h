@@ -12,9 +12,10 @@ class Block {
     public:
       Block();
       bool hasSpace();
-      void insertArticleInTheBlock(Article &article);
+      void insertArticleInTheBlock(Article article);
       Article article;
-      int valid;
+      long int valid;
+      string toString();
 
    // private:
     // *Article getArticle();

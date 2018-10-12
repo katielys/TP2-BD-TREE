@@ -11,13 +11,20 @@ Block::Block(){
 //    return nullptr;
 //
 //}
-void Block::insertArticleInTheBlock(Article &article){
+void Block::insertArticleInTheBlock(Article article){
     //cout<<"INSERT";
-    this->article =article;
+    //this->article.setID(article.getID());
+    this->valid = MASK_VALID;
+    this->article = article;
 }
 bool Block::hasSpace()
 {
     return true;
+}
+
+string Block::toString() {
+
+    cout<<article.toString();
 }
 
 

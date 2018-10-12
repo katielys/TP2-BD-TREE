@@ -1,5 +1,6 @@
 #ifndef TP2_BD_TREE_HASHFILE_H
 #define TP2_BD_TREE_HASHFILE_H
+#pragma once
 #include <iostream>
 #include <sstream>
 #include <fstream>
