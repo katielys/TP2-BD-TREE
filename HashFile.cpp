@@ -7,6 +7,7 @@
 using namespace std;
 
 void HashFile::createHash(char** argv){
+    this->hash_size= 0;
     ifstream file(argv[1]);
     if(!file.is_open()){
         cout<<"ERROR CANT OPEN THE FILE"<<endl;
@@ -54,8 +55,9 @@ void HashFile::createHash(char** argv){
             char vSnipped[MAX_SIZE_SNIPPET]; // resumo
             char vDate[MAX_SIZE_DATE]; // data
             int mQ; // citacoes
+            int id ;
             unsigned short mYE; // ano de publicacao
-
+            //id = stoi(data[0].c_str());
             if (registerSize > 4){
                 mQ = stoi(data[4].c_str());
             }
@@ -104,13 +106,15 @@ void HashFile::createHash(char** argv){
     //cout<< pFile;
     for (int i = 0;i < v.size();i++ ){
         current_block.insertArticleInTheBlock(v[i]);
-        cout<<current_block.article.toString()<<endl;
+        //cout<<current_block.article.toString()<<endl;
         int position = v[i].getID() ;
 
         fseek(pFile, position*sizeof(Block), SEEK_SET);
         fwrite(&current_block, sizeof(Block), 1, pFile);
+        this->hash_size = this->hash_size +1;
 
     }
+    //this->hash_size  = totalReg;
     v.clear();
     fclose(pFile);
 
@@ -128,14 +132,19 @@ Article HashFile::getArticleFromDisk(int id) {
     Block aux;
     Article top;
     fseek(fp,id*sizeof(Block),SEEK_SET);
+    //cout<< (ftell(fp)/sizeof(Block)) <<endl;
     size_t  a =fread(&aux, sizeof(Block), 1, fp);
     top = aux.article;
+    fseek(fp,0,SEEK_END);
+    cout<<"Numero total de blocos  "<< ftell(fp)/ sizeof(Block)<<endl;
     if(a ==1 ){
 
         return top;
     }
     cout<< "Error : cant read the file" <<endl;
+    fclose(fp);
     return Article();
+
 }
 
 
