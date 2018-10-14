@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <cstring>
 #define MAX_SIZE_TITLE 300
 #define MAX_SIZE_AUTOR 150
 #define MAX_SIZE_SNIPPET 1024
@@ -26,7 +27,7 @@ class Article{
 	    char* getTitle();
 	private :
 		unsigned int id; /// Codigo identificador do artigo
-		unsigned short int year ;/// ano da publicacaoo do artigo
+		unsigned int year ;/// ano da publicacaoo do artigo
 		int quotes ; /// numero de vezes que o artigo foi citado
 		char title[MAX_SIZE_TITLE]; ///nome do artigo
 		char autorList[MAX_SIZE_AUTOR]; ///lista dos autores

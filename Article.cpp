@@ -1,10 +1,5 @@
 ///\file Article.cpp classe para representar o artigo
 #include "Article.h"
-#include <string>
-#include <iostream>
-#include <sstream>
-#include <stdio.h>
-#include <string.h>
 
 using namespace std;
 ///\param id its a integer to represent a id from a article
@@ -103,23 +98,6 @@ std::string Article::toString(){
 	ret.append(getDate());
 	return ret;
 }
-/**Fuction to test an article instance from class Article */
-void teste (){
-    Article *teste ;
-    char autorlist[MAX_SIZE_AUTOR];
-    char snipped[MAX_SIZE_SNIPPET];
-    char title[MAX_SIZE_TITLE];
-    char date[MAX_SIZE_DATE];
-    strcpy(autorlist,"Altigran|Nakamura|Edleno|Joao Marcos");
-    strcpy(title,"Titulo artigo");
-    strcpy(snipped,"Best article from universe");
-    strcpy(date,"10.10.2018 23:23:09");
-    teste = new Article(1,6,10,title,autorlist,snipped,date ) ;
-    cout << teste->toString() <<endl;
-    cout<< sizeof(*teste);
-}
-//int main (){
-//	teste();
-//}
+
 
 

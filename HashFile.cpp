@@ -102,7 +102,7 @@ void HashFile::createHash(char** argv){
     this->hash_size = totalReg;
     Block current_block ;
     //Article artAux;
-    pFile =fopen("/home/katiely/Documents/BD/TP2-BD-TREE/fileHash.bin", "wb");
+    pFile =fopen("fileHash.bin", "wb");
     //cout<< pFile;
     for (int i = 0;i < v.size();i++ ){
         current_block.insertArticleInTheBlock(v[i]);
