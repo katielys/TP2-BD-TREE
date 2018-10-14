@@ -19,12 +19,12 @@ bool findReg(int id){
     return false;
 
 }
-int main(int argc, char** argv){
-    //TODO : Retornar o numero total de blocos lidos
-    //TODO : to esperando resposta do monitor para mudar o hash pq ele disse que o hash perfeito ele ia descontar ponto
-    int numberReg =  stoi(argv[1]);
-    if(!findReg(numberReg)){
-        cout<<"ID nao encontrado "<<endl;
-    }
-
-}
+//int main(int argc, char** argv){
+//    //TODO : Retornar o numero total de blocos lidos
+//    //TODO : to esperando resposta do monitor para mudar o hash pq ele disse que o hash perfeito ele ia descontar ponto
+//    int numberReg =  stoi(argv[1]);
+//    if(!findReg(numberReg)){
+//        cout<<"ID nao encontrado "<<endl;
+//    }
+//
+//}

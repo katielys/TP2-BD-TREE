@@ -1,4 +1,4 @@
-///\file Block.h header from Block
+///\file Block.h
 #include "Article.h"
 #ifndef TP2_BD_TREE_BLOCK_H
 #define TP2_BD_TREE_BLOCK_H
@@ -16,9 +16,6 @@ class Block {
       Article article;
       long int valid;
       string toString();
-
-   // private:
-    // *Article getArticle();
 
 };
 
