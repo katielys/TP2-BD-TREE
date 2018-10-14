@@ -105,7 +105,7 @@ std::string Article::toString(){
 }
 /**Fuction to test an article instance from class Article */
 void teste (){
-    Article *teste ;
+    Article teste ;
     char autorlist[MAX_SIZE_AUTOR];
     char snipped[MAX_SIZE_SNIPPET];
     char title[MAX_SIZE_TITLE];
@@ -114,9 +114,9 @@ void teste (){
     strcpy(title,"Titulo artigo");
     strcpy(snipped,"Best article from universe");
     strcpy(date,"10.10.2018 23:23:09");
-    teste = new Article(1,6,10,title,autorlist,snipped,date ) ;
-    cout << teste->toString() <<endl;
-    cout<< sizeof(*teste);
+    teste =  Article(1,996,10,title,autorlist,snipped,date ) ;
+    cout << teste.toString() <<endl;
+    cout<< sizeof(teste);
 }
 //int main (){
 //	teste();

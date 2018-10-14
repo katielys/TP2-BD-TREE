@@ -2,6 +2,7 @@
 #include "Article.h"
 #include "Block.h"
 #include "Parser.h"
+#include "PrimaryIndexBtree.h"
 #include <vector>
 #include <stdio.h>
 #include <string.h>
@@ -13,13 +14,18 @@ void HashFile::createHash(char** argv){
     vector<Article> v;
     v = p.readCSV(argv);
     FILE * pFile;
-    Block current_block ;
-    //Article artAux;
+    PrimaryIndexBtree *primaryIndexBtree = primaryIndexBtree->initTree() ;
+    primaryIndexBtree = primaryIndexBtree->createTree();
+
+
+    Block current_block;
     pFile =fopen("/home/katiely/Documents/BD/TP2-BD-TREE/fileHash.bin", "wb");
-    //cout<< pFile;
     for (int i = 0;i < v.size();i++ ){
         current_block.insertArticleInTheBlock(v[i]);
+
         int position = v[i].getID() ;
+        int a = primaryIndexBtree->insertBtree(primaryIndexBtree,position);
+        cout<< a << " - - " ;
         fseek(pFile, position*sizeof(Block), SEEK_SET);
         fwrite(&current_block, sizeof(Block), 1, pFile);
         this->hash_size = this->hash_size +1;
@@ -42,7 +48,6 @@ Article HashFile::getArticleFromDisk(int id) {
     Block aux;
     Article top;
     fseek(fp,id*sizeof(Block),SEEK_SET);
-    //cout<< (ftell(fp)/sizeof(Block)) <<endl;
     size_t  a =fread(&aux, sizeof(Block), 1, fp);
     top = aux.article;
     fseek(fp,0,SEEK_END);
