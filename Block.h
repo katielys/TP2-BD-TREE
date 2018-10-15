@@ -16,8 +16,8 @@ struct Block{ // disk block representation
     unsigned int verificationMask;  // 4 bytes
     unsigned int bytesOccupied;     // 4 bytes
     unsigned int nextBlock;         // 4 bytes offset used as reference to find the overflow block
-    bool overflow;                  // 1 byte has overflow or not
-    BYTE data[DATA_SIZE];           // array of bytes to future keep the records
+    bool overflow;                  // 1 byte has overflow sequence or not
+    BYTE data[DATA_SIZE];           // array of bytes to keep the records
 
     // tries to insert a record in the current block
     bool insertRecord(const Article &article);

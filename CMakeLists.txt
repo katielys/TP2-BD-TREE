@@ -3,4 +3,4 @@ project(TP2-BD-TREE)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(TP2_BD Article.cpp Block.cpp testable.cpp)
+add_executable(TP2_BD HashFile.h HashFile.cpp Article.cpp Block.cpp testable.cpp Parser.cpp Parser.h)

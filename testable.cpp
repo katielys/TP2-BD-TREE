@@ -3,8 +3,7 @@
 //
 
 #include <vector>
-#include "Block.h"
-
+#include "HashFile.h"
 void teste (){
     Article *teste ;
     char autorlist[MAX_SIZE_AUTOR];
@@ -58,7 +57,7 @@ void teste (){
 void getArticleFromDisk(int id) {
     FILE *fp;
     fp = fopen("./fileHash.bin", "rb");
-    if (fp==NULL){
+    if (fp== nullptr){
         cout<<"Cant open the file"<<endl<<endl;
         return;
     }
@@ -86,7 +85,26 @@ void getArticleFromDisk(int id) {
 
 }
 
-int main (){
+
+int main(int argc, char *argv[]){
 //    teste();
-    getArticleFromDisk(4);
+//    getArticleFromDisk(4);
+
+//    Parser p;
+//    auto records = p.readCSV(argv);
+//    Hashing::createHash(1021443, 2, "hashing.bin");
+//    Hashing::createOverflow("overflow.bin");
+
+    Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
+    Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
+
+//    for(auto &record : records){
+//        Hashing::insertOnHashFile(record, hash, overflow);
+//    }
+
+    std::cout << hash.buckets << std::endl;
+    std::cout << overflow.blocksCount << std::endl;
+
+    Hashing::findRecord(1567, hash,overflow);
+
 }

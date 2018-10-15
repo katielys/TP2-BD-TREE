@@ -11,7 +11,7 @@ bool Block::insertRecord(const Article &article) {
         auto *articlePointer = reinterpret_cast<Article *>(&this->data[bytesOccupied]);
         std::memcpy(articlePointer, &article, sizeof(article)); // copy the content of the article in bytes to the free position
         this->bytesOccupied+= sizeof(article); // increments the quantity of occupied bytes
-        std::cout << "Sucessfully inserted on block!" << std::endl;
+        std::cout << "Sucessfully inserted on block! " << std::endl;
         return true;
     }catch (const char *e){
         throw e;

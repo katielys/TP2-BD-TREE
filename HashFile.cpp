@@ -1,151 +1,162 @@
+
 #include "HashFile.h"
-#include "Article.h"
-#include "Block.h"
-#include <vector>
-#include <stdio.h>
-#include <string.h>
-using namespace std;
 
-void HashFile::createHash(char** argv){
-    this->hash_size= 0;
-    ifstream file(argv[1]);
-    if(!file.is_open()){
-        cout<<"ERROR CANT OPEN THE FILE"<<endl;
+void Hashing::createHash(unsigned long numberOfRecords, unsigned int recordsPerBucket, const char *path) {
+    FILE *hashingFile = fopen(path, "wb+");
+    if(hashingFile == nullptr){
+        std::cout << "Cannot open the file " << path << std::endl;
+        return;
     }
-    vector <Article> v ;
-    int totalReg = 1;
-    string snipped;
-    while(getline(file, snipped)) {
+    unsigned long buckets = (numberOfRecords / recordsPerBucket) + 1;
+    Block emptyBlock;
 
-        if (snipped.empty()){
-            continue;
+    fseek(hashingFile, 0, SEEK_SET);
+    fwrite(&buckets, HEADER_SIZE, 1, hashingFile); // writing the quantity of buckets in the file
+    try {
+        for (int i = 0; i < buckets; i++) {
+            fseek(hashingFile, (i * sizeof(Block) + HEADER_SIZE), SEEK_SET);
+            fwrite(&emptyBlock, sizeof(Block), 1, hashingFile);
         }
-
-        string dump,cell;
-
-        stringstream lineStream(snipped); //autor : Tiago
-        vector<string> data;
-        if (snipped.find(';') != std::string::npos) {
-            while (std::getline(std::getline(lineStream, dump, '"'), cell, '"')) {
-//                cout << cell <<endl;
-                // tratando inconsistencias (nao sei explicar essa parte, foi tentativa e erro)
-                /// Tratamento de incosistencias de artigos que ha ausencia de algum campo
-                if(dump == ";;"){
-                    data.emplace_back("NULL");
-                    dump = ";";
-                    data.push_back(cell);
-                }else {
-                    if (data.size() >  1) {
-                        if (!cell.empty() && dump == ";") {
-                            data.push_back(cell);
-                        }
-                    } else {
-                        data.push_back(cell);
-                    }
-                }
-                // fim do tratamento de inconsistencias
-            }
-        }
-        try {
-
-            size_t registerSize = data.size();
-            string title;
-            char charTitle[MAX_SIZE_TITLE]; // titulo
-            char charAutorlist[MAX_SIZE_AUTOR]; // lista de autores
-            char vSnipped[MAX_SIZE_SNIPPET]; // resumo
-            char vDate[MAX_SIZE_DATE]; // data
-            int mQ; // citacoes
-            int id ;
-            unsigned short mYE; // ano de publicacao
-            //id = stoi(data[0].c_str());
-            if (registerSize > 4){
-                mQ = stoi(data[4].c_str());
-            }
-
-            if (registerSize > 2){
-                mYE =  static_cast<unsigned short>(stoi(data[2].c_str()));
-            }
-
-            if (registerSize > 1) {
-                title = data[1].substr(0,MAX_SIZE_TITLE);
-                strcpy(charTitle, title.c_str());
-            }
-
-            if(registerSize > 3) {
-                auto autorList = data[3].substr(0,MAX_SIZE_AUTOR);
-                strcpy(charAutorlist, autorList.c_str());
-            }
-
-            if (data.size() > 6) {
-                auto snipet = data[6].substr(0,MAX_SIZE_SNIPPET);
-                strcpy(vSnipped, snipet.c_str());
-            }
-
-            if (registerSize > 5) {
-                auto date = data[5].substr(0,MAX_SIZE_DATE);
-                strcpy(vDate, date.c_str());
-            }
-
-            totalReg++;
-            Article current = Article(totalReg, mYE, mQ, charTitle, charAutorlist, vSnipped, vDate);
-           // cout << current.toString();
-            v.push_back(current);
-        }catch (const char *e){
-            throw e;
-        }
+        fclose(hashingFile);
+    }catch (const char e){
+        throw e;
     }
-    file.close();
-    cout<< "\n\nTOTAL : " << totalReg <<endl;
-
-    FILE * pFile;
-    pFile = nullptr;
-    this->hash_size = totalReg;
-    Block current_block ;
-    //Article artAux;
-    pFile =fopen("fileHash.bin", "wb");
-    //cout<< pFile;
-    for (int i = 0;i < v.size();i++ ){
-        current_block.insertArticleInTheBlock(v[i]);
-        //cout<<current_block.article.toString()<<endl;
-        int position = v[i].getID() ;
-
-        fseek(pFile, position*sizeof(Block), SEEK_SET);
-        fwrite(&current_block, sizeof(Block), 1, pFile);
-        this->hash_size = this->hash_size +1;
-
-    }
-    //this->hash_size  = totalReg;
-    v.clear();
-    fclose(pFile);
-
-
 }
 
-Article HashFile::getArticleFromDisk(int id) {
-    FILE *fp;
-    fp = fopen("/home/katiely/Documents/BD/TP2-BD-TREE/fileHash.bin", "rb");
-    if (fp==NULL){
-        cout<<"Cant open the file"<<endl<<endl;
-        return Article();
+void Hashing::createOverflow(const char *path) {
+    FILE *overflowFile = fopen(path, "wb+");
+    if(overflowFile == nullptr){
+        std::cout << "Cannot open the file " << path << std::endl;
+        return;
     }
 
+    fseek(overflowFile, 0, SEEK_SET);
+    int blockCount = 0;
+    fwrite(&blockCount, HEADER_SIZE, 1, overflowFile); // writing the quantity of buckets in the file
+    fclose(overflowFile);
+}
+
+void Hashing::insertOnHashFile(Article &record, Hashing::HashInstance &hash, Hashing::OverflowArea &overflow) {
+    unsigned long mappedBlock = record.getID() % hash.buckets; // hashing function
     Block aux;
-    Article top;
-    fseek(fp,id*sizeof(Block),SEEK_SET);
-    //cout<< (ftell(fp)/sizeof(Block)) <<endl;
-    size_t  a =fread(&aux, sizeof(Block), 1, fp);
-    top = aux.article;
-    fseek(fp,0,SEEK_END);
-    cout<<"Numero total de blocos  "<< ftell(fp)/ sizeof(Block)<<endl;
-    if(a ==1 ){
+    bool update = false;
 
-        return top;
+    fseek(hash.hashingFile, (mappedBlock * sizeof(Block)) + HEADER_SIZE, SEEK_SET); // seeks the bucket's position
+    size_t a = fread(&aux, sizeof(Block), 1, hash.hashingFile); // reads the bucket
+
+    if (a==1 && aux.verificationMask == MASK_VALID) { // valid
+
+        std::cout << "trying to allocate record with id " << record.getID() << " on block " << mappedBlock << std::endl;
+        bool inserted = aux.insertRecord(record);
+
+        if(!inserted){ // if not inserted, goes to overflow
+
+            insertOnOverflow(record, overflow, aux.nextBlock, update, aux.overflow);
+
+            if(update){ // update the current block if necessary
+                aux.overflow = true;
+                fseek(hash.hashingFile, (mappedBlock * sizeof(Block) + HEADER_SIZE), SEEK_SET);
+                fwrite(&aux, sizeof(Block), 1, hash.hashingFile);
+            }
+        } else{
+            fseek(hash.hashingFile, (mappedBlock * sizeof(Block) + HEADER_SIZE), SEEK_SET);
+            fwrite(&aux, sizeof(Block), 1, hash.hashingFile);
+        }
     }
-    cout<< "Error : cant read the file" <<endl;
-    fclose(fp);
-    return Article();
+}
 
+void Hashing::insertOnOverflow(Article &record, Hashing::OverflowArea &overflowArea, unsigned int &offset,
+                               bool &needsUpdate, bool alreadyLinked) {
+
+    unsigned int currentOffset = offset;
+    if(alreadyLinked){ // if a block already has an linked block in overflow area
+        Block aux;
+
+        fseek(overflowArea.fp, (currentOffset * sizeof(Block)), SEEK_SET); // seeks the position of the linked block
+        size_t a = fread(&aux, sizeof(Block), 1, overflowArea.fp); // reads the block
+
+        if (a==1 && aux.verificationMask == MASK_VALID) { // if the is valid
+            bool inserted = aux.insertRecord(record); // tries to insert
+            if(!inserted){ // not inserted
+
+                insertOnOverflow(record, overflowArea, aux.nextBlock, needsUpdate, aux.overflow);
+
+                if(needsUpdate){ // update the current block if necessary
+                    aux.overflow = true;
+                    fseek(overflowArea.fp, (currentOffset * sizeof(Block)), SEEK_SET);
+                    fwrite(&aux, sizeof(Block), 1, overflowArea.fp);
+                    needsUpdate = false;
+                }
+
+            }else{ // updates the current block with the new record
+                fseek(overflowArea.fp, (currentOffset * sizeof(Block)), SEEK_SET);
+                fwrite(&aux, sizeof(Block), 1, overflowArea.fp);
+            }
+            return;
+        }
+    } else{
+        auto newBlockPos = overflowArea.blocksCount + Hashing::HEADER_SIZE; // position of the new block
+        Block aux;
+        offset = newBlockPos; // sets the previous block new offset
+
+        bool inserted = aux.insertRecord(record);
+        if(!inserted){
+            std::cout << "Cannot insert record on onverflow" << std::endl;
+            return;
+        }
+        // writes the new block
+        fseek(overflowArea.fp, (newBlockPos * sizeof(Block)), SEEK_SET); // modularizar em um funçao
+        fwrite(&aux, sizeof(Block), 1, overflowArea.fp);
+
+        // updating the header
+        overflowArea.blocksCount++;
+        fseek(overflowArea.fp, 0, SEEK_SET);
+        fwrite(&overflowArea.blocksCount, HEADER_SIZE, 1, overflowArea.fp);
+
+        needsUpdate = true; // sinalize for previous block update
+        return;
+    }
+}
+
+std::pair<bool, Article> Hashing::findRecord(unsigned int id, Hashing::HashInstance &hash, Hashing::OverflowArea &overflow) {
+    unsigned long mappedblock = id % hash.buckets;
+    Article artAux;
+    Block aux;
+    fseek(hash.hashingFile, (mappedblock * sizeof(Block) + HEADER_SIZE), SEEK_SET);
+    size_t check = fread(&aux, sizeof(Block), 1, hash.hashingFile); // reads a block
+    if (check == 1 && aux.verificationMask == MASK_VALID){
+        if (aux.lookUpforRecord(id, sizeof(Article), artAux)){
+            std::cout << "Found on bucket " << mappedblock << std::endl;
+            std::cout << artAux.toString() << std::endl;
+            return make_pair(true, artAux);
+
+        }else{
+            std::cout << "Not found :/" << std::endl;
+        }
+    }
+
+    return make_pair(false, artAux);
 }
 
 
+Hashing::HashInstance::HashInstance(const char *path) {
+    this->hashingFile = fopen(path, "rb+");
+    if(this->hashingFile == nullptr){
+        std::cout << "Cannot open the file " << path << std::endl;
+        return;
+    }
+    fread(&this->buckets, Hashing::HEADER_SIZE, 1, this->hashingFile);
+}
 
+Hashing::HashInstance::HashInstance() {}
+
+Hashing::OverflowArea::OverflowArea() {}
+
+Hashing::OverflowArea::OverflowArea(const char *path) {
+    this->fp = fopen(path, "rb+");
+    if(this->fp == nullptr){
+        std::cout << "Cannot open the file " << path << std::endl;
+        return;
+    }
+    fread(&this->blocksCount, Hashing::HEADER_SIZE, 1, this->fp);
+}
