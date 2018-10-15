@@ -181,15 +181,15 @@ int PrimaryIndexBtree::indexKeyBTree(nodePrimaryIndex *node, int k) {
     int h = node->count -1;
     int m = (l+h) /2 ;
     while(l <= h){
-        if(node->key[m] == k){
-            return m;
-        }
-        else if(node->key[m] > k){
-            h = m -1 ;
-        }
-        else {
-            l = m +1 ;
-        }
+      if(node->key[m]==k)
+          return m;
+      else if(node->key[m]>k)
+          h  =  m -1;
+      else
+          l = m +1;
+
+        m = (l+h) /2 ;
+
     }
 
     return h+1;

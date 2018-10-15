@@ -14,8 +14,7 @@ void HashFile::createHash(char** argv){
     vector<Article> v;
     v = p.readCSV(argv);
     FILE * pFile;
-    PrimaryIndexBtree *primaryIndexBtree = primaryIndexBtree->initTree() ;
-    primaryIndexBtree = primaryIndexBtree->createTree();
+
 
 
     Block current_block;
@@ -24,15 +23,22 @@ void HashFile::createHash(char** argv){
         current_block.insertArticleInTheBlock(v[i]);
 
         int position = v[i].getID() ;
-        int a = primaryIndexBtree->insertBtree(primaryIndexBtree,position);
-        cout<< a << " - - " ;
+        //int a = primaryIndexBtree->insertBtree(primaryIndexBtree,position);
+       // cout<< a << " - - " ;
         fseek(pFile, position*sizeof(Block), SEEK_SET);
         fwrite(&current_block, sizeof(Block), 1, pFile);
         this->hash_size = this->hash_size +1;
 
     }
-    v.clear();
+
+
     fclose(pFile);
+    PrimaryIndexBtree *primaryIndexBtree = primaryIndexBtree->initTree() ;
+    primaryIndexBtree = primaryIndexBtree->createTree();
+    for (int j = 0; j < v.size(); ++j) {
+        primaryIndexBtree->insertBtree(primaryIndexBtree,v[j].getID()) << endl;
+    }
+    v.clear();
 
 
 }

@@ -6,7 +6,7 @@ using namespace std;
 #include "Article.h"
 #include <iostream>
 
-#define MAX_KEY  42 //NAO SEI AINDA QUANTOS CHAVES DAO POR bloco
+#define MAX_KEY  11 //NAO SEI AINDA QUANTOS CHAVES DAO POR bloco
 #define MAX_SEEK MAX_KEY-1
 
 typedef struct nodePrimaryIndex{
