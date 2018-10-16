@@ -1,23 +1,31 @@
 ///\file upload.cpp Arquivo responsavel por criar o arquivo hash, o indice primario e indice secundario.
 #include <iostream>
 #include "HashFile.h"
-#include "Block.h"
+
 using  namespace std;
 
 
-//int main (int argc, char** argv){
-//
-//    HashFile p ;
-//    p.createHash(argv);
-//    //TODO : O bloco ainda falta eu terminar pq eu nao sei como validar essa cuceta
-//    for (int i =2; i< 20;i++){
-//        cout<< p.getArticleFromDisk(i).toString();
-//    }
-//
-//    cout<< p.getArticleFromDisk(777989).toString();
-//
-//
-//    return 0;
-//}
+int main (int argc, char** argv){
+
+    Parser p;
+    auto records = p.readCSV(argv);
+
+    std::cout << "creating hashing file .." << std::endl;
+    Hashing::createHash(1021443, 2, "hashing.bin");
+    Hashing::createOverflow("overflow.bin");
+
+    Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin"); // opening hash file
+    Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin"); // opening overflow area
+
+    std::cout << "Buckets number: " << hash.buckets << std::endl;
+    std::cout << "Overflow blocks: " << overflow.blocksCount << std::endl;
+
+    // closing files
+    hash.close();
+    overflow.close();
+
+
+    return 0;
+}
 
 

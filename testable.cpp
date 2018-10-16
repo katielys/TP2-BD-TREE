@@ -90,21 +90,32 @@ int main(int argc, char *argv[]){
 //    teste();
 //    getArticleFromDisk(4);
 
-//    Parser p;
-//    auto records = p.readCSV(argv);
-//    Hashing::createHash(1021443, 2, "hashing.bin");
-//    Hashing::createOverflow("overflow.bin");
+    Parser p;
+    auto records = p.readCSV(argv);
+    Hashing::createHash(1021443, 2, "hashing.bin");
+    Hashing::createOverflow("overflow.bin");
 
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
 
-//    for(auto &record : records){
-//        Hashing::insertOnHashFile(record, hash, overflow);
-//    }
+    for(auto &record : records){
+        Hashing::insertOnHashFile(record, hash, overflow);
+    }
 
-    std::cout << hash.buckets << std::endl;
-    std::cout << overflow.blocksCount << std::endl;
+    for (auto &record : records) {
+        auto value = Hashing::findRecord(record.getID(), hash, overflow);
+        if (value.first) {
+            std::cout << "Blocks passed " << value.second.second << std::endl;
+            std::cout << value.second.first.toString() << std::endl;
+        }else{
+            return 0;
+        }
+    }
 
-    Hashing::findRecord(1567, hash,overflow);
+    std::cout << records.size();
+    std::cout << "Buckets number: " << hash.buckets << std::endl;
+    std::cout << "Overflow blocks: " << overflow.blocksCount << std::endl;
 
+    hash.close();
+    overflow.close();
 }

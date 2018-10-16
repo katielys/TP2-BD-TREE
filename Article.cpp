@@ -52,7 +52,7 @@ void Article::setAutors(char autor[ MAX_SIZE_AUTOR]){
 unsigned short Article::getYear(){
 	return year;
 }
-int Article::getID(){
+unsigned int Article::getID(){
 	return id;
 }
 int Article::getQuotes(){

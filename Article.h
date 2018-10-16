@@ -21,7 +21,7 @@ class Article{
 		Article (int id,unsigned short int year,int,char[MAX_SIZE_TITLE],char[MAX_SIZE_AUTOR],char[MAX_SIZE_SNIPPET],char[MAX_SIZE_DATE]); ///Constructor deafult
 		~Article (); //Destrutor
 		string toString();/// Function to return all information from a instance at this class
-		int getID();
+		unsigned int getID();
         void setID(int id);
 	    unsigned short int getYear();
 	    char* getTitle();
