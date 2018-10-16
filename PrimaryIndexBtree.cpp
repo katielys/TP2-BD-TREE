@@ -17,7 +17,7 @@ bool PrimaryIndexBtree::insertBtree(PrimaryIndexBtree *indexBtree, int key) {
        return false;
    }
    int index = indexKeyBTree(node,key);
-   while(node->seek[index]!=-1) {
+   while(node->seek[0]!=-1) {
        if (readBtreeFromDisk(indexBtree, node->seek[index], node) == -1) {
            return false;
        }
@@ -46,9 +46,9 @@ bool PrimaryIndexBtree::insertBtree(PrimaryIndexBtree *indexBtree, int key) {
 }
 
 PrimaryIndexBtree *PrimaryIndexBtree::createTree() {
-    FILE *hash ;
-    FILE *fp = fopen("/home/katiely/Documents/BD/TP2-BD-TREE/primaryIndex.bin","wb");
-    hash = fopen("/home/katiely/Documents/BD/TP2-BD-TREE/fileHash.bin","rb");
+
+    FILE*fp = fopen("/home/katiely/Documents/BD/TP2-BD-TREE/primaryIndex.bin","wb");
+    FILE *hash = fopen("/home/katiely/Documents/BD/TP2-BD-TREE/hashing.bin","rb");
     if(fp==NULL || hash==NULL){
         return NULL;
     }
@@ -61,7 +61,7 @@ PrimaryIndexBtree *PrimaryIndexBtree::createTree() {
     indexBtree->pfile = fp;
     indexBtree->root = createNode();
     indexBtree->root->count = 0;
-    //indexBtree->root->isLeaf = true;
+
     indexBtree->root->self = 0;
     if(writeDiskBtree(indexBtree,indexBtree->root->self, indexBtree->root)==0){
         return indexBtree;
@@ -108,7 +108,24 @@ int PrimaryIndexBtree::writeDiskBtree(PrimaryIndexBtree *indexBtree, int seekPos
 }
 
 nodePrimaryIndex *PrimaryIndexBtree::searchBtree(PrimaryIndexBtree *indexBtree, int key) {
-    return nullptr;
+   nodePrimaryIndex *node = (nodePrimaryIndex *) calloc(1,sizeof(nodePrimaryIndex));
+   if(node == NULL){
+       cout<< "CANT ALLOCATE SPACE " << endl;
+
+       return NULL;
+   }
+   *node = *indexBtree->root;
+   int kindex= indexKeyBTree(node,key);
+   while(node->seek[0]!=1 && node->key[kindex]!=key){
+       if(readBtreeFromDisk(indexBtree,node->seek[kindex],node)==-1){
+           return NULL;
+       }
+       kindex = indexKeyBTree(node,key);
+   }
+   if(node->key[kindex] == key){
+       return node;
+   }
+   return NULL;
 }
 
 int PrimaryIndexBtree::splitBtree(PrimaryIndexBtree *indexBtree, nodePrimaryIndex *node) {
@@ -176,7 +193,7 @@ int PrimaryIndexBtree::endFileIndex(PrimaryIndexBtree *indexBtree) {
 }
 
 int PrimaryIndexBtree::indexKeyBTree(nodePrimaryIndex *node, int k) {
-
+///Binary search
     int l = 0;
     int h = node->count -1;
     int m = (l+h) /2 ;
@@ -193,4 +210,10 @@ int PrimaryIndexBtree::indexKeyBTree(nodePrimaryIndex *node, int k) {
     }
 
     return h+1;
+}
+
+Article PrimaryIndexBtree::getArticleFromBtree(int id) {
+    nodePrimaryIndex *node = searchBtree(this->root,id);
+  //  readBtreeFromDisk()
+    return Article();
 }

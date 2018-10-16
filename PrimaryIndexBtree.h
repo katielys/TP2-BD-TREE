@@ -6,7 +6,7 @@ using namespace std;
 #include "Article.h"
 #include <iostream>
 
-#define MAX_KEY  11 //NAO SEI AINDA QUANTOS CHAVES DAO POR bloco
+#define MAX_KEY  100 //NAO SEI AINDA QUANTOS CHAVES DAO POR bloco
 #define MAX_SEEK MAX_KEY-1
 
 typedef struct nodePrimaryIndex{
@@ -24,6 +24,7 @@ class PrimaryIndexBtree {
     FILE *pfile;
     PrimaryIndexBtree *initTree();
     PrimaryIndexBtree *createTree();
+
     bool insertBtree(PrimaryIndexBtree *indexBtree, int key);
     int readBtreeFromDisk(PrimaryIndexBtree * indexBtree,int seekPosition , nodePrimaryIndex * node);
     nodePrimaryIndex* createNode();
@@ -32,6 +33,7 @@ class PrimaryIndexBtree {
     int splitBtree(PrimaryIndexBtree *indexBtree , nodePrimaryIndex *node);
     int indexKeyBTree(nodePrimaryIndex *node, int k);
     int endFileIndex(PrimaryIndexBtree *indexBtree);
+    Article getArticleFromBtree(int id);
 
 
 };
