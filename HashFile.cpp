@@ -9,7 +9,7 @@ void Hashing::createHash(unsigned long numberOfRecords, unsigned int recordsPerB
         return;
     }
 //    unsigned long buckets = (numberOfRecords / recordsPerBucket) + 1;
-    unsigned long buckets = 510751; // prime number
+    unsigned long buckets = 30000; // prime number
     Block emptyBlock;
 
     fseek(hashingFile, 0, SEEK_SET);

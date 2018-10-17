@@ -28,9 +28,9 @@ int main (int argc, char** argv) {
     std::cout << "Overflow blocks: " << overflow.blocksCount << std::endl;
 
 
-    for (int i = 0; i < records.size(); ++i) {
-        indexBtree->insertBtree(indexBtree, records[i].getID());
-    }
+//    for (int i = 0; i < records.size(); ++i) {
+//        indexBtree->insertBtree(indexBtree, records[i].getID());
+//    }
 
     records.clear();
 

@@ -44,9 +44,8 @@ namespace Hashing {
     pair<bool, pair<Article, unsigned int>> findRecord(unsigned int id, HashInstance &hash, OverflowArea &overflow);
 
     bool lookUpForRecordInOverflow(unsigned int id, Article &artAux,
-                                                       OverflowArea &overflow, unsigned int &offset,
-                                                       unsigned int &blocksPassed);
+                                   OverflowArea &overflow, unsigned int &offset,
+                                   unsigned int &blocksPassed);
 
 };
 #endif //TP2_BD_TREE_HASHFILE_H
-

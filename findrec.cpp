@@ -8,6 +8,7 @@ int main(int argc, char** argv){
 
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
+
     unsigned int numberReg =  stoi(argv[1]);
 
     auto value = Hashing::findRecord(numberReg, hash, overflow);
