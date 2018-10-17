@@ -64,3 +64,5 @@ primaryIndex\.bin
 hashing\.bin
 
 overflow\.bin
+
+*.bin

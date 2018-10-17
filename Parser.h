@@ -1,17 +1,21 @@
+//
+// Created by taigo on 10/14/18.
+//
+
 #ifndef TP2_BD_TREE_PARSER_H
 #define TP2_BD_TREE_PARSER_H
 
-using namespace std;
-
-#include <iostream>
 #include <vector>
-#include "Article.h"
+#include <fstream>
+#include "Block.h"
+
 class Parser {
     public:
-        string path;
         vector<Article> readCSV(char ** argv);
         bool isNumber(string str);
 
+
+    Parser();
 
 };
 

@@ -1,10 +1,10 @@
+//
+// Created by taigo on 10/14/18.
+//
 
-#include <cstring>
-#include <fstream>
 #include "Parser.h"
 
 vector<Article> Parser::readCSV(char **argv) {
-    this->path =argv[1];
     ifstream file(argv[1]);
     if(!file.is_open()){
         cout<<"ERROR CANT OPEN THE FILE"<<endl;
@@ -91,13 +91,14 @@ vector<Article> Parser::readCSV(char **argv) {
 
             totalReg++;
             Article current = Article(id, mYE, mQ, charTitle, charAutorlist, vSnipped, vDate);
+            std::cout << current.toString() << std::endl;
             v.push_back(current);
         }catch (const char *e){
             throw e;
         }
     }
     file.close();
-    cout<< "\n\nTOTAL : " << totalReg-1 <<endl;
+    cout<< "\n\nTOTAL : " << totalReg-1 <<endl; // 1021443
     return v;
 }
 
@@ -110,3 +111,6 @@ bool Parser::isNumber(string str) {
     }
     return true;
 }
+
+Parser::Parser() {}
+

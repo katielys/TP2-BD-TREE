@@ -1,13 +1,15 @@
 
 #include "HashFile.h"
-#include "Block.h"
+
 void Hashing::createHash(unsigned long numberOfRecords, unsigned int recordsPerBucket, const char *path) {
     FILE *hashingFile = fopen(path, "wb+");
+
     if(hashingFile == nullptr){
         std::cout << "Cannot open the file " << path << std::endl;
         return;
     }
-    unsigned long buckets = (numberOfRecords / recordsPerBucket) + 1;
+//    unsigned long buckets = (numberOfRecords / recordsPerBucket) + 1;
+    unsigned long buckets = 510751; // prime number
     Block emptyBlock;
 
     fseek(hashingFile, 0, SEEK_SET);
@@ -36,7 +38,7 @@ void Hashing::createOverflow(const char *path) {
     fclose(overflowFile);
 }
 
-void Hashing::insertOnHashFile(Article &record, Hashing::HashInstance &hash, Hashing::OverflowArea &overflow) {
+unsigned long Hashing::insertOnHashFile(Article record, Hashing::HashInstance &hash, Hashing::OverflowArea &overflow) {
     unsigned long mappedBlock = record.getID() % hash.buckets; // hashing function
     Block aux;
     bool update = false;
@@ -63,6 +65,7 @@ void Hashing::insertOnHashFile(Article &record, Hashing::HashInstance &hash, Has
             fwrite(&aux, sizeof(Block), 1, hash.hashingFile);
         }
     }
+    return mappedBlock;
 }
 
 void Hashing::insertOnOverflow(Article &record, Hashing::OverflowArea &overflowArea, unsigned int &offset,
@@ -118,30 +121,63 @@ void Hashing::insertOnOverflow(Article &record, Hashing::OverflowArea &overflowA
     }
 }
 
+std::pair<bool, std::pair<Article, unsigned int>> Hashing::findRecord(unsigned int id, Hashing::HashInstance &hash,
+                                                                      Hashing::OverflowArea &overflow) {
+    unsigned long mappedblock = id % hash.buckets;
+    unsigned int passedBlocks = 1;
+    Article artAux;
+    Block aux;
+
+    fseek(hash.hashingFile, (mappedblock * sizeof(Block) + HEADER_SIZE), SEEK_SET);
+    size_t check = fread(&aux, sizeof(Block), 1, hash.hashingFile); // reads a block
+
+    if (check == 1 && aux.verificationMask == MASK_VALID){
+        if (aux.lookUpforRecord(id, sizeof(Article), artAux)){
+            std::cout << "Found on bucket " << mappedblock << std::endl;
+//            std::cout << artAux.toString() << std::endl;
+            return std::make_pair(true, std::make_pair(artAux, passedBlocks));
+
+        }else if (aux.overflow){
+            std::cout << "Not fount at hashing bucket\nTrying to lookup in overflow area.. "<< std::endl;
+            bool found = lookUpForRecordInOverflow(id, artAux, overflow, aux.nextBlock, passedBlocks);
+            if(found){
+                return std::make_pair(true, std::make_pair(artAux, passedBlocks));
+            }
+        }
+    }
+
+    std::cout << "Record with id " << id << " not found at all :(" << std::endl;
+    return std::make_pair(false, std::make_pair(artAux,passedBlocks));
+}
+
+bool Hashing::lookUpForRecordInOverflow(unsigned int id, Article &artAux, Hashing::OverflowArea &overflow,
+                                   unsigned int &offset, unsigned int &blocksPassed) {
+
 std::pair<bool, Article> Hashing::findRecord(unsigned int id, Hashing::HashInstance &hash, Hashing::OverflowArea &overflow) {
     unsigned long mappedblock = id % hash.buckets;
     Article artAux;
     Block aux;
-    fseek(hash.hashingFile, (mappedblock * sizeof(Block) + HEADER_SIZE), SEEK_SET);
-    size_t check = fread(&aux, sizeof(Block), 1, hash.hashingFile); // reads a block
-    if (check == 1 && aux.verificationMask == MASK_VALID){
-        if (aux.lookUpforRecord(id, sizeof(Article), artAux)){
-            std::cout << "Found on bucket " << mappedblock << std::endl;
-            std::cout << artAux.toString() << std::endl;
-            return make_pair(true, artAux);
+    fseek(overflow.fp, (offset * sizeof(Block)), SEEK_SET); // seeks the position of the linked block
+    size_t a = fread(&aux, sizeof(Block), 1, overflow.fp); // reads the block
 
-        }else{
-            std::cout << "Not found :/" << std::endl;
+    if (a==1 && aux.verificationMask == MASK_VALID) { // if the is valid
+        blocksPassed++;
+        if (aux.lookUpforRecord(id, sizeof(Article), artAux)){
+            std::cout << "Found in a overflow block" << std::endl;
+//            std::cout << artAux.toString() << std::endl;
+            return true;
+        }else if (aux.overflow){
+            return lookUpForRecordInOverflow(id, artAux, overflow, aux.nextBlock, blocksPassed);
         }
     }
 
-    return make_pair(false, artAux);
+    return false;
 }
 
 
 Hashing::HashInstance::HashInstance(const char *path) {
     this->hashingFile = fopen(path, "rb+");
-    if(this->hashingFile == nullptr){
+    if(this->hashingFile == NULL){
         std::cout << "Cannot open the file " << path << std::endl;
         return;
     }
@@ -150,14 +186,21 @@ Hashing::HashInstance::HashInstance(const char *path) {
 
 Hashing::HashInstance::HashInstance() {}
 
+void Hashing::HashInstance::close() {
+    fclose(this->hashingFile);
+}
+
 Hashing::OverflowArea::OverflowArea() {}
 
 Hashing::OverflowArea::OverflowArea(const char *path) {
     this->fp = fopen(path, "rb+");
-    if(this->fp == nullptr){
+    if(this->fp == NULL){
         std::cout << "Cannot open the file " << path << std::endl;
         return;
     }
     fread(&this->blocksCount, Hashing::HEADER_SIZE, 1, this->fp);
 }
 
+void Hashing::OverflowArea::close() {
+    fclose(this->fp);
+}

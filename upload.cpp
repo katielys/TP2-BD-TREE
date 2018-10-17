@@ -2,9 +2,6 @@
 #include <iostream>
 #include "HashFile.h"
 #include "Block.h"
-#include "Parser.h"
-#include "PrimaryIndexBtree.h"
-
 using  namespace std;
 
 
@@ -25,12 +22,14 @@ int main (int argc, char** argv){
     }
     records.clear();
 
+    Parser p;
+    auto records = p.readCSV(argv);
 
+    std::cout << "creating hashing file .." << std::endl;
+    Hashing::createHash(1021443, 2, "hashing.bin");
+    Hashing::createOverflow("overflow.bin");
 
-
-
-
-        return 0;
-}
-
-
+    std::cout << "Buckets number: " << hash.buckets << std::endl;
+    std::cout << "Overflow blocks: " << overflow.blocksCount << std::endl;
+    hash.close();
+    overflow.close();

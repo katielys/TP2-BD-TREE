@@ -1,17 +1,22 @@
 #include <iostream>
 #include "HashFile.h"
+///\autor: Katiely
 
 using namespace std;
-//
-//int main(int argc, char** argv){
-//
-//    int numberReg =  stoi(argv[1]);
-//    Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
-//    Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
-//    cout << hash.buckets << endl;
-//    cout << overflow.blocksCount << endl;
-//    //TODO eu nao sei se vc ja implementou a quantidade de blocs lindos
-//    Hashing::findRecord(numberReg, hash,overflow);
-//    return 0;
-//
-//}
+
+int main(int argc, char** argv){
+
+    Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
+    Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
+    unsigned int numberReg =  stoi(argv[1]);
+
+    auto value = Hashing::findRecord(numberReg, hash, overflow);
+    if (value.first) {
+        std::cout << "Blocks passed " << value.second.second << std::endl;
+        std::cout << value.second.first.toString() << std::endl;
+    }else{
+        std::cout << "ID nao encontrado" << std::endl;
+    }
+
+    return 0;
+}

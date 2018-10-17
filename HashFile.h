@@ -18,6 +18,8 @@ namespace Hashing {
 
         explicit OverflowArea(const char *path);
 
+        void close();
+
     };
 
     struct HashInstance{
@@ -27,17 +29,23 @@ namespace Hashing {
         HashInstance();
 
         explicit HashInstance(const char *path);
+
+        void close();
     };
 
     void createHash(unsigned long numberOfRecords, unsigned int recordsPerBucket, const char *path);
 
     void createOverflow(const char *path);
 
-    void insertOnHashFile(Article &record, HashInstance &hash, OverflowArea &overflow);
+    unsigned long insertOnHashFile(Article record, HashInstance &hash, OverflowArea &overflow);
 
     void insertOnOverflow(Article &record, OverflowArea &overflowArea, unsigned int &offset, bool &needsUpdate, bool alreadyLinked=false);
 
-    std::pair<bool, Article> findRecord(unsigned int id, HashInstance &hash, OverflowArea &overflow);
+    pair<bool, pair<Article, unsigned int>> findRecord(unsigned int id, HashInstance &hash, OverflowArea &overflow);
+
+    bool lookUpForRecordInOverflow(unsigned int id, Article &artAux,
+                                                       OverflowArea &overflow, unsigned int &offset,
+                                                       unsigned int &blocksPassed);
 
 };
 #endif //TP2_BD_TREE_HASHFILE_H

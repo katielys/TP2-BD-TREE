@@ -1,5 +1,4 @@
 ///\file Block.cpp
-#include <cstring>
 #include "Block.h"
 
 bool Block::insertRecord(const Article &article) {
@@ -43,4 +42,3 @@ bool Block::lookUpforRecord(unsigned int id, size_t recordSize, Article &aux) {
     }
     return false;
 }
-
