@@ -3,6 +3,7 @@
 
 void Hashing::createHash(unsigned long numberOfRecords, unsigned int recordsPerBucket, const char *path) {
     FILE *hashingFile = fopen(path, "wb+");
+
     if(hashingFile == nullptr){
         std::cout << "Cannot open the file " << path << std::endl;
         return;
@@ -37,7 +38,7 @@ void Hashing::createOverflow(const char *path) {
     fclose(overflowFile);
 }
 
-void Hashing::insertOnHashFile(Article record, Hashing::HashInstance &hash, Hashing::OverflowArea &overflow) {
+unsigned long Hashing::insertOnHashFile(Article record, Hashing::HashInstance &hash, Hashing::OverflowArea &overflow) {
     unsigned long mappedBlock = record.getID() % hash.buckets; // hashing function
     Block aux;
     bool update = false;
@@ -64,6 +65,7 @@ void Hashing::insertOnHashFile(Article record, Hashing::HashInstance &hash, Hash
             fwrite(&aux, sizeof(Block), 1, hash.hashingFile);
         }
     }
+    return mappedBlock;
 }
 
 void Hashing::insertOnOverflow(Article &record, Hashing::OverflowArea &overflowArea, unsigned int &offset,

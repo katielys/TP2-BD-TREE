@@ -37,7 +37,7 @@ namespace Hashing {
 
     void createOverflow(const char *path);
 
-    void insertOnHashFile(Article record, HashInstance &hash, OverflowArea &overflow);
+    unsigned long insertOnHashFile(Article record, HashInstance &hash, OverflowArea &overflow);
 
     void insertOnOverflow(Article &record, OverflowArea &overflowArea, unsigned int &offset, bool &needsUpdate, bool alreadyLinked=false);
 
