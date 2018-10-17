@@ -5,6 +5,8 @@ using namespace std;
 
 #include "Article.h"
 #include <iostream>
+#include <cstring>
+
 
 #define MAX_KEY  511
 #define MAX_SEEK MAX_KEY-1

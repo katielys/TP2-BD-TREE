@@ -1,6 +1,5 @@
 using namespace std;
 
-#include <cstring>
 #include "PrimaryIndexBtree.h"
 
 PrimaryIndexBtree *PrimaryIndexBtree::initTree() {
