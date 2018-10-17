@@ -151,11 +151,8 @@ std::pair<bool, std::pair<Article, unsigned int>> Hashing::findRecord(unsigned i
 }
 
 bool Hashing::lookUpForRecordInOverflow(unsigned int id, Article &artAux, Hashing::OverflowArea &overflow,
-                                   unsigned int &offset, unsigned int &blocksPassed) {
+                                        unsigned int &offset, unsigned int &blocksPassed) {
 
-std::pair<bool, Article> Hashing::findRecord(unsigned int id, Hashing::HashInstance &hash, Hashing::OverflowArea &overflow) {
-    unsigned long mappedblock = id % hash.buckets;
-    Article artAux;
     Block aux;
     fseek(overflow.fp, (offset * sizeof(Block)), SEEK_SET); // seeks the position of the linked block
     size_t a = fread(&aux, sizeof(Block), 1, overflow.fp); // reads the block
