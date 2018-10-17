@@ -5,16 +5,25 @@ using namespace std;
 
 //int main(int argc, char ** argv){
 //    int idToSeek = 232;
-//    //idToSeek = stoi(argv[1]);
-//    PrimaryIndexBtree *p = p->initTree();
-//    p = p->createTree();
-//    nodePrimaryIndex *n ;
+//    idToSeek = stoi(argv[1]);
 //
-//
-//    for (int j = 0; j < 100; ++j) {
-//        p->insertBtree(p,j);
+//    PrimaryIndexBtree p;
+//    p.pfile = fopen("primaryIndex.bin","r");
+//    p.readRoot(&p);
+//    nodePrimaryIndex *n = (nodePrimaryIndex *) malloc(sizeof(nodePrimaryIndex));
+//    n = p.searchBtree(&p,idToSeek);
+//    if (n==NULL){
+//        cout <<"--->" << idToSeek << " not found " << endl;
+//    }
+//    else{
+//        cout << "achei"<< endl;
+        //cout<<p.parent<<endl;
+//        //p.indexKeyBTree()
 //    }
 //
-//    return 0;
+//    fclose(p.pfile);
 //
+//
+//    return 0;
+
 //}

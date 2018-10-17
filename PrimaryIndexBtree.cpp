@@ -53,7 +53,7 @@ PrimaryIndexBtree *PrimaryIndexBtree::createTree() {
         return NULL;
     }
     PrimaryIndexBtree *indexBtree = initTree();
-
+   // cout<<sizeof(nodePrimaryIndex) << endl;
     indexBtree =  (PrimaryIndexBtree * ) calloc (1,sizeof(PrimaryIndexBtree));
     if(indexBtree == NULL){
         return NULL;
@@ -61,7 +61,7 @@ PrimaryIndexBtree *PrimaryIndexBtree::createTree() {
     indexBtree->pfile = fp;
     indexBtree->root = createNode();
     indexBtree->root->count = 0;
-
+    indexBtree->root->parent = -1;
     indexBtree->root->self = 0;
     if(writeDiskBtree(indexBtree,indexBtree->root->self, indexBtree->root)==0){
         return indexBtree;
@@ -195,7 +195,7 @@ int PrimaryIndexBtree::endFileIndex(PrimaryIndexBtree *indexBtree) {
 int PrimaryIndexBtree::indexKeyBTree(nodePrimaryIndex *node, int k) {
 ///Binary search
     int l = 0;
-    int h = node->count -1;
+    int h = node->count ;
     int m = (l+h) /2 ;
     while(l <= h){
       if(node->key[m]==k)
@@ -213,7 +213,21 @@ int PrimaryIndexBtree::indexKeyBTree(nodePrimaryIndex *node, int k) {
 }
 
 Article PrimaryIndexBtree::getArticleFromBtree(int id) {
-    nodePrimaryIndex *node = searchBtree(this->root,id);
-  //  readBtreeFromDisk()
+    //nodePrimaryIndex *node = searchBtree(this->oot,id);)
     return Article();
+}
+
+void PrimaryIndexBtree::readRoot(PrimaryIndexBtree *i ) {
+    nodePrimaryIndex *node = NULL;
+    node = i->createNode();
+    cout<< readBtreeFromDisk(i,0,node);
+
+}
+
+void PrimaryIndexBtree::buildIndex( PrimaryIndexBtree *pib) {
+    //PrimaryIndexBtree *pib;
+    pib = initTree();
+    pib = createTree();
+    //fp = fopen("hashing.bin","r");
+
 }
