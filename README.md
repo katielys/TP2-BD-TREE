@@ -8,10 +8,12 @@ Este trabalho consiste na implementação de programas para armazenamento e pesq
 
 [ ] upload <file> 
   
-[ ] findrec 
+[X] findrec <ID>
 
-[ ] seek1
+[ ] seek1 <ID>
 
-[ ] seek2
+[ ] seek2 <String>
+
+[ ] Documentar codigo
 
 [ ] Relatório  : https://v2.overleaf.com/7611138499gsrjvwcynsct

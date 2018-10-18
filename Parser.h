@@ -1,7 +1,5 @@
-//
-// Created by taigo on 10/14/18.
-//
 
+#pragma once
 #ifndef TP2_BD_TREE_PARSER_H
 #define TP2_BD_TREE_PARSER_H
 

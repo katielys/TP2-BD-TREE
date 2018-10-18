@@ -1,7 +1,3 @@
-//
-// Created by taigo on 10/14/18.
-//
-
 #include "Parser.h"
 
 vector<Article> Parser::readCSV(char **argv) {
@@ -91,7 +87,8 @@ vector<Article> Parser::readCSV(char **argv) {
 
             totalReg++;
             Article current = Article(id, mYE, mQ, charTitle, charAutorlist, vSnipped, vDate);
-            std::cout << current.toString() << std::endl;
+            //TODO DESCOMENTAR NA HORA DE ENTREGAR
+            //std::cout << current.toString() << std::endl;
             v.push_back(current);
         }catch (const char *e){
             throw e;
