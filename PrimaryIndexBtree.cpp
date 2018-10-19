@@ -1,6 +1,7 @@
 
+#include <iostream>
 #include "PrimaryIndexBtree.h"
-
+using namespace std;
 int btree_read_disk(btree *tree, int seek, btree_node *node){
     if(fseek(tree->fp, seek, SEEK_SET) == -1){
         return BTREE_ERR;
@@ -23,7 +24,7 @@ int btree_write_disk(btree *tree, int seek, btree_node *node){
 
  int btree_key_index(btree_node *node, int key){
     int low = 0;
-    int high = node->key_num - 1;
+    int high = 2*T-2;
     int middle = (low + high) / 2;
     while(low <= high){
         if(node->key[middle] == key)
@@ -76,9 +77,11 @@ btree *createIndex(const char *file){
 }
 
 btree_node *btree_search(btree *tree, int key){
+    short int countBlock = 1;
     btree_node *node = (btree_node *)calloc(1, sizeof(btree_node));
     if(node == NULL)
         return NULL;
+    //cout<< (*tree->root);
     *node = *tree->root;
     int key_index = btree_key_index(node, key);
     while(node->seek[0] != -1 && node->key[key_index] != key)
@@ -86,25 +89,28 @@ btree_node *btree_search(btree *tree, int key){
         if(btree_read_disk(tree, node->seek[key_index], node) == BTREE_ERR)
             return nullptr;
         key_index = btree_key_index(node, key);
+        countBlock++;
     }
+    cout<< "Numero de blocos lidos:  "<< countBlock << endl;
     if(node->key[key_index] == key)
         return node;
     return nullptr;
 }
 
-void loadRoot(btree *t, const char *file){
-    FILE *fp = fopen(file, "rb");
-    btree *tree =  (btree *)calloc(1, sizeof(btree));
-    btree_node *node =  (btree_node *)calloc(1, sizeof(btree_node));
-    if(fseek(fp, 0, SEEK_SET) == -1)
-        return ;
+void loadRoot(btree *indexPrimary, const char *file){
+
+
+    //btree indexPrimary;
+    FILE *fp = fopen(file,"rb");
+    fseek(fp, 0, SEEK_SET);
+    btree_node *node =  (btree_node * )calloc(1, sizeof(btree_node));
+
     char *read_buf =  (char * )calloc(1, sizeof(btree_node));
-    if(fread(read_buf, sizeof(btree_node), 1, fp) == -1)
-        return ;
+    fread(read_buf, sizeof(btree_node), 1,fp);
+
     memcpy(node, read_buf, sizeof(btree_node));
-    tree->fp = fp;
-    tree->root = node;
-    tree->root->self = 0;
+    indexPrimary->fp = fp;
+    indexPrimary->root = node;
 }
 int addElement(btree *tree, int key, unsigned long adress){
     btree_node *node = (btree_node *) calloc(1, sizeof(btree_node));

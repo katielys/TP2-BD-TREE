@@ -32,6 +32,5 @@ int main(int argc, char **argv) {
     fclose(tree->fp);
     hash.close();
     overflow.close();
-
     return 0;
 }
