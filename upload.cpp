@@ -11,13 +11,14 @@ int main(int argc, char **argv) {
     auto records = p.readCSV(argv);
 
     std::cout << "creating hashing file .." << std::endl;
-    Hashing::createHash(records.size(), 2, "hashing.bin");
-    Hashing::createOverflow("overflow.bin");
+    Hashing::createHash(records.size(), 2, "./hashing.bin");
+    Hashing::createOverflow("./overflow.bin");
+
     PrimaryIndexBtree indexBtree;
 
     indexBtree.buildIndex(&indexBtree);
-    Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
-    Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
+    Hashing::HashInstance hash = Hashing::HashInstance("./hashing.bin");
+    Hashing::OverflowArea overflow = Hashing::OverflowArea("./overflow.bin");
 
     for (auto &record : records) {
 

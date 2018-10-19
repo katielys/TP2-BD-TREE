@@ -9,9 +9,11 @@ PrimaryIndexBtree *PrimaryIndexBtree::initTree() {
 
 bool PrimaryIndexBtree::insertBtree(PrimaryIndexBtree *indexBtree, int key,int adress) {
     nodePrimaryIndex *node = (nodePrimaryIndex * ) calloc (1,sizeof(nodePrimaryIndex));
+
     if (node == NULL){
         return false;
     }
+
     *node = *indexBtree->root;
     if(splitBtree(indexBtree,node)==-1){
         return false;
@@ -48,7 +50,7 @@ bool PrimaryIndexBtree::insertBtree(PrimaryIndexBtree *indexBtree, int key,int a
 
 PrimaryIndexBtree *PrimaryIndexBtree::createTree() {
 
-    FILE*fp = fopen("/home/katiely/Documents/BD/TP2-BD-TREE/primaryIndex.bin","wb");
+    FILE*fp = fopen("./primaryIndex.bin","wb");
     if(fp==NULL){
         return NULL;
     }

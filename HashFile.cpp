@@ -9,7 +9,7 @@ void Hashing::createHash(unsigned long numberOfRecords, unsigned int recordsPerB
         return;
     }
 //    unsigned long buckets = (numberOfRecords / recordsPerBucket) + 1;
-    unsigned long buckets = 30000; // prime number
+    unsigned long buckets = 510751; // prime number
     Block emptyBlock;
 
     fseek(hashingFile, 0, SEEK_SET);
@@ -65,6 +65,7 @@ unsigned long Hashing::insertOnHashFile(Article record, Hashing::HashInstance &h
             fwrite(&aux, sizeof(Block), 1, hash.hashingFile);
         }
     }
+
     return mappedBlock;
 }
 
@@ -170,7 +171,6 @@ bool Hashing::lookUpForRecordInOverflow(unsigned int id, Article &artAux, Hashin
 
     return false;
 }
-
 
 Hashing::HashInstance::HashInstance(const char *path) {
     this->hashingFile = fopen(path, "rb+");
