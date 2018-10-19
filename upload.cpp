@@ -2,6 +2,7 @@
 #include "PrimaryIndexBtree.h"
 #include "Parser.h"
 #include "HashFile.h"
+#include "SecondIndexBtree.h"
 
 using  namespace std;
 
@@ -15,7 +16,7 @@ int main(int argc, char **argv) {
     Hashing::createOverflow("overflow.bin");
     cout << "Creating primary index"<< endl;
     btree *tree = createIndex("primaryIndex.bin");
-
+    BTreeS *secondIndex = createIndexSecondary("secondIndex.bin");
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
 
