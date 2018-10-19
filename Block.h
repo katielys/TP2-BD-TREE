@@ -2,7 +2,7 @@
 #include "Article.h"
 #ifndef TP2_BD_TREE_BLOCK_H
 #define TP2_BD_TREE_BLOCK_H
-
+#pragma once
 using namespace std;
 
 #define MASK_VALID 666 //!< MASK_VALID is a flag to know if a block is valid or not
