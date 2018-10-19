@@ -13,21 +13,22 @@ int main(int argc, char **argv) {
     std::cout << "creating hashing file .." << std::endl;
     Hashing::createHash(records.size(), 2, "hashing.bin");
     Hashing::createOverflow("overflow.bin");
-    PrimaryIndexBtree indexBtree;
+    cout << "Creating primary index"<< endl;
+    btree *tree = createIndex("primaryIndex.bin");
 
-    indexBtree.buildIndex(&indexBtree);
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
 
     for (auto &record : records) {
 
          auto adress = Hashing::insertOnHashFile(record, hash, overflow);
-         indexBtree.insertBtree(&indexBtree,record.getID(),adress);
+         addElement(tree, record.getID(),adress);
     }
 
     std::cout << "Buckets number: " << hash.buckets << std::endl;
     std::cout << "Overflow blocks: " << overflow.blocksCount << std::endl;
     records.clear();
+    fclose(tree->fp);
     hash.close();
     overflow.close();
 

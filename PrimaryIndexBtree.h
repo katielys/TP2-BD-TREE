@@ -1,93 +1,30 @@
-#ifndef TP2_BD_TREE_PRIMARYINDEXBTREE_H
-#define TP2_BD_TREE_PRIMARYINDEXBTREE_H
+#ifndef _BTREE_H_
+#define _BTREE_H_
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define T 126
 
-using namespace std;
+#define BTREE_OK 0
+#define BTREE_ERR -1
 
-#include "Article.h"
-#include <iostream>
+typedef struct btree_node{
+    int key_num;
+    unsigned long adress [2 * T - 1];
+    int key[2 * T - 1];
+    int seek[2 * T]; //!< Order from Btree
+    int self;
+    int parent;
+}btree_node;
 
-#define MAX_KEY  211
-#define MAX_SEEK MAX_KEY-1
-
-typedef struct nodePrimaryIndex{
-    int  key [MAX_KEY ];
-    unsigned int adress[MAX_KEY];
-    int  seek[MAX_SEEK];
-    int  self;
-    int  count;
-    int  parent;
-} nodePrimaryIndex;
-
-class PrimaryIndexBtree {
-
-public:
-    nodePrimaryIndex *root;
-    FILE *pfile;
-    PrimaryIndexBtree *initTree();
-    PrimaryIndexBtree *createTree();
-    bool insertBtree(PrimaryIndexBtree *indexBtree, int key, int adress);
-    int readBtreeFromDisk(PrimaryIndexBtree * indexBtree,int seekPosition , nodePrimaryIndex * node);
-    nodePrimaryIndex* createNode();
-    int writeDiskBtree(PrimaryIndexBtree *indexBtree,int seekPosition , nodePrimaryIndex *node);
-    nodePrimaryIndex *searchBtree(PrimaryIndexBtree *indexBtree , int key);
-    int splitBtree(PrimaryIndexBtree *indexBtree , nodePrimaryIndex *node);
-    int indexKeyBTree(nodePrimaryIndex *node, int k);
-    int endFileIndex(PrimaryIndexBtree *indexBtree);
-    void readRoot(PrimaryIndexBtree *indexBtree);
-    void buildIndex( PrimaryIndexBtree *primaryIndexBtree);
-    string nodeToString(nodePrimaryIndex *index){
-        string result = "Number of keys occuped: "+to_string(index->count) + "\n" ;
-        return result;
-
-    }
-
-};
-
-#endif //TP2_BD_TREE_PRIMARYINDEXBTREE_H
-
-//#ifndef PRIMARYINDEXBTREE_H
-//#define PRIMARYINDEXBTREE_H
-//
-//#include <iostream>
-//#include <cstring>
-//using namespace std;
-//#define MAXKEY 339
-//#define ORDER MAXKEY+1  //!<ORDER BTREE
-//#define EMPTY 99999999
-//
-//
-//typedef struct ItemType_H{
-//    unsigned int id;
-//    unsigned int adress;
-//}ItemType_H;
-//
-//typedef struct NodeType_H{
-//    unsigned short int count ; //!< Number Of Key at Node;
-//    ItemType_H KEYS[MAXKEY]; //!< KEYS:
-//    unsigned int CHILD[ORDER];  //!< childs
-//    int self;
-//}NodeType_H;
-//
-//class PrimaryIndexBtree {
-//
-//    public:
-//
-//    FILE *fp;
-//    NodeType_H *root;
-//    NodeType_H * createNewNodo( );
-//    void loadData(PrimaryIndexBtree *indexBtree);
-//    void buildIndex(PrimaryIndexBtree *indexBtree);
-//    int needSplit(PrimaryIndexBtree *indexBtree, NodeType_H *node);
-//    bool addElement(PrimaryIndexBtree *indexBtree, unsigned int id, unsigned int adress);
-//    int readDisk(PrimaryIndexBtree *indexBtree,int position, NodeType_H *nodo);
-//    int writeDisk(PrimaryIndexBtree *indexBtree,int position, NodeType_H *nodo);
-//    int binarySearch(NodeType_H *nodo,int key);
-//    NodeType_H * searchNode(PrimaryIndexBtree *indexBtree,int k);
-//
-//
-//};
-//
-//
-//
-//
-//#endif //PRIMARYINDEXBTREE_H
+typedef struct btree{
+    struct btree_node *root;
+    FILE *fp;
+}btree;
+//TODO vou colocar em classe deopois
+int addElement(btree *tree, int key, unsigned long adress);
+int btree_split(btree *tree, btree_node *node);
+btree_node *btree_search(btree *tree, int key);
+btree *createIndex(const char *file);
+void loadRoot(btree *t,const char *file);
+#endif
