@@ -2,7 +2,7 @@
 #include "Article.h"
 
 using namespace std;
-///\param id its a integer to represent a id from a article
+///\param id_ its a integer to represent a id from a article
 ///\param year_ its a short integer to represent a year that article has been publicated
 ///\param quote its a integer that represent number of citations from article
 ///\param title[MAX_SIZE_TITLE] its a char's array to represent a title from a  article

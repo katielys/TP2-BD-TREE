@@ -16,24 +16,25 @@ int main(int argc, char **argv) {
     Hashing::createOverflow("overflow.bin");
 
     cout << "Creating primary index"<< endl;
-    btree *tree = createIndex("primaryIndex.bin");
-    BTreeS *secondIndex = createIndexSecondary("secondIndex.bin");
-
+    //btree *tree = createIndex("primaryIndex.bin");
+    BTreeS *secondIndex;
+    secondIndex = createIndexSecondary("secondIndex.bin");
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
 
     for (auto &record : records) {
 
          auto adress = Hashing::insertOnHashFile(record, hash, overflow);
-         addElement(tree, record.getID(),adress);
+        // addElement(tree, record.getID(),adress);
+         addElementSecondIndex(secondIndex,record.getTitle(),adress);
     }
 
     std::cout << "Buckets number: " << hash.buckets << std::endl;
     std::cout << "Overflow blocks: " << overflow.blocksCount << std::endl;
     records.clear();
-    fclose(tree->fp);
+    //ls
+    // fclose(tree->fp);
     hash.close();
     overflow.close();
-
     return 0;
 }
