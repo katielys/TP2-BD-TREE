@@ -80,7 +80,7 @@ btree_node *btree_search(btree *tree, int key){
     short int countBlock = 1;
     btree_node *node = (btree_node *)calloc(1, sizeof(btree_node));
     if(node == NULL)
-        return NULL;
+        return nullptr;
     //cout<< (*tree->root);
     *node = *tree->root;
     int key_index = btree_key_index(node, key);

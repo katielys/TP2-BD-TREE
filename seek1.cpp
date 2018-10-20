@@ -11,13 +11,13 @@ int main(int argc, char ** argv){
     btree_node *r = nullptr;
     loadRoot(&indexPrimary, "primaryIndex.bin");
     cout<<indexPrimary.root->key_num<<endl;
-    cout<<indexPrimary.root->key[57]<<endl;
+    cout<<indexPrimary.root->key[39]<<endl;
     r= btree_search(&indexPrimary,idToSeek);
     if(r == nullptr){
         cout<<"->ID: "<<idToSeek<< "   not found";
     }
     else{
-        cout<<"ID  "<< idToSeek << "has found" << endl;
+        cout<<"->ID :"<< idToSeek << "has found" << endl;
         cout<<r->self<<endl;
         cout<<r->key_num<<endl;
     }
