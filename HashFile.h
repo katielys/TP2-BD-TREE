@@ -10,6 +10,14 @@ namespace Hashing {
 
     const unsigned short HEADER_SIZE = sizeof(u_long);
 
+    struct Address{
+        bool overflow;
+        unsigned long offset;
+        unsigned int blockOffset;
+
+        Address();
+    };
+
     struct OverflowArea{
         FILE *fp;
         unsigned blocksCount;

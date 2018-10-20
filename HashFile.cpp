@@ -201,3 +201,5 @@ Hashing::OverflowArea::OverflowArea(const char *path) {
 void Hashing::OverflowArea::close() {
     fclose(this->fp);
 }
+
+Hashing::Address::Address() {}

@@ -14,9 +14,11 @@ int main(int argc, char **argv) {
     std::cout << "creating hashing file .." << std::endl;
     Hashing::createHash(records.size(), 2, "hashing.bin");
     Hashing::createOverflow("overflow.bin");
+
     cout << "Creating primary index"<< endl;
     btree *tree = createIndex("primaryIndex.bin");
     BTreeS *secondIndex = createIndexSecondary("secondIndex.bin");
+
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
 
