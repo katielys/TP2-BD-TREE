@@ -3,14 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define T 126
+#include "HashFile.h"
+#define T 136 //(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) <= 4084 -> (4096 - 12(other attributes)))
 
 #define BTREE_OK 0
 #define BTREE_ERR -1
 
 typedef struct btree_node{
     int key_num;
-    unsigned long adress [2 * T - 1];
+    Hashing::Address adress[2 * T - 1];
     int key[2 * T - 1];
     int seek[2 * T]; //!< Order from Btree
     int self;
@@ -21,8 +22,9 @@ typedef struct btree{
     struct btree_node *root;
     FILE *fp;
 }btree;
+
 //TODO vou colocar em classe deopois
-int addElement(btree *tree, int key, unsigned long adress);
+int addElement(btree *tree, int key, Hashing::Address adress);
 int btree_split(btree *tree, btree_node *node);
 btree_node *btree_search(btree *tree, int key);
 btree *createIndex(const char *file);

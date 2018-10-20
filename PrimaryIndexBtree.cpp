@@ -24,14 +24,15 @@ int btree_write_disk(btree *tree, int seek, btree_node *node){
 
  int btree_key_index(btree_node *node, int key){
     int low = 0;
-    int high = 2*T-2;
+    int high = 2*T-3;
     int middle = (low + high) / 2;
     while(low <= high){
-        if(node->key[middle] == key)
+        if(node->key[middle] == key) {
             return middle;
-        else if(node->key[middle] > key)
+        }
+        else if(node->key[middle] > key) {
             high = middle - 1;
-        else
+        }else
             low = middle + 1;
         middle = (low + high) / 2;
     }
@@ -53,7 +54,7 @@ btree_node *createNewNode(){
     int i;
     for(i = 0; i < 2 * T - 1; i++){
         node->key[i] = 0;
-        node->adress[i] = 0;
+        node->adress[i] = Hashing::Address();
     }
     for(i = 0; i < 2 * T; i++)
         node->seek[i] = -1;
@@ -91,7 +92,7 @@ btree_node *btree_search(btree *tree, int key){
         key_index = btree_key_index(node, key);
         countBlock++;
     }
-    cout<< "Numero de blocos lidos:  "<< countBlock << endl;
+    cout<< "Numero de blocos de indice lidos:  "<< countBlock << endl;
     if(node->key[key_index] == key)
         return node;
     return nullptr;
@@ -112,14 +113,18 @@ void loadRoot(btree *indexPrimary, const char *file){
     indexPrimary->fp = fp;
     indexPrimary->root = node;
 }
-int addElement(btree *tree, int key, unsigned long adress){
+int addElement(btree *tree, int key, Hashing::Address adress){
     btree_node *node = (btree_node *) calloc(1, sizeof(btree_node));
     if(node == NULL)
         return BTREE_ERR;
+
     *node = *tree->root;
+
     if(btree_split(tree, node) == BTREE_ERR)
         return BTREE_ERR;
+
     int key_index = btree_key_index(node, key);
+
     while(node->seek[0] != -1){
         if(btree_read_disk(tree, node->seek[key_index], node) == BTREE_ERR)
             return BTREE_ERR;
@@ -127,6 +132,7 @@ int addElement(btree *tree, int key, unsigned long adress){
             return BTREE_ERR;
         key_index = btree_key_index(node, key);
     }
+
     int i;
     for(i = node->key_num; i > key_index; i--){
         node->key[i] = node->key[i - 1];
@@ -134,25 +140,31 @@ int addElement(btree *tree, int key, unsigned long adress){
     }
 
     node->key[key_index] = key;
+    node->adress[key_index] = adress;
     node->key_num++;
     if(btree_write_disk(tree, node->self, node) == BTREE_ERR)
         return BTREE_ERR;
     if(tree->root->self == node->self)
         *tree->root = *node;
+
     return BTREE_OK;
 }
 
 int btree_split(btree *tree, btree_node *node){
     if(node->key_num < 2 * T - 1)
         return BTREE_OK;
+
     btree_node *brother = createNewNode();
     brother->self = btree_end_seek_of_file(tree);
+
     int save_key = node->key[T - 1];
     int i;
+
     for(i = T; i < node->key_num; i++){
         brother->key[i - T] = node->key[i];
         brother->adress[i - T] = node->adress[i];
     }
+
     if(node->seek[0] != -1)
         for(i = T; i < node->key_num + 1; i++)
         {
@@ -166,6 +178,7 @@ int btree_split(btree *tree, btree_node *node){
             if(btree_write_disk(tree, child->self, child) == BTREE_ERR)
                 return BTREE_ERR;
         }
+
     node->key_num = brother->key_num = T - 1;
     btree_node *parent = (btree_node *)calloc(1, sizeof(btree_node));
     if(parent == NULL)
