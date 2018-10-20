@@ -16,18 +16,22 @@ typedef struct btree_node{
     int seek[2 * T]; //!< Order from Btree
     int self;
     int parent;
+
+    btree_node();
 }btree_node;
 
 typedef struct btree{
-    struct btree_node *root;
+    btree_node root;
     FILE *fp;
+
+    btree();
 }btree;
 
 //TODO vou colocar em classe deopois
-int addElement(btree *tree, int key, Hashing::Address adress);
-int btree_split(btree *tree, btree_node *node);
-btree_node *btree_search(btree *tree, int key);
-btree *createIndex(const char *file);
-void loadRoot(btree *t,const char *file);
+int addElement(btree &tree, int key, Hashing::Address adress);
+int btree_split(btree &tree, btree_node &node);
+btree_node btree_search(btree &tree, int key);
+btree createIndex(const char *file);
+void loadRoot(btree &t,const char *file);
 
 #endif
