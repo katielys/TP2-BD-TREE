@@ -7,7 +7,7 @@ using namespace std;
 
 #define MASK_VALID 666 //!< MASK_VALID is a flag to know if a block is valid or not
 #define BLOCK_SIZE 4096 //!< SIZE FROM A BLOCk
-#define DATA_SIZE 4083 // 4096 - 12 - 1 = 4083 bytes available for ocupation
+#define DATA_SIZE 4083 //!< 4096 - 13 (header) = 4083 bytes available to alocate records
 
 typedef unsigned char BYTE;
 
@@ -20,13 +20,15 @@ struct Block{ // disk block representation
     BYTE data[DATA_SIZE];           // array of bytes to keep the records
 
     // tries to insert a record in the current block
-    bool insertRecord(const Article &article);
+    pair<bool, unsigned short> insertRecord(const Article &article);
 
     // returns the quantity of free space in a block
     unsigned int getFreeSpace();
 
     // search for a record with id passed as parameter, returns true if found or returns false if not found
     bool lookUpforRecord(unsigned int id, size_t recordSize, Article &aux);
+
+    void lookUpforRecordByOffset(unsigned short offset, Article &aux);
 
     // default constructor
     Block();

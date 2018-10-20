@@ -13,10 +13,10 @@ int main(int argc, char** argv){
 
     auto value = Hashing::findRecord(numberReg, hash, overflow);
     if (value.first) {
-        std::cout << "Blocks passed " << value.second.second << std::endl;
+        std::cout << "Blocks read quantity: " << value.second.second << std::endl;
         std::cout << value.second.first.toString() << std::endl;
     }else{
-        std::cout << "ID nao encontrado" << std::endl;
+        std::cout << "ID not found in data file :/" << std::endl;
     }
 
     return 0;

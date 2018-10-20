@@ -27,7 +27,7 @@ void teste (){
     teste = new Article(2,3,11,title,autorlist,snipped,date );
     block.insertRecord(*teste);
     teste = new Article(3,2,1,title,autorlist,snipped,date );
-    if(!block.insertRecord(*teste)){
+    if(!block.insertRecord(*teste).first){
         blocks.emplace_back(block);
         neoBlock = new Block();
         neoBlock->insertRecord(*teste);
@@ -46,8 +46,8 @@ void teste (){
     for (int i = 0; i < blocks.size();i++ ){
         //cout<<current_block.article.toString()<<endl;
 
-        fseek(pFile, i*sizeof(Block), SEEK_SET);
-        fwrite(&blocks[i], sizeof(Block), 1, pFile);
+        fseek(pFile, i*BLOCK_SIZE, SEEK_SET);
+        fwrite(&blocks[i], BLOCK_SIZE, 1, pFile);
     }
     //this->hash_size  = totalReg;
     fclose(pFile);
@@ -65,9 +65,9 @@ void getArticleFromDisk(int id) {
     while (!feof(fp)) {
         Block aux;
         Article top;
-        fseek(fp, currentPosition * sizeof(Block), SEEK_SET);
-        //cout<< (ftell(fp)/sizeof(Block)) <<endl;
-        size_t a = fread(&aux, sizeof(Block), 1, fp);
+        fseek(fp, currentPosition * BLOCK_SIZE, SEEK_SET);
+        //cout<< (ftell(fp)/BLOCK_SIZE) <<endl;
+        size_t a = fread(&aux, BLOCK_SIZE, 1, fp);
         if (a==1 && aux.verificationMask == MASK_VALID) {
             if (aux.lookUpforRecord(id, sizeof(Article), top)) {
                 std::cout << "found article on block " << currentPosition << std::endl;
@@ -90,6 +90,10 @@ int main(int argc, char *argv[]){
 //    teste();
 //    getArticleFromDisk(4);
 
+//    Block block;
+
+//    std::cout << BLOCK_SIZE;
+
     Parser p;
     auto records = p.readCSV(argv);
     Hashing::createHash(1021443, 2, "hashing.bin");
@@ -99,20 +103,30 @@ int main(int argc, char *argv[]){
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
 
     for(auto &record : records){
-        Hashing::insertOnHashFile(record, hash, overflow);
-    }
-
-    for (auto &record : records) {
-        auto value = Hashing::findRecord(record.getID(), hash, overflow);
-        if (value.first) {
-            std::cout << "Blocks passed " << value.second.second << std::endl;
-            std::cout << value.second.first.toString() << std::endl;
-        }else{
+        auto address = Hashing::insertOnHashFile(record, hash, overflow);
+        std::cout << ((address.overflow) ? "Inserted in overflow" : "Inserted in hash main file") << std::endl;
+        std:: cout << "Bucket: " << address.offset << std::endl;
+        std:: cout << "Block Offset: " << address.blockOffset << std::endl;
+        Article aux = Hashing::getRecordByAddress(address, hash, overflow);
+        if(aux.getID() != record.getID()){
+            std::cout << aux.getID() << " " << record.getID() << std::endl;
             return 0;
+        } else{
+            std::cout << "Found at this address" << std::endl;
         }
     }
 
-    std::cout << records.size();
+//    for (auto &record : records) {
+//        auto value = Hashing::findRecord(record.getID(), hash, overflow);
+//        if (value.first) {
+//            std::cout << "Blocks passed " << value.second.second << std::endl;
+//            std::cout << value.second.first.toString() << std::endl;
+//        }else{
+//            return 0;
+//        }
+//    }
+
+    std::cout << records.size() << std::endl;
     std::cout << "Buckets number: " << hash.buckets << std::endl;
     std::cout << "Overflow blocks: " << overflow.blocksCount << std::endl;
 

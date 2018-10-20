@@ -11,10 +11,9 @@ namespace Hashing {
     const unsigned short HEADER_SIZE = sizeof(u_long);
 
     struct Address{
-        bool overflow;
-        unsigned long offset;
-        unsigned int blockOffset;
-
+        bool overflow = false;      // is in overflow area or not
+        unsigned int offset;        // block offset of respective file (hashing|overflow)
+        unsigned short blockOffset; // offset of the record inside a block (can be 0 or 1).. change for a char
         Address();
     };
 
@@ -45,15 +44,18 @@ namespace Hashing {
 
     void createOverflow(const char *path);
 
-    unsigned long insertOnHashFile(Article record, HashInstance &hash, OverflowArea &overflow);
+    Address insertOnHashFile(Article record, HashInstance &hash, OverflowArea &overflow);
 
-    void insertOnOverflow(Article &record, OverflowArea &overflowArea, unsigned int &offset, bool &needsUpdate, bool alreadyLinked=false);
+    void insertOnOverflow(Article &record, OverflowArea &overflowArea, unsigned int &offset, bool &needsUpdate,
+                          Address &address, bool alreadyLinked=false);
 
     pair<bool, pair<Article, unsigned int>> findRecord(unsigned int id, HashInstance &hash, OverflowArea &overflow);
 
     bool lookUpForRecordInOverflow(unsigned int id, Article &artAux,
                                    OverflowArea &overflow, unsigned int &offset,
                                    unsigned int &blocksPassed);
+
+    Article getRecordByAddress(Address address, HashInstance &hash, OverflowArea &overflow);
 
 };
 #endif //TP2_BD_TREE_HASHFILE_H
