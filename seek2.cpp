@@ -3,18 +3,18 @@
 using namespace std;
 
 int main (int argc, char **argv){
-    auto stringToSeek = argv[1];
+    auto stringToSeek = stoi(argv[1]);
     //cout<< stringToSeek << "Will be find if its exists" << endl;
-    BTreeS secondIndex;
+    SecondIndex secondIndex;
     NodeS node;
 
     // opening data file
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
     // opening index file
-    loadRootS(secondIndex, "secondIndex.bin");
+    loadSecondRoot(secondIndex, "secondIndex.bin");
 
-    auto found = btree_searchS(secondIndex, node, stringToSeek);
+    auto found = searchAtSecond(secondIndex, node, stringToSeek);
 
     if(!found.first){ // not found
         cout<<"->Title: "<<stringToSeek<< "   not found";

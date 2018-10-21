@@ -1,7 +1,15 @@
 
 #include "SecondIndexBtree.h"
+int stringToIndexNumberf(string toIndex) {
+    auto sizes = toIndex.size();
 
-int readSecond(BTreeS &tree, int seek, NodeS &node){
+    auto indexed = 00;
+    for (int i = 1; i < sizes; ++i) {
+        indexed += int(toIndex[i-1])*i;
+    }
+    return indexed;
+}
+int readSecond(SecondIndex &tree, int seek, NodeS &node){
     if(fseek(tree.fp, seek, SEEK_SET) == -1){
         return BTREE_ERR;
     }
@@ -12,7 +20,7 @@ int readSecond(BTreeS &tree, int seek, NodeS &node){
     return BTREE_OK;
 }
 
-int writeSecond(BTreeS &tree, int seek, NodeS &node){
+int writeSecond(SecondIndex &tree, int seek, NodeS &node){
     if(fseek(tree.fp, seek, SEEK_SET) == -1) {
         return BTREE_ERR;
     }
@@ -24,15 +32,16 @@ int writeSecond(BTreeS &tree, int seek, NodeS &node){
     return BTREE_OK;
 }
 
-int Kindex(NodeS &node, char key[MAXLEN]){
+
+int Kindex(NodeS &node, int key){
     int low = 0;
     int high = node.count -1;
     int middle = (low + high) / 2;
     while(low <= high){
-        if(strcmp(node.key[middle].title ,key)== 0){
+        if(node.key[middle] == key){
             return middle;
         }
-        else if(strcmp(node.key[middle].title ,key)>0) {
+        else if(node.key[middle] > key) {
             high = middle - 1;
         }else
             low = middle + 1;
@@ -40,8 +49,7 @@ int Kindex(NodeS &node, char key[MAXLEN]){
     }
     return high + 1;
 }
-
-unsigned int endFilseSecond(BTreeS &tree){
+int endFilseSecond(SecondIndex &tree){
     if(fseek(tree.fp, 0, SEEK_END) == -1)
         return BTREE_ERR;
     return ftell(tree.fp);
@@ -53,23 +61,22 @@ NodeS createNewNodeSecond(){
     NodeS node;
     node.self = -1;
     node.parent = -1;
-    char aux[MAXLEN];
-    strcpy(aux,"");
     int i;
     for(i = 0; i < 2 * TS - 1; i++){
-        strcpy(node.key[i].title,aux);
-        //node.key[i] =
+        node.key[i] = 0;
         node.adress[i] = Hashing::Address();
     }
     for(i = 0; i < 2 * TS; i++)
         node.seek[i] = -1;
     node.count = 0;
     return node;
+
+  
 }
 
-BTreeS createSecondIndex(const char *file){
+SecondIndex createSecondIndex(const char *file){
     FILE *fp = fopen(file, "w+");
-    BTreeS tree;
+    SecondIndex tree;
 
     if(fp == nullptr){
         throw "Cannot open second index file";
@@ -86,12 +93,13 @@ BTreeS createSecondIndex(const char *file){
     return tree;
 }
 
-pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char key[MAXLEN]){
+pair<bool, Hashing::Address> searchAtSecond(SecondIndex &tree, NodeS &node, int key){
     short int countBlock = 1;
     Hashing::Address ad;
+    //cout<< (*tree->root);
     node = tree.root;
     int key_index = Kindex(node, key);
-    while(node.seek[0] != -1 && strcmp(node.key[key_index].title,key) != 0)
+    while(node.seek[0] != -1 && node.key[key_index] != key)
     {
         if(readSecond(tree, node.seek[key_index], node) == BTREE_ERR) {
             return std::make_pair(false, ad);
@@ -100,7 +108,7 @@ pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char key[M
         countBlock++;
     }
 
-    if(strcmp(node.key[key_index].title,key) == 0) {
+    if(node.key[key_index] == key) {
         cout<< "Numero de blocos de indice lidos:  "<< countBlock << endl;
         ad = node.adress[key_index];
         return std::make_pair(true, ad);
@@ -109,9 +117,8 @@ pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char key[M
     return std::make_pair(false, ad);
 }
 
-void loadRootS(BTreeS &indexPrimary, const char *file){
+void  loadSecondRoot(SecondIndex &t,const char *file){
 
-    //btree indexPrimary;
     FILE *fp = fopen(file,"rb");
     fseek(fp, 0, SEEK_END);
     auto curPos = ftell(fp);
@@ -121,32 +128,20 @@ void loadRootS(BTreeS &indexPrimary, const char *file){
     fread(&rootOffset, sizeof(unsigned int), 1,fp);
 
     fseek(fp, rootOffset, SEEK_SET);
-    fread(&node, sizeof(BTreeS), 1,fp);
+    fread(&node, sizeof(NodeS), 1,fp);
 
-    indexPrimary.fp = fp;
-    indexPrimary.root = node;
+    t.fp = fp;
+    t.root = node;
 }
 
 
-int addElementS(BTreeS &tree, char key[MAXLEN], Hashing::Address adress){
+int addElementSecondIndex(SecondIndex &tree, int key, Hashing::Address adress){
 
     NodeS node;
 
     node = tree.root;
-    if(key==NULL){
-        cout<<"aaaaaaaaaaaaaaaaaaaaaaaaaaa"<<endl;
-        strcpy(key,"empty");
-        char auxxx[MAXLEN];
-        strcpy(key,auxxx);
-        auxxx[0]= 'e';
-        auxxx[1] = 'm';
-        auxxx[2] = 't';
-        auxxx[3] = 'y';
-        strcpy(key,auxxx);
-        //strcpy(key,"empty");
-    }
-    cout<<"inserting key::" << key <<endl;
-    if(btree_splitS(tree, node) == BTREE_ERR)
+
+    if(splitSecond(tree, node) == BTREE_ERR)
         return BTREE_ERR;
 
     int key_index = Kindex(node, key);
@@ -157,7 +152,7 @@ int addElementS(BTreeS &tree, char key[MAXLEN], Hashing::Address adress){
             return BTREE_ERR;
         }
 
-        if(btree_splitS(tree, node) == BTREE_ERR) {
+        if(splitSecond(tree, node) == BTREE_ERR) {
             return BTREE_ERR;
         }
 
@@ -166,12 +161,11 @@ int addElementS(BTreeS &tree, char key[MAXLEN], Hashing::Address adress){
 
     int i;
     for(i = node.count; i > key_index; i--){
-        //strcpy(node.key[i].title,node.key[i - 1].title);
         node.key[i] = node.key[i - 1];
         node.adress[i] = node.adress[i - 1];
     }
-    strcpy(node.key[key_index].title,key);
-    //node.key[key_index] = key;
+
+    node.key[key_index] = key;
     node.adress[key_index] = adress;
     node.count++;
 
@@ -185,8 +179,7 @@ int addElementS(BTreeS &tree, char key[MAXLEN], Hashing::Address adress){
 
     return BTREE_OK;
 }
-
-int btree_splitS(BTreeS &tree, NodeS &node){
+int splitSecond(SecondIndex &tree, NodeS &node){
     if(node.count < 2 * TS - 1) {
         return BTREE_OK;
     }
@@ -194,12 +187,10 @@ int btree_splitS(BTreeS &tree, NodeS &node){
     NodeS brother = createNewNodeSecond();
     brother.self = endFilseSecond(tree);
 
-    auto save_key = node.key[TS - 1];
-    //strcpy(save_key.title,node.key[TS-1].title);
+    int save_key = node.key[TS - 1];
     int i;
 
     for(i = TS; i < node.count; i++){
-       // strcpy(brother.key[i - TS].title,node.key[i].title);
         brother.key[i - TS] = node.key[i];
         brother.adress[i - TS] = node.adress[i];
     }
@@ -229,10 +220,9 @@ int btree_splitS(BTreeS &tree, NodeS &node){
         tree.root.self = brother.self + sizeof(NodeS);
         node.parent = tree.root.self;
 
-        int key_index = Kindex(tree.root, node.key[0].title);
-        i =0;
+        int key_index = Kindex(tree.root, node.key[0]);
+
         for(i = tree.root.count; i > key_index; i--){
-            //strcpy(tree.root.key[i].title,tree.root.key[i - 1].title);
             tree.root.key[i] = tree.root.key[i - 1];
             tree.root.adress[i] = tree.root.adress[i - 1];
         }
@@ -261,10 +251,10 @@ int btree_splitS(BTreeS &tree, NodeS &node){
         return BTREE_ERR;
     }
     // the actual isn't a root, so we proceed normaly, making changes in the parent read from the disk
-    int key_index = Kindex(parent, node.key[0].title);
+    int key_index = Kindex(parent, node.key[0]);
 
     for(i = parent.count; i > key_index; i--){
-        strcpy(parent.key[i].title,parent.key[i - 1].title);
+        parent.key[i] = parent.key[i - 1];
         parent.adress[i] = parent.adress[i - 1];
     }
 
@@ -289,7 +279,7 @@ int btree_splitS(BTreeS &tree, NodeS &node){
     return BTREE_OK;
 }
 
-void saveRootOffsetSecond(BTreeS &t) {
+void saveSecondRootOffset(SecondIndex &t){
     auto end = endFilseSecond(t);
     fseek(t.fp, end, SEEK_SET);
     auto check = fwrite(&t.root.self, sizeof(unsigned int), 1, t.fp);
@@ -299,6 +289,6 @@ NodeS::NodeS() {
 
 }
 
-BTreeS::BTreeS() {
+SecondIndex::SecondIndex() {
 
 }

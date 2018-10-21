@@ -5,7 +5,7 @@ using namespace std;
 //TODO: usar a funcao do tiago para pegar os dados do artigos
 int main(int argc, char ** argv){
     auto idToSeek = 0000000000000;
-    idToSeek = stoi(argv[1]);
+    idToSeek = (argv[1]);
     btree indexPrimary;
     btree_node node;
 

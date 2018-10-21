@@ -8,7 +8,7 @@ using  namespace std;
 
 int main(int argc, char **argv) {
     Parser p;
-    std::map< char *, Hashing::Address> mapAdress;
+    std::map<  int , Hashing::Address> mapAdress;
     auto records = p.readCSV(argv);
     clock_t begin;
     begin = clock();
@@ -19,17 +19,21 @@ int main(int argc, char **argv) {
 
    // cout << "Creating primary index"<< endl;
     //btree tree = createIndex("primaryIndex.bin");
-    BTreeS secondIndex;
+    SecondIndex secondIndex;
     secondIndex = createSecondIndex("secondIndex.bin");
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
     
-
+    string aux;
+    int index ;
     for (auto &record : records) {
+
+         aux = record.getTitle();
+         index = stringToIndexNumberf(aux);
          auto adress = Hashing::insertOnHashFile(record, hash, overflow);
          // inserting in mapAddress, trying to avoid copies using emplace
          mapAdress.emplace(std::piecewise_construct,
-                           std::forward_as_tuple(record.getTitle()),
+                           std::forward_as_tuple(index),
                            std::forward_as_tuple(adress));
 //         addElementSecondIndex(secondIndex,record.getTitle(),adress);
     }
@@ -43,12 +47,12 @@ int main(int argc, char **argv) {
     
     std::cout << "indexing records in second btree..." << std::endl;
     for (auto pair : mapAdress) {
-        int check = addElementS(secondIndex, pair.first, pair.second);
-        if (check < 0) return 0;
+        int check = addElementSecondIndex(secondIndex, pair.first, pair.second);
+        if (check < 0) {cout<< pair.first<<endl; return 0;};
         std::cout << "sucessfully indexed record " << pair.first << std::endl;
     }
     // saving root address at beginning of the index
-    saveRootOffsetSecond(secondIndex);
+    saveSecondRootOffset(secondIndex);
 
     fclose(secondIndex.fp);
     
