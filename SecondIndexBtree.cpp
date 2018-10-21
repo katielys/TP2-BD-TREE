@@ -127,7 +127,7 @@ void loadRootS(BTreeS &indexPrimary, const char *file){
 }
 
 
-int addElementS(BTreeS &tree, char *key, Hashing::Address adress){
+int addElementS(BTreeS &tree, const char *key, Hashing::Address adress){
 
     NodeS node;
 
@@ -136,7 +136,7 @@ int addElementS(BTreeS &tree, char *key, Hashing::Address adress){
     if(btree_splitS(tree, &node) == BTREE_ERR)
         return BTREE_ERR;
 
-    int key_index = Kindex(node, key);
+    int key_index = Kindex(node, const_cast<char *>(key));
 
     while(node.seek[0] != -1) {
 
@@ -148,7 +148,7 @@ int addElementS(BTreeS &tree, char *key, Hashing::Address adress){
             return BTREE_ERR;
         }
 
-        key_index = Kindex(node, key);
+        key_index = Kindex(node, const_cast<char *>(key));
     }
 
     int i;

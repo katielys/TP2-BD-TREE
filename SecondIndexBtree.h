@@ -6,7 +6,7 @@
 #include <string.h>
 #include "HashFile.h"
 #define MAXLEN 299
-#define TS 6
+#define TS 8
 
 //node tem 3492 de tamanho
 
@@ -26,9 +26,9 @@ typedef struct NodeS{
     int count;
     Hashing::Address adress [2 * TS - 1];
     arraychar key[2 * TS - 1];
-    int seek[2 * TS]; //!< Order from Btree
-    int self;
-    int parent;
+    long seek[2 * TS]; //!< Order from Btree
+    long self;
+    long parent;
     NodeS();
 }NodeS;
 
@@ -40,7 +40,7 @@ typedef struct BTreeS{
 
 
 //TODO colocar em classe depois
-int addElementS(BTreeS &tree, char *key, Hashing::Address adress);
+int addElementS(BTreeS &tree, const char *key, Hashing::Address adress);
 int btree_splitS(BTreeS &tree, NodeS *node);
 std::pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char *key);
 BTreeS createSecondIndex(const char *file);

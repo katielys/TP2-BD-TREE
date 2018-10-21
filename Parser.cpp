@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Parser.h"
 
 vector<Article> Parser::readCSV(char **argv) {
@@ -66,7 +67,17 @@ vector<Article> Parser::readCSV(char **argv) {
             }
 
             if (registerSize > 1) {
+
+
+//                if(title.substr(0,2) == "an"){
+//                    title = title.substr(2);
+//                }
+
                 title = data[1].substr(0,MAX_SIZE_TITLE);
+//                std::transform(title.begin(), title.end(), title.begin(), ::tolower);
+                if(title.empty()){
+                    title = "empty";
+                }
                 strcpy(charTitle, title.c_str());
             }
 
