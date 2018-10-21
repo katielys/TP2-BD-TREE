@@ -3,7 +3,7 @@
 using namespace std;
 
 int main (int argc, char **argv){
-    auto stringToSeek = stoi(argv[1]);
+    auto stringToSeek =(argv[1]);
     //cout<< stringToSeek << "Will be find if its exists" << endl;
     SecondIndex secondIndex;
     NodeS node;
@@ -13,8 +13,8 @@ int main (int argc, char **argv){
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
     // opening index file
     loadSecondRoot(secondIndex, "secondIndex.bin");
-
-    auto found = searchAtSecond(secondIndex, node, stringToSeek);
+    auto aux = stringToIndexNumberf(stringToSeek);
+    auto found = searchAtSecond(secondIndex, node, aux);
 
     if(!found.first){ // not found
         cout<<"->Title: "<<stringToSeek<< "   not found";
