@@ -13,7 +13,7 @@ namespace Hashing {
     struct Address{
         bool overflow = false;      // is in overflow area or not
         unsigned int offset;        // block offset of respective file (hashing|overflow)
-        unsigned short blockOffset; // offset of the record inside a block (can be 0 or 1).. change for a char
+        unsigned short blockOffset = 0; // offset of the record inside a block (can be 0 or 1).. change for a char
         Address();
     };
 
