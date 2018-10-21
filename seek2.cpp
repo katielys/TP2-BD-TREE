@@ -6,19 +6,24 @@ int main (int argc, char **argv){
     auto stringToSeek = argv[1];
     cout<< stringToSeek << "Will be find if its exists" << endl;
     BTreeS secondIndex;
-    NodeS *r = nullptr;
-//    loadRootSecondIndex(&secondIndex,"secondIndex.bin");
-//    cout<<secondIndex.root->count<<endl;
-//    cout<<secondIndex.root->key[0].title<<endl;
-//    r= searchAtBtreeS(&secondIndex,stringToSeek);
-//    if(r == nullptr){
-//        cout<<"->TITLE: "<<stringToSeek<< "   not found";
-//    }
-//    else{
-//        cout<<"->TITLE :"<< stringToSeek << "has found" << endl;
-//        cout<<r->self<<endl;
-//        cout<<r->count<<endl;
-//    }
-//    return 0;
-}
+    NodeS node;
 
+    // opening data file
+    Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
+    Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
+    // opening index file
+    loadRootS(secondIndex, "secondIndex.bin");
+
+    auto found = btree_searchS(secondIndex, node, stringToSeek);
+
+    if(!found.first){ // not found
+        cout<<"->Title: "<<stringToSeek<< "   not found";
+    } else{
+        cout<<"->title :"<< stringToSeek << " found xD" << endl;
+        Article art = Hashing::getRecordByAddress(found.second, hash, overflow);
+        cout << art.toString() << std::endl;
+    }
+
+    return 0;
+
+}

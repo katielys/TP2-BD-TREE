@@ -10,8 +10,10 @@
 
 
 using namespace std;
+
 #define BTREE_OK 0
 #define BTREE_ERR -1
+
 typedef struct arraychar{
     char title[MAXLEN];
 }arraychar;
@@ -33,16 +35,15 @@ typedef struct BTreeS{
 
 
 //TODO colocar em classe depois
+int addElementS(BTreeS &tree, char *key, Hashing::Address adress);
+int btree_splitS(BTreeS &tree, NodeS &node);
+std::pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char* key);
+BTreeS createSecondIndex(const char *file);
+void loadRootS(BTreeS &t,const char *file);
+void saveRootOffsetSecond(BTreeS &t);
+int readSecond(BTreeS &tree, int seek, NodeS &node);
 int writeSecond(BTreeS &tree, int seek, NodeS &node);
-BTreeS createIndexSecondary(const char *file);
-NodeS createNewSecondNode();
-int readFromDiskS(BTreeS &tree, int seek, NodeS &node);
 int Kindex(NodeS &node, char *key);
-unsigned  long int seekEndFile(BTreeS &tree);
-NodeS searchAtBtreeS(BTreeS &tree, char *key);
-void loadRootSecondIndex(BTreeS &indexSecundary, const char *file);
-int addElementSecondIndex(BTreeS &tree, char *key,  Hashing::Address adress);
-int SplitSecond(BTreeS &tree, NodeS &node);
-
+unsigned int endFilseSecond(BTreeS &tree);
 
 #endif

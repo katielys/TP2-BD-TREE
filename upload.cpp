@@ -8,7 +8,7 @@ using  namespace std;
 
 int main(int argc, char **argv) {
     Parser p;
-    std::map<unsigned int, Hashing::Address> mapAdress;
+    std::map< char *, Hashing::Address> mapAdress;
     auto records = p.readCSV(argv);
     clock_t begin;
     begin = clock();
@@ -17,10 +17,10 @@ int main(int argc, char **argv) {
     Hashing::createHash(records.size(), 2, "hashing.bin");
     Hashing::createOverflow("overflow.bin");
 
-    cout << "Creating primary index"<< endl;
-    btree tree = createIndex("primaryIndex.bin");
-//    BTreeS *secondIndex;
-//    secondIndex = createIndexSecondary("secondIndex.bin");
+   // cout << "Creating primary index"<< endl;
+    //btree tree = createIndex("primaryIndex.bin");
+    BTreeS secondIndex;
+    secondIndex = createSecondIndex("secondIndex.bin");
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
     
@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
          auto adress = Hashing::insertOnHashFile(record, hash, overflow);
          // inserting in mapAddress, trying to avoid copies using emplace
          mapAdress.emplace(std::piecewise_construct,
-                           std::forward_as_tuple(record.getID()),
+                           std::forward_as_tuple(record.getTitle()),
                            std::forward_as_tuple(adress));
 //         addElementSecondIndex(secondIndex,record.getTitle(),adress);
     }
@@ -41,16 +41,16 @@ int main(int argc, char **argv) {
     hash.close();
     overflow.close();
     
-    std::cout << "indexing records in primary btree..." << std::endl;
+    std::cout << "indexing records in second btree..." << std::endl;
     for (auto pair : mapAdress) {
-        int check = addElement(tree, pair.first, pair.second);
+        int check = addElementS(secondIndex, pair.first, pair.second);
         if (check < 0) return 0;
         std::cout << "sucessfully indexed record " << pair.first << std::endl;
     }
     // saving root address at beginning of the index
-    saveRootOffset(tree);
+    saveRootOffsetSecond(secondIndex);
 
-    fclose(tree.fp);
+    fclose(secondIndex.fp);
     
     clock_t end = clock();
 
