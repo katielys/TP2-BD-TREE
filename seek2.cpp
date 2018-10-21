@@ -24,6 +24,7 @@ int main (int argc, char **argv){
         cout << art.toString() << std::endl;
     }
 
+
     return 0;
 
 }

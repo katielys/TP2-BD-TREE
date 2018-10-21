@@ -36,5 +36,5 @@ std::pair<bool, Hashing::Address> btree_search(btree &tree, btree_node &node, in
 btree createIndex(const char *file);
 void loadRoot(btree &t,const char *file);
 void saveRootOffset(btree &t);
-
+unsigned int btree_end_seek_of_file(btree &tree);
 #endif

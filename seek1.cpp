@@ -8,15 +8,13 @@ int main(int argc, char ** argv){
     idToSeek = stoi(argv[1]);
     btree indexPrimary;
     btree_node node;
-    cout<<sizeof(btree_node)<<endl;
+
+    //cout<<sizeof(btree_node)<<endl;
     // opening data file
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
     // opening index file
     loadRoot(indexPrimary, "primaryIndex.bin");
-
-//    cout<<"keys quantity on node: " << indexPrimary.root.key_num<<endl;
-//    cout<<"key at position 39 in node: " << indexPrimary.root.key[39]<<endl;
 
     auto found = btree_search(indexPrimary, node, idToSeek);
 
@@ -27,7 +25,8 @@ int main(int argc, char ** argv){
         Article art = Hashing::getRecordByAddress(found.second, hash, overflow);
         cout << art.toString() << std::endl;
     }
-
+    unsigned int numberTotalBlocsofBtree=  btree_end_seek_of_file(indexPrimary);
+    cout<<"TOTAL DE BLOCOS NO ARQUIVO DE INDICE PRIMARIO : "<< (numberTotalBlocsofBtree/sizeof(btree_node)-4);
     return 0;
 
 }

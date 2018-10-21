@@ -17,19 +17,19 @@ int writeSecond(BTreeS &tree, int seek, NodeS &node){
         return BTREE_ERR;
     }
 
-    if(fwrite(&node, sizeof(BTreeS), 1, tree.fp) == -1) {
+    if(fwrite(&node, sizeof(NodeS), 1, tree.fp) == -1) {
         return BTREE_ERR;
     }
 
     return BTREE_OK;
 }
 
-int Kindex(NodeS &node, char *key){
+int Kindex(NodeS &node, char key[MAXLEN]){
     int low = 0;
     int high = node.count -1;
     int middle = (low + high) / 2;
     while(low <= high){
-        if(strcpy(node.key[middle].title ,key)== 0){
+        if(strcmp(node.key[middle].title ,key)== 0){
             return middle;
         }
         else if(strcmp(node.key[middle].title ,key)>0) {
@@ -53,9 +53,12 @@ NodeS createNewNodeSecond(){
     NodeS node;
     node.self = -1;
     node.parent = -1;
+    char aux[MAXLEN];
+    strcpy(aux,"");
     int i;
     for(i = 0; i < 2 * TS - 1; i++){
-        strcpy(node.key[i].title,"empty");
+        strcpy(node.key[i].title,aux);
+        //node.key[i] =
         node.adress[i] = Hashing::Address();
     }
     for(i = 0; i < 2 * TS; i++)
@@ -83,7 +86,7 @@ BTreeS createSecondIndex(const char *file){
     return tree;
 }
 
-pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char *key){
+pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char key[MAXLEN]){
     short int countBlock = 1;
     Hashing::Address ad;
     node = tree.root;
@@ -125,12 +128,24 @@ void loadRootS(BTreeS &indexPrimary, const char *file){
 }
 
 
-int addElementS(BTreeS &tree, char *key, Hashing::Address adress){
+int addElementS(BTreeS &tree, char key[MAXLEN], Hashing::Address adress){
 
     NodeS node;
 
     node = tree.root;
-
+    if(key==NULL){
+        cout<<"aaaaaaaaaaaaaaaaaaaaaaaaaaa"<<endl;
+        strcpy(key,"empty");
+        char auxxx[MAXLEN];
+        strcpy(key,auxxx);
+        auxxx[0]= 'e';
+        auxxx[1] = 'm';
+        auxxx[2] = 't';
+        auxxx[3] = 'y';
+        strcpy(key,auxxx);
+        //strcpy(key,"empty");
+    }
+    cout<<"inserting key::" << key <<endl;
     if(btree_splitS(tree, node) == BTREE_ERR)
         return BTREE_ERR;
 
@@ -151,10 +166,12 @@ int addElementS(BTreeS &tree, char *key, Hashing::Address adress){
 
     int i;
     for(i = node.count; i > key_index; i--){
+        //strcpy(node.key[i].title,node.key[i - 1].title);
         node.key[i] = node.key[i - 1];
         node.adress[i] = node.adress[i - 1];
     }
     strcpy(node.key[key_index].title,key);
+    //node.key[key_index] = key;
     node.adress[key_index] = adress;
     node.count++;
 
@@ -178,10 +195,11 @@ int btree_splitS(BTreeS &tree, NodeS &node){
     brother.self = endFilseSecond(tree);
 
     auto save_key = node.key[TS - 1];
-    strcpy(save_key.title,node.key[TS-1].title);
+    //strcpy(save_key.title,node.key[TS-1].title);
     int i;
 
     for(i = TS; i < node.count; i++){
+       // strcpy(brother.key[i - TS].title,node.key[i].title);
         brother.key[i - TS] = node.key[i];
         brother.adress[i - TS] = node.adress[i];
     }
@@ -212,8 +230,9 @@ int btree_splitS(BTreeS &tree, NodeS &node){
         node.parent = tree.root.self;
 
         int key_index = Kindex(tree.root, node.key[0].title);
-
+        i =0;
         for(i = tree.root.count; i > key_index; i--){
+            //strcpy(tree.root.key[i].title,tree.root.key[i - 1].title);
             tree.root.key[i] = tree.root.key[i - 1];
             tree.root.adress[i] = tree.root.adress[i - 1];
         }
@@ -245,7 +264,7 @@ int btree_splitS(BTreeS &tree, NodeS &node){
     int key_index = Kindex(parent, node.key[0].title);
 
     for(i = parent.count; i > key_index; i--){
-        parent.key[i] = parent.key[i - 1];
+        strcpy(parent.key[i].title,parent.key[i - 1].title);
         parent.adress[i] = parent.adress[i - 1];
     }
 

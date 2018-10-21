@@ -37,15 +37,15 @@ typedef struct BTreeS{
 
 
 //TODO colocar em classe depois
-int addElementS(BTreeS &tree, char *key, Hashing::Address adress);
+int addElementS(BTreeS &tree, char key[MAXLEN], Hashing::Address adress);
 int btree_splitS(BTreeS &tree, NodeS &node);
-std::pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char* key);
+std::pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char key[MAXLEN]);
 BTreeS createSecondIndex(const char *file);
 void loadRootS(BTreeS &t,const char *file);
 void saveRootOffsetSecond(BTreeS &t);
 int readSecond(BTreeS &tree, int seek, NodeS &node);
 int writeSecond(BTreeS &tree, int seek, NodeS &node);
-int Kindex(NodeS &node, char *key);
+int Kindex(NodeS &node, char key[MAXLEN]);
 unsigned int endFilseSecond(BTreeS &tree);
 
 #endif
