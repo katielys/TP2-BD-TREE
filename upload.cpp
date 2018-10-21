@@ -8,8 +8,10 @@ using  namespace std;
 
 int main(int argc, char **argv) {
     Parser p;
+
     std::map<  int , Hashing::Address> mapAdress;
     std::map<  int , Hashing::Address> mapAdressID;
+
     auto records = p.readCSV(argv);
     clock_t begin;
     begin = clock();
@@ -18,17 +20,19 @@ int main(int argc, char **argv) {
     Hashing::createHash(records.size(), 2, "hashing.bin");
     Hashing::createOverflow("overflow.bin");
 
-     cout << "Creating primary index"<< endl;
-     btree tree = createIndex("primaryIndex.bin");
+    cout << "Creating primary index"<< endl;
+    btree tree = createIndex("primaryIndex.bin");
+
     SecondIndex secondIndex;
     secondIndex = createSecondIndex("secondIndex.bin");
+
+    // opening data file
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
     
     string aux;
     int index ;
     for (auto &record : records) {
-
          aux = record.getTitle();
          index = stringToIndexNumberf(aux);
          auto adress = Hashing::insertOnHashFile(record, hash, overflow);
@@ -39,7 +43,6 @@ int main(int argc, char **argv) {
          mapAdressID.emplace(std::piecewise_construct,
                           std::forward_as_tuple(record.getID()),
                           std::forward_as_tuple(adress));
-//
     }
     records.clear();
 	auto sera =0;
@@ -57,15 +60,13 @@ int main(int argc, char **argv) {
             return 0;
         }
 		sera++;
-        std::cout << "sucessfully indexed record " << pair.first << std::endl;
+        std::cout << "sucessfully indexed record in second btree " << pair.first << std::endl;
     }
-    // saving root address at beginning of the index
+    // saving root address at end of the second index
     saveSecondRootOffset(secondIndex);
 
     fclose(secondIndex.fp);
-	auto stop = 0;
 	cout<< "--------------"<<sera<<endl;
-	cin >> stop;
 
     std::cout << "->indexing records in primary btree..." << std::endl;
     for (auto pair : mapAdressID) {
@@ -74,9 +75,9 @@ int main(int argc, char **argv) {
             cout<< pair.first<<endl;
             return 0;
         }
-        std::cout << "sucessfully indexed record  primary" << pair.first << std::endl;
+        std::cout << "sucessfully indexed record primary " << pair.first << std::endl;
     }
-    // saving root address at beginning of the index
+    // saving root address at ending of the index
     saveRootOffset(tree);
 
     fclose(tree.fp);
@@ -87,7 +88,6 @@ int main(int argc, char **argv) {
 
     
     std::cout << "Total elapsed time: " << elapsedTime << std::endl;
-    //ls
-    
+
     return 0;
 }
