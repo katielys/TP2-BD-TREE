@@ -10,7 +10,8 @@ int main(int argc, char **argv) {
     Parser p;
     std::map<unsigned int, Hashing::Address> mapAdress;
     auto records = p.readCSV(argv);
-    clock_t begin = clock();
+    clock_t begin;
+    begin = clock();
 
     std::cout << "creating hashing file .." << std::endl;
     Hashing::createHash(records.size(), 2, "hashing.bin");

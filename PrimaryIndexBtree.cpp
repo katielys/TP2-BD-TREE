@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include "PrimaryIndexBtree.h"
 
@@ -71,13 +70,11 @@ btree createIndex(const char *file){
     FILE *fp = fopen(file, "w+");
     btree tree;
 
-    if(fp == NULL){
+    if(fp == nullptr){
         throw "Cannot open primary index file";
     }
 
-
     tree.fp = fp;
-
     tree.root = createNewNode();
     tree.root.self = 0;
     if(btree_write_disk(tree, tree.root.self, tree.root) == BTREE_ERR) { // mudar pra retornar bool se for o caso
