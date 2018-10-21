@@ -8,7 +8,7 @@ int main(int argc, char ** argv){
     idToSeek = stoi(argv[1]);
     btree indexPrimary;
     btree_node node;
-
+    cout<<sizeof(btree_node)<<endl;
     // opening data file
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");

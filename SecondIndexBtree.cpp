@@ -78,10 +78,7 @@ BTreeS createSecondIndex(const char *file){
     if(writeSecond(tree, tree.root.self, tree.root) == BTREE_ERR) { // mudar pra retornar bool se for o caso
         throw "Cannot write on second index file";
     }
-    // writing 0 to avoid garbage
-//    unsigned long rootOffset = 0;
-//    fseek(fp, 0, SEEK_SET);
-//    fwrite(&rootOffset, sizeof(unsigned long), 1, fp);
+
 
     return tree;
 }

@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "HashFile.h"
-#define T 136 //(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) <= 4084 -> (4096 - 12(other attributes)))
+//tem o tamanho de 4076
+#define T 102 //(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) <= 4084 -> (4096 - 12(other attributes)))
 
 #define BTREE_OK 0
 #define BTREE_ERR -1

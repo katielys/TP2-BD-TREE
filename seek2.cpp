@@ -4,7 +4,7 @@ using namespace std;
 
 int main (int argc, char **argv){
     auto stringToSeek = argv[1];
-    cout<< stringToSeek << "Will be find if its exists" << endl;
+    //cout<< stringToSeek << "Will be find if its exists" << endl;
     BTreeS secondIndex;
     NodeS node;
 

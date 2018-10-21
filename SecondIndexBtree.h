@@ -6,7 +6,9 @@
 #include <string.h>
 #include "HashFile.h"
 #define MAXLEN 300
-#define TS 13
+#define TS 6
+
+//node tem 3492 de tamanho
 
 
 using namespace std;
