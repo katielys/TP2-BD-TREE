@@ -8,13 +8,14 @@
 
 #define BTREE_OK 0
 #define BTREE_ERR -1
+#define HEADER sizeof(unsigned long)
 
 typedef struct btree_node{
     int key_num;
     Hashing::Address adress[2 * T - 1];
     int key[2 * T - 1];
     int seek[2 * T]; //!< Order from Btree
-    int self;
+    unsigned int self;
     int parent;
 
     btree_node();
@@ -30,8 +31,9 @@ typedef struct btree{
 //TODO vou colocar em classe deopois
 int addElement(btree &tree, int key, Hashing::Address adress);
 int btree_split(btree &tree, btree_node &node);
-btree_node btree_search(btree &tree, int key);
+std::pair<bool, Hashing::Address> btree_search(btree &tree, btree_node &node, int key);
 btree createIndex(const char *file);
 void loadRoot(btree &t,const char *file);
+void saveRootOffset(btree &t);
 
 #endif

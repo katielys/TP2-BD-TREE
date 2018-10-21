@@ -43,7 +43,7 @@ int btree_write_disk(btree &tree, int seek, btree_node &node){
     return high + 1;
 }
 
-int btree_end_seek_of_file(btree &tree){
+unsigned int btree_end_seek_of_file(btree &tree){
     if(fseek(tree.fp, 0, SEEK_END) == -1)
         return BTREE_ERR;
     return ftell(tree.fp);
@@ -80,41 +80,56 @@ btree createIndex(const char *file){
     if(btree_write_disk(tree, tree.root.self, tree.root) == BTREE_ERR) { // mudar pra retornar bool se for o caso
         throw "Cannot write on primary index file";
     }
+    // writing 0 to avoid garbage
+//    unsigned long rootOffset = 0;
+//    fseek(fp, 0, SEEK_SET);
+//    fwrite(&rootOffset, sizeof(unsigned long), 1, fp);
 
     return tree;
 }
 
-btree_node btree_search(btree &tree, int key){
+pair<bool, Hashing::Address> btree_search(btree &tree, btree_node &node, int key){
     short int countBlock = 1;
-    btree_node node;
+    Hashing::Address ad;
     //cout<< (*tree->root);
     node = tree.root;
     int key_index = btree_key_index(node, key);
     while(node.seek[0] != -1 && node.key[key_index] != key)
     {
         if(btree_read_disk(tree, node.seek[key_index], node) == BTREE_ERR) {
-            throw "cannot read node from primary index file";
+            return std::make_pair(false, ad);
         }
         key_index = btree_key_index(node, key);
         countBlock++;
     }
-    cout<< "Numero de blocos de indice lidos:  "<< countBlock << endl;
 
-    return node;
+    if(node.key[key_index] == key) {
+        cout<< "Numero de blocos de indice lidos:  "<< countBlock << endl;
+        ad = node.adress[key_index];
+        return std::make_pair(true, ad);
+    }
+
+    return std::make_pair(false, ad);
 }
 
 void loadRoot(btree &indexPrimary, const char *file){
 
     //btree indexPrimary;
     FILE *fp = fopen(file,"rb");
-    fseek(fp, 0, SEEK_SET);
+    fseek(fp, 0, SEEK_END);
+    auto curPos = ftell(fp);
+    fseek(fp, (curPos- sizeof(unsigned int)), SEEK_SET);
     btree_node node;
+    unsigned int rootOffset = 0;
+    fread(&rootOffset, sizeof(unsigned int), 1,fp);
 
+    fseek(fp, rootOffset, SEEK_SET);
     fread(&node, sizeof(btree_node), 1,fp);
 
     indexPrimary.fp = fp;
     indexPrimary.root = node;
 }
+
 
 int addElement(btree &tree, int key, Hashing::Address adress){
 
@@ -162,8 +177,9 @@ int addElement(btree &tree, int key, Hashing::Address adress){
 }
 
 int btree_split(btree &tree, btree_node &node){
-    if(node.key_num < 2 * T - 1)
+    if(node.key_num < 2 * T - 1) {
         return BTREE_OK;
+    }
 
     btree_node brother = createNewNode();
     brother.self = btree_end_seek_of_file(tree);
@@ -219,8 +235,8 @@ int btree_split(btree &tree, btree_node &node){
         tree.root.key_num++;
         brother.parent = node.parent;
 
-        btree_write_disk(tree, tree.root.self, tree.root);
         btree_write_disk(tree, brother.self, brother);
+        btree_write_disk(tree, tree.root.self, tree.root);
         btree_write_disk(tree, node.self, node);
         if(btree_read_disk(tree, tree.root.self, tree.root) == BTREE_ERR) {
             return BTREE_ERR;
@@ -258,6 +274,12 @@ int btree_split(btree &tree, btree_node &node){
     }
     node = parent;
     return BTREE_OK;
+}
+
+void saveRootOffset(btree &t) {
+    auto end = btree_end_seek_of_file(t);
+    fseek(t.fp, end, SEEK_SET);
+    auto check = fwrite(&t.root.self, sizeof(unsigned int), 1, t.fp);
 }
 
 btree_node::btree_node() {}

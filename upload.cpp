@@ -47,6 +47,8 @@ int main(int argc, char **argv) {
         if (check < 0) return 0;
         std::cout << "sucessfully indexed record " << pair.first << std::endl;
     }
+    // saving root address at beginning of the index
+    saveRootOffset(tree);
 
     fclose(tree.fp);
     
