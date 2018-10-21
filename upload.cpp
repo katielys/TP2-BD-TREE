@@ -10,8 +10,11 @@ int main(int argc, char **argv) {
     Parser p;
     std::map<  int , Hashing::Address> mapAdress;
     std::map<  int , Hashing::Address> mapAdressID;
+    cout<< "-->"<<sizeof(NodeS)<<endl;
+    cout<< "-->"<<sizeof(btree_node)<<endl;
     auto records = p.readCSV(argv);
     clock_t begin;
+
     begin = clock();
 
     std::cout << "creating hashing file .." << std::endl;
@@ -64,8 +67,8 @@ int main(int argc, char **argv) {
 
     fclose(secondIndex.fp);
 	auto stop = 0;
-	cout<< "--------------"<<sera<<endl;
-	cin >> stop;
+//	cout<< "--------------"<<sera<<endl;
+//	cin >> stop;
 
     std::cout << "->indexing records in primary btree..." << std::endl;
     for (auto pair : mapAdressID) {

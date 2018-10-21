@@ -4,20 +4,21 @@
 #include <stdlib.h>
 #include <string.h>
 #include "HashFile.h"
-//tem o tamanho de 4076
-#define TS 102 //(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) <= 4084 -> (4096 - 12(other attributes)))
+//tem o tamanho de 4096
+#define TS 128 //(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) <= 4084 -> (4096 - 12(other attributes)))
 
 #define BTREE_OK 0
 #define BTREE_ERR -1
 
 ///\file SecondIndex.cpp
 typedef struct NodeS{
-    int count;
-    Hashing::Address adress[2 * TS - 1];
-    int key[2 * TS - 1];
-    int seek[2 * TS]; //!< Order from Btree
+    int count;//4
     unsigned int self;
     int parent;
+    Hashing::Address adress[2 * TS - 1] ;//12 bytes;
+    int key[2 * TS - 1];
+    int seek[2 * TS]; //!< Order from Btree
+
 
     NodeS();
 }NodeS;

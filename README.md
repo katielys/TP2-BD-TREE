@@ -6,13 +6,13 @@ Este trabalho consiste na implementação de programas para armazenamento e pesq
 
 [X] Parser
 
-[ ] upload <file> 
+[X] upload <file> 
   
 [X] findrec <ID>
 
-[X ] seek1 <ID>
+[X] seek1 <ID>
 
-[ ] seek2 <String>
+[X] seek2 <String>
 
 [ ] Documentar codigo
 
