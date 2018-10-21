@@ -9,8 +9,8 @@
 
 #define BTREE_OK 0
 #define BTREE_ERR -1
-#define HEADER sizeof(unsigned long)
 
+///\file SecondIndex.cpp
 typedef struct NodeS{
     int count;
     Hashing::Address adress[2 * TS - 1];
