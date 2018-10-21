@@ -10,7 +10,7 @@ Este trabalho consiste na implementação de programas para armazenamento e pesq
   
 [X] findrec <ID>
 
-[X] seek1 <ID>
+[X ] seek1 <ID>
 
 [ ] seek2 <String>
 
