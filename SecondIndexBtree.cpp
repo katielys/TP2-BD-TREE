@@ -5,12 +5,13 @@ int stringToIndexNumberf(string toIndex) {
 
     auto indexed = 00;
     if(sizes<1){
-        indexed = 1;
+        indexed = 01;
         return indexed;
     }
     for (int i = 1; i < sizes; ++i) {
-        indexed += int(toIndex[i-1])*i;
+        indexed += int(toIndex[i-1])*i*i+(i%104393);
     }
+	//indexed=indexed+sizes;
     return indexed;
 }
 int readSecond(SecondIndex &tree, int seek, NodeS &node){
