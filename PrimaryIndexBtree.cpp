@@ -29,10 +29,10 @@ int btree_write_disk(btree &tree, int seek, btree_node &node){
 
  int btree_key_index(btree_node &node, int key){
     int low = 0;
-    int high = 2*T-3;
+    int high = node.key_num -1;
     int middle = (low + high) / 2;
     while(low <= high){
-        if(node.key[middle] == key) {
+        if(node.key[middle] == key){
             return middle;
         }
         else if(node.key[middle] > key) {
@@ -130,7 +130,7 @@ int addElement(btree &tree, int key, Hashing::Address adress){
 
     int key_index = btree_key_index(node, key);
 
-    while(node.seek[0] != -1){
+    while(node.seek[0] != -1) {
 
         if(btree_read_disk(tree, node.seek[key_index], node) == BTREE_ERR) {
             return BTREE_ERR;
@@ -198,14 +198,43 @@ int btree_split(btree &tree, btree_node &node){
     btree_node parent;
 
     if(node.parent == -1) {
+        // the actual node is root, thus we have to do all changes in the root by this way
         parent = createNewNode();
         tree.root = parent;
-        parent.self = brother.self + sizeof(btree_node);
-        node.parent = parent.self;
-    } else if(btree_read_disk(tree, node.parent, parent) == BTREE_ERR) {
+        tree.root.self = brother.self + sizeof(btree_node);
+        node.parent = tree.root.self;
+
+        int key_index = btree_key_index(tree.root, node.key[0]);
+
+        for(i = tree.root.key_num; i > key_index; i--){
+            tree.root.key[i] = tree.root.key[i - 1];
+            tree.root.adress[i] = tree.root.adress[i - 1];
+        }
+
+        tree.root.key[i] = save_key;
+
+        for(i = tree.root.key_num + 1; i > key_index + 1; i--) {
+            tree.root.seek[i] = tree.root.seek[i - 1];
+        }
+
+        tree.root.seek[key_index] = node.self;
+        tree.root.seek[key_index + 1] = brother.self;
+        tree.root.key_num++;
+        brother.parent = node.parent;
+
+        btree_write_disk(tree, tree.root.self, tree.root);
+        btree_write_disk(tree, brother.self, brother);
+        btree_write_disk(tree, node.self, node);
+        if(btree_read_disk(tree, tree.root.self, tree.root) == BTREE_ERR) {
+            return BTREE_ERR;
+        }
+        node = tree.root;
+        return BTREE_OK;
+
+    } else if(btree_read_disk(tree, node.parent, parent) == BTREE_ERR) { // the node has a parent, read it from disk
         return BTREE_ERR;
     }
-
+    // the actual isn't a root, so we proceed normaly, making changes in the parent read from the disk
     int key_index = btree_key_index(parent, node.key[0]);
 
     for(i = parent.key_num; i > key_index; i--){
