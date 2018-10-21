@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
 //    secondIndex = createIndexSecondary("secondIndex.bin");
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
-    
+
 
     for (auto &record : records) {
          auto adress = Hashing::insertOnHashFile(record, hash, overflow);

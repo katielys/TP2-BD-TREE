@@ -87,7 +87,6 @@ btree createIndex(const char *file){
 btree_node btree_search(btree &tree, int key){
     short int countBlock = 1;
     btree_node node;
-    //cout<< (*tree->root);
     node = tree.root;
     int key_index = btree_key_index(node, key);
     while(node.seek[0] != -1 && node.key[key_index] != key)
@@ -99,7 +98,6 @@ btree_node btree_search(btree &tree, int key){
         countBlock++;
     }
     cout<< "Numero de blocos de indice lidos:  "<< countBlock << endl;
-
     return node;
 }
 

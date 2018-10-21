@@ -1,4 +1,5 @@
 #include "PrimaryIndexBtree.h"
+#include "HashFile.h"
 using namespace std;
 
 //TODO : COLOCAR EM CLASSE
@@ -6,27 +7,24 @@ using namespace std;
 int main(int argc, char ** argv){
     auto idToSeek = 0000000000000;
     idToSeek = stoi(argv[1]);
-//    btree indexPrimary;
-//    btree_node *r = nullptr;
-//
-//    loadRoot(&indexPrimary, "primaryIndex.bin");
-//
-//    cout<<"keys quantity on node: " << indexPrimary.root.key_num<<endl;
-//    cout<<"key at position 39 in node: " << indexPrimary.root.key[39]<<endl;
-//
-//    r= btree_search(&indexPrimary,idToSeek);
-//
-//    if(r == nullptr){
-//        cout<<"->ID: "<<idToSeek<< "   not found";
+    btree indexPrimary;
+    btree_node r;
+    FILE *fp = fopen("primaryIndex.bin","rb");
+    cout<<fseek(fp,0,SEEK_SET)<<endl;
+    cout<< sizeof(btree_node)<<endl;
+    cout<<fread(&indexPrimary.root, 1, sizeof(btree_node),fp)<<endl;
+    cout<<indexPrimary.root.key_num<<endl;
+//    for (int i = 0; i <indexPrimary.root.key_num ; ++i) {
+//      cout<<indexPrimary.root.key[i]<<"  ";
 //    }
-//
-//    else{
-//        cout<<"->ID :"<< idToSeek << "has found" << endl;
-//        cout<<r->self<<endl;
-//        cout<<r->key_num<<endl;
-//
-//
-//    }
+    int h = btree_key_index(indexPrimary.root, idToSeek);
+
+    r= btree_search(indexPrimary,idToSeek);
+    cout<<r.key_num<<endl;
+    Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
+    Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
+    Article aux = Hashing::getRecordByAddress(r.adress[h], hash, overflow);
+    cout<< aux.toString()<<endl;
 
     return 0;
 
