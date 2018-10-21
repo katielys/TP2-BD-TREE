@@ -4,6 +4,10 @@ int stringToIndexNumberf(string toIndex) {
     auto sizes = toIndex.size();
 
     auto indexed = 00;
+    if(sizes<1){
+        indexed = 1;
+        return indexed;
+    }
     for (int i = 1; i < sizes; ++i) {
         indexed += int(toIndex[i-1])*i;
     }

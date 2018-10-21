@@ -30,6 +30,8 @@ int main(int argc, char **argv) {
 
          aux = record.getTitle();
          index = stringToIndexNumberf(aux);
+         cout<< aux<< endl;
+         cout<<index<<endl;
          auto adress = Hashing::insertOnHashFile(record, hash, overflow);
          // inserting in mapAddress, trying to avoid copies using emplace
          mapAdress.emplace(std::piecewise_construct,
@@ -48,7 +50,10 @@ int main(int argc, char **argv) {
     std::cout << "indexing records in second btree..." << std::endl;
     for (auto pair : mapAdress) {
         int check = addElementSecondIndex(secondIndex, pair.first, pair.second);
-        if (check < 0) {cout<< pair.first<<endl; return 0;};
+        if (check < 0) {
+            cout<< pair.first<<endl;
+            return 0;
+        }
         std::cout << "sucessfully indexed record " << pair.first << std::endl;
     }
     // saving root address at beginning of the index
