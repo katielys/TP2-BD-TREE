@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "HashFile.h"
-#define MAXLEN 300
+#define MAXLEN 299
 #define TS 6
 
 //node tem 3492 de tamanho
@@ -17,7 +17,9 @@ using namespace std;
 #define BTREE_ERR -1
 
 typedef struct arraychar{
-    char title[MAXLEN];
+    char title[MAX_SIZE_TITLE];
+    arraychar();
+
 }arraychar;
 
 typedef struct NodeS{
@@ -29,6 +31,7 @@ typedef struct NodeS{
     int parent;
     NodeS();
 }NodeS;
+
 typedef struct BTreeS{
     NodeS root;
     FILE *fp;
@@ -38,8 +41,8 @@ typedef struct BTreeS{
 
 //TODO colocar em classe depois
 int addElementS(BTreeS &tree, char *key, Hashing::Address adress);
-int btree_splitS(BTreeS &tree, NodeS &node);
-std::pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char* key);
+int btree_splitS(BTreeS &tree, NodeS *node);
+std::pair<bool, Hashing::Address> btree_searchS(BTreeS &tree, NodeS &node, char *key);
 BTreeS createSecondIndex(const char *file);
 void loadRootS(BTreeS &t,const char *file);
 void saveRootOffsetSecond(BTreeS &t);
@@ -47,5 +50,6 @@ int readSecond(BTreeS &tree, int seek, NodeS &node);
 int writeSecond(BTreeS &tree, int seek, NodeS &node);
 int Kindex(NodeS &node, char *key);
 unsigned int endFilseSecond(BTreeS &tree);
+void strCopy(char *destiny, std::string &source);
 
 #endif

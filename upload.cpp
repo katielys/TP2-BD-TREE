@@ -8,7 +8,8 @@ using  namespace std;
 
 int main(int argc, char **argv) {
     Parser p;
-    std::map< char *, Hashing::Address> mapAdress;
+    std::map<unsigned int, Hashing::Address> mapAdress;
+    std::map<unsigned int, std::string> mapTitle;
     auto records = p.readCSV(argv);
     clock_t begin;
     begin = clock();
@@ -29,11 +30,13 @@ int main(int argc, char **argv) {
          auto adress = Hashing::insertOnHashFile(record, hash, overflow);
          // inserting in mapAddress, trying to avoid copies using emplace
          mapAdress.emplace(std::piecewise_construct,
-                           std::forward_as_tuple(record.getTitle()),
+                           std::forward_as_tuple(record.getID()),
                            std::forward_as_tuple(adress));
-//         addElementSecondIndex(secondIndex,record.getTitle(),adress);
+//        std::string title(record.getTitle());
+//        mapTitle.emplace(std::piecewise_construct,
+//                          std::forward_as_tuple(record.getID()),
+//                          std::forward_as_tuple(title));
     }
-    records.clear();
 
     std::cout << "Buckets number: " << hash.buckets << std::endl;
     std::cout << "Overflow blocks: " << overflow.blocksCount << std::endl;
@@ -42,10 +45,19 @@ int main(int argc, char **argv) {
     overflow.close();
     
     std::cout << "indexing records in second btree..." << std::endl;
-    for (auto pair : mapAdress) {
-        int check = addElementS(secondIndex, pair.first, pair.second);
-        if (check < 0) return 0;
-        std::cout << "sucessfully indexed record " << pair.first << std::endl;
+    for (auto &record : records) {
+        try {
+            int check = addElementS(secondIndex, record.getTitle(), mapAdress[record.getID()]);
+
+            if (check == 0) {
+                std::cout << "sucessfully indexed record " << record.getID() << " " << record.getTitle()
+                          << std::endl;
+            }
+        }catch (exception &exception1){
+            std::cout << exception1.what() << std::endl;
+        }
+
+
     }
     // saving root address at beginning of the index
     saveRootOffsetSecond(secondIndex);
