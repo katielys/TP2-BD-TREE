@@ -68,9 +68,9 @@ int main(int argc, char **argv) {
     saveSecondRootOffset(secondIndex);
 
     fclose(secondIndex.fp);
-	auto stop = 0;
+//	auto stop = 0;
 	cout<< "--------------"<<sera<<endl;
-	cin >> stop;
+//	cin >> stop;
 
     std::cout << "->indexing records in primary btree..." << std::endl;
     for (auto pair : mapAdressID) {
