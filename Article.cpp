@@ -1,4 +1,6 @@
 ///\file Article.cpp classe para representar o artigo
+///\author Katiely Oliveira e Tiago dos Santos
+
 #include "Article.h"
 
 using namespace std;

@@ -1,17 +1,16 @@
-
 ///\file Article.h Lib from class Article
+///@author Katiely dos santos
 #ifndef ARTICLE_H
 #define ARTICLE_H
 #include <string>
 #include <iostream>
 #include <sstream>
 #include <cstring>
-#define MAX_SIZE_TITLE 300
-#define MAX_SIZE_AUTOR 150
+#define MAX_SIZE_TITLE 300 //!< Tamanho maximo de um titulo de artigo
+#define MAX_SIZE_AUTOR 150 //!<Tamanho maximo da lista de artigo
 #define MAX_SIZE_SNIPPET 1024
 #define MAX_SIZE_DATE 19
 
-///\autor Katiely
 using namespace std;
 
 class Article{
