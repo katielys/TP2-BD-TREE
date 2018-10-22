@@ -7,7 +7,7 @@
 #include <string.h>
 #include "HashFile.h"
 //tem o tamanho de 4096
-#define T  128 //(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) = 4096
+#define T  128 ///(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) = 4096 bytes  =
 
 #define BTREE_OK 0
 #define BTREE_ERR -1
@@ -18,8 +18,8 @@ typedef struct btree_node{
     unsigned int self; //4;
     int parent;//4
     Hashing::Address adress[2 * T - 1];
-    int key[2 * T - 1];
-    int seek[2 * T]; //!< ORDEM DA arvoreB Secundaria
+    int key[2 * T - 1]; //
+    int seek[2 * T]; //!< ORDEM DA arvoreB primaria
 
 
     btree_node();

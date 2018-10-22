@@ -1,5 +1,6 @@
 
 #include "SecondIndexBtree.h"
+///\author Tiago Santos e Katiely Santos
 int stringToIndexNumberf(string toIndex) {
     auto sizes = toIndex.size();
 
