@@ -55,6 +55,10 @@ int Kindex(NodeS &node, int key){
     return high + 1;
 }
 int endFilseSecond(SecondIndex &tree){
+
+    ///Essa funcao eh responsavel por retornar onde foi a ultima posicao no arquivo secundario de indice
+    ///@param &tree eh o indice secundario
+    // Se
     if(fseek(tree.fp, 0, SEEK_END) == -1)
         return BTREE_ERR;
     return ftell(tree.fp);
@@ -80,6 +84,7 @@ NodeS createNewNodeSecond(){
 }
 
 SecondIndex createSecondIndex(const char *file){
+    ///
     FILE *fp = fopen(file, "w+");
     SecondIndex tree;
 

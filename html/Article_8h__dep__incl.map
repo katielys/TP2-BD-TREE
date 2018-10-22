@@ -1,0 +1,18 @@
+<map id="Article.h" name="Article.h">
+<area shape="rect" id="node2" href="$Article_8cpp.html" title="classe para representar o artigo " alt="" coords="173,80,257,107"/>
+<area shape="rect" id="node3" href="$Block_8h.html" title="header from Block " alt="" coords="282,80,349,107"/>
+<area shape="rect" id="node4" href="$Block_8cpp.html" title="Block.cpp" alt="" coords="225,155,305,181"/>
+<area shape="rect" id="node5" href="$Parser_8h.html" title="Parser.h" alt="" coords="329,155,400,181"/>
+<area shape="rect" id="node6" href="$HashFile_8h.html" title="HashFile.h" alt="" coords="267,229,353,256"/>
+<area shape="rect" id="node17" href="$Parser_8cpp.html" title="Parser.cpp" alt="" coords="377,229,462,256"/>
+<area shape="rect" id="node7" href="$findrec_8cpp.html" title="findrec.cpp" alt="" coords="5,304,92,331"/>
+<area shape="rect" id="node8" href="$HashFile_8cpp.html" title="HashFile.cpp" alt="" coords="117,304,215,331"/>
+<area shape="rect" id="node9" href="$PrimaryIndexBtree_8h.html" title="PrimaryIndexBtree.h" alt="" coords="239,304,381,331"/>
+<area shape="rect" id="node13" href="$SecondIndexBtree_8h.html" title="SecondIndexBtree.h" alt="" coords="405,304,545,331"/>
+<area shape="rect" id="node16" href="$testable_8cpp.html" title="testable.cpp" alt="" coords="570,304,663,331"/>
+<area shape="rect" id="node10" href="$PrimaryIndexBtree_8cpp.html" title="PrimaryIndexBtree.cpp" alt="" coords="46,379,201,405"/>
+<area shape="rect" id="node11" href="$seek1_8cpp.html" title="seek1.cpp" alt="" coords="225,379,307,405"/>
+<area shape="rect" id="node12" href="$upload_8cpp.html" title="Arquivo responsavel por criar o arquivo hash, o indice primario e indice secundario. " alt="" coords="331,379,417,405"/>
+<area shape="rect" id="node14" href="$SecondIndexBtree_8cpp.html" title="SecondIndexBtree.cpp" alt="" coords="441,379,595,405"/>
+<area shape="rect" id="node15" href="$seek2_8cpp.html" title="programa responavel por pesquisar atraves do indice secundario " alt="" coords="619,379,702,405"/>
+</map>

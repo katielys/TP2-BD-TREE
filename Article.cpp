@@ -72,7 +72,7 @@ char* Article::getDate(){
 char* Article::getSnipped(){
 	return snippet;
 }
-/*Function to return a string which contains all data from Article's object*/
+/**Function to return a string which contains all data from Article's object*/
 std::string Article::toString(){
 	string ret ;
 	ostringstream str1;

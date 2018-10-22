@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>TP2-BD-BTREE: Referência do Arquivo PrimaryIndexBtree.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TP2-BD-BTREE
+   &#160;<span id="projectnumber">1</span>
+   </div>
+   <div id="projectbrief">Trabalho2deBancodeDados</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;Principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;Arquivos</span></a></li>
+      <li><a href="globals.html"><span>Membros&#160;dos&#160;Arquivos</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Componentes</a> &#124;
+<a href="#define-members">Definições e Macros</a> &#124;
+<a href="#typedef-members">Definições de Tipos</a> &#124;
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência do Arquivo PrimaryIndexBtree.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="HashFile_8h_source.html">HashFile.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Gráfico de dependência de inclusões para PrimaryIndexBtree.h:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="PrimaryIndexBtree_8h__incl.png" border="0" usemap="#PrimaryIndexBtree_8h" alt=""/></div>
+<map name="PrimaryIndexBtree_8h" id="PrimaryIndexBtree_8h">
+<area shape="rect" id="node5" href="HashFile_8h.html" title="HashFile.h" alt="" coords="269,80,355,107"/>
+<area shape="rect" id="node9" href="Parser_8h.html" title="Parser.h" alt="" coords="325,155,395,181"/>
+<area shape="rect" id="node11" href="Block_8h.html" title="header from Block " alt="" coords="383,229,449,256"/>
+<area shape="rect" id="node12" href="Article_8h.html" title="Lib from class Article. " alt="" coords="358,304,429,331"/>
+</map>
+</div>
+</div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Este grafo mostra quais arquivos estão direta ou indiretamente relacionados com este arquivo:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="PrimaryIndexBtree_8h__dep__incl.png" border="0" usemap="#PrimaryIndexBtree_8hdep" alt=""/></div>
+<map name="PrimaryIndexBtree_8hdep" id="PrimaryIndexBtree_8hdep">
+<area shape="rect" id="node2" href="PrimaryIndexBtree_8cpp.html" title="PrimaryIndexBtree.cpp" alt="" coords="5,80,160,107"/>
+<area shape="rect" id="node3" href="seek1_8cpp.html" title="seek1.cpp" alt="" coords="184,80,267,107"/>
+<area shape="rect" id="node4" href="upload_8cpp.html" title="Arquivo responsavel por criar o arquivo hash, o indice primario e indice secundario. " alt="" coords="291,80,376,107"/>
+</map>
+</div>
+</div>
+<p><a href="PrimaryIndexBtree_8h_source.html">Vá para o código-fonte deste arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Componentes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbtree__node.html">btree_node</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbtree.html">btree</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Definições e Macros</h2></td></tr>
+<tr class="memitem:a0acb682b8260ab1c60b918599864e2e5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:a0acb682b8260ab1c60b918599864e2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07ec39995942a4e60cdb9712ce886d17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#a07ec39995942a4e60cdb9712ce886d17">BTREE_OK</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a07ec39995942a4e60cdb9712ce886d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac83924c06c50f5da67134e9491d916dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#ac83924c06c50f5da67134e9491d916dd">BTREE_ERR</a>&#160;&#160;&#160;-1</td></tr>
+<tr class="separator:ac83924c06c50f5da67134e9491d916dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7770a7f0d95e67620ff6ed347a07a56"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#ab7770a7f0d95e67620ff6ed347a07a56">HEADER</a>&#160;&#160;&#160;sizeof(unsigned long)</td></tr>
+<tr class="separator:ab7770a7f0d95e67620ff6ed347a07a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Definições de Tipos</h2></td></tr>
+<tr class="memitem:a8b7ca5a7e573cc6141b96541df2f7cb0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structbtree__node.html">btree_node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#a8b7ca5a7e573cc6141b96541df2f7cb0">btree_node</a></td></tr>
+<tr class="separator:a8b7ca5a7e573cc6141b96541df2f7cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af55eab70ee9b79d84533676b4718a061"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structbtree.html">btree</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#af55eab70ee9b79d84533676b4718a061">btree</a></td></tr>
+<tr class="separator:af55eab70ee9b79d84533676b4718a061"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:adc76bc91d5f6e7a966aaa2718ee901a3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#adc76bc91d5f6e7a966aaa2718ee901a3">addElement</a> (<a class="el" href="structbtree.html">btree</a> &amp;tree, int key, <a class="el" href="structHashing_1_1Address.html">Hashing::Address</a> adress)</td></tr>
+<tr class="separator:adc76bc91d5f6e7a966aaa2718ee901a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1592a0ba68c8fb581a939ab24bb4a306"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#a1592a0ba68c8fb581a939ab24bb4a306">btree_split</a> (<a class="el" href="structbtree.html">btree</a> &amp;tree, <a class="el" href="structbtree__node.html">btree_node</a> &amp;node)</td></tr>
+<tr class="separator:a1592a0ba68c8fb581a939ab24bb4a306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad04a708be4e505c0a771cb31b14cced3"><td class="memItemLeft" align="right" valign="top">std::pair&lt; bool, <a class="el" href="structHashing_1_1Address.html">Hashing::Address</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#ad04a708be4e505c0a771cb31b14cced3">btree_search</a> (<a class="el" href="structbtree.html">btree</a> &amp;tree, <a class="el" href="structbtree__node.html">btree_node</a> &amp;node, int key)</td></tr>
+<tr class="separator:ad04a708be4e505c0a771cb31b14cced3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8428ff18e4842e621c60eec1ed81e598"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbtree.html">btree</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#a8428ff18e4842e621c60eec1ed81e598">createIndex</a> (const char *file)</td></tr>
+<tr class="separator:a8428ff18e4842e621c60eec1ed81e598"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41ef83ab03d8952d164cb8654c3ee5a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#a41ef83ab03d8952d164cb8654c3ee5a0">loadRoot</a> (<a class="el" href="structbtree.html">btree</a> &amp;t, const char *file)</td></tr>
+<tr class="separator:a41ef83ab03d8952d164cb8654c3ee5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a905291a9d89d118971b31ea3093a7f9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#a905291a9d89d118971b31ea3093a7f9b">saveRootOffset</a> (<a class="el" href="structbtree.html">btree</a> &amp;t)</td></tr>
+<tr class="separator:a905291a9d89d118971b31ea3093a7f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a6a3b885782170778c724c54d07a981"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PrimaryIndexBtree_8h.html#a4a6a3b885782170778c724c54d07a981">btree_end_seek_of_file</a> (<a class="el" href="structbtree.html">btree</a> &amp;tree)</td></tr>
+<tr class="separator:a4a6a3b885782170778c724c54d07a981"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Definições e macros</h2>
+<a class="anchor" id="ac83924c06c50f5da67134e9491d916dd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BTREE_ERR&#160;&#160;&#160;-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a07ec39995942a4e60cdb9712ce886d17"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BTREE_OK&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab7770a7f0d95e67620ff6ed347a07a56"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HEADER&#160;&#160;&#160;sizeof(unsigned long)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0acb682b8260ab1c60b918599864e2e5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define T&#160;&#160;&#160;128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Definições dos tipos</h2>
+<a class="anchor" id="af55eab70ee9b79d84533676b4718a061"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structbtree.html">btree</a> <a class="el" href="structbtree.html">btree</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8b7ca5a7e573cc6141b96541df2f7cb0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structbtree__node.html">btree_node</a> <a class="el" href="structbtree__node.html">btree_node</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Funções</h2>
+<a class="anchor" id="adc76bc91d5f6e7a966aaa2718ee901a3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int addElement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbtree.html">btree</a> &amp;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structHashing_1_1Address.html">Hashing::Address</a>&#160;</td>
+          <td class="paramname"><em>adress</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4a6a3b885782170778c724c54d07a981"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int btree_end_seek_of_file </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbtree.html">btree</a> &amp;&#160;</td>
+          <td class="paramname"><em>tree</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad04a708be4e505c0a771cb31b14cced3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt;bool, <a class="el" href="structHashing_1_1Address.html">Hashing::Address</a>&gt; btree_search </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbtree.html">btree</a> &amp;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structbtree__node.html">btree_node</a> &amp;&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1592a0ba68c8fb581a939ab24bb4a306"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int btree_split </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbtree.html">btree</a> &amp;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structbtree__node.html">btree_node</a> &amp;&#160;</td>
+          <td class="paramname"><em>node</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8428ff18e4842e621c60eec1ed81e598"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbtree.html">btree</a> createIndex </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a41ef83ab03d8952d164cb8654c3ee5a0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loadRoot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbtree.html">btree</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a905291a9d89d118971b31ea3093a7f9b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void saveRootOffset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbtree.html">btree</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

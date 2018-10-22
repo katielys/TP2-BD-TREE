@@ -1,11 +1,13 @@
 #ifndef _BTREE_H_
 #define _BTREE_H_
+
+///\file PrimaryIndexBtree.h
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "HashFile.h"
 //tem o tamanho de 4096
-#define T  128 //(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) <= 4084 -> (4096 - 12(other attributes)))
+#define T  128 //(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) = 4096
 
 #define BTREE_OK 0
 #define BTREE_ERR -1
@@ -17,7 +19,7 @@ typedef struct btree_node{
     int parent;//4
     Hashing::Address adress[2 * T - 1];
     int key[2 * T - 1];
-    int seek[2 * T]; //!< Order from Btree
+    int seek[2 * T]; //!< ORDEM DA arvoreB Secundaria
 
 
     btree_node();
@@ -30,7 +32,6 @@ typedef struct btree{
     btree();
 }btree;
 
-//TODO vou colocar em classe deopois
 int addElement(btree &tree, int key, Hashing::Address adress);
 int btree_split(btree &tree, btree_node &node);
 std::pair<bool, Hashing::Address> btree_search(btree &tree, btree_node &node, int key);
