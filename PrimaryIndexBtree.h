@@ -12,11 +12,11 @@
 #define BTREE_OK 0
 #define BTREE_ERR -1
 #define HEADER sizeof(unsigned long)
-
+///\author Tiago Santos e Katiely Santos
 typedef struct btree_node{
     int key_num; //4
     unsigned int self; //4;
-    int parent;//4
+    int parent;// //!< 4 bytes , para saber quem sao os pais dele
     Hashing::Address adress[2 * T - 1];
     int key[2 * T - 1]; //
     int seek[2 * T]; //!< ORDEM DA arvoreB primaria
