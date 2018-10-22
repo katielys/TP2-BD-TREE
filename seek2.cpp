@@ -1,5 +1,6 @@
 #include "SecondIndexBtree.h"
-///\file seek2.cpp programa responavel por pesquisar atraves do indice secundario
+///\author Tiago Santos  e Katiely santos
+///\file seek2.cpp programa responavel por pesquisar atraves do indice secundario dado o titulo entre aspas
 using namespace std;
 
 int main (int argc, char **argv){

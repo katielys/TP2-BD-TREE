@@ -5,17 +5,19 @@
 #include <string.h>
 #include "HashFile.h"
 ///\file SecondIndexBtree.h
+
+///\author Tiago Santos e Katiely Santos
 //tem o tamanho de 4096
-#define TS 128 //(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) <= 4084 -> (4096 - 12(other attributes)))
+#define TS 128 ///(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) <= 4084
 
 #define BTREE_OK 0
 #define BTREE_ERR -1
 
 
 typedef struct NodeS{
-    int count;//4
+    int count;//!< 4 bytes, count eh o numero total de chaves que o no possui
     unsigned int self;
-    int parent;
+    int parent; //!< 4 bytes , para saber quem sao os pais dele
     Hashing::Address adress[2 * TS - 1] ;//12 bytes;
     int key[2 * TS - 1];
     int seek[2 * TS]; //!< Order from Btree
@@ -30,7 +32,12 @@ typedef struct SecondIndex{
 
     SecondIndex();
 }SecondIndex;
+
+/// returns a posicao do ultimo no escrito no arquivo
+/// @author Tiago Santos e katiely dos santos
 int endFilseSecond(SecondIndex &tree);
+
+
 int stringToIndexNumberf(string toIndex);
 int readSecond(SecondIndex &tree, int seek, NodeS &node);
 int writeSecond(SecondIndex &tree, int seek, NodeS &node);
