@@ -1,7 +1,7 @@
-///\file Article.h
+
+///\file Article.h Lib from class Article
 #ifndef ARTICLE_H
 #define ARTICLE_H
-#pragma once
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -19,8 +19,8 @@ class Article{
     /// Constructor without param
 		Article ();
 		Article (int id,unsigned short int year,int,char[MAX_SIZE_TITLE],char[MAX_SIZE_AUTOR],char[MAX_SIZE_SNIPPET],char[MAX_SIZE_DATE]); ///Constructor deafult
-		~Article (); //Destrutor
-		string toString();/// Function to return all information from a instance at this class
+		~Article ();
+		string toString();//!<Function to return all information from a instance at this class
 		unsigned int getID();
         void setID(int id);
 	    unsigned short int getYear();

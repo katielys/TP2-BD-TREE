@@ -27,7 +27,7 @@ unsigned int Block::getFreeSpace() {
     return (DATA_SIZE - this->bytesOccupied);
 }
 
-Block::Block() {
+Block::Block() { ///!<Construtor para incializar as variaveis do bloco
     this->verificationMask = MASK_VALID;
     this->bytesOccupied = 0;
     this->overflow = false;

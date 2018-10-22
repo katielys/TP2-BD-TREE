@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>TP2-BD-BTREE: Código-Fonte de HashFile.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TP2-BD-BTREE
+   &#160;<span id="projectnumber">1</span>
+   </div>
+   <div id="projectbrief">Trabalho2deBancodeDados</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;Principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;Arquivos</span></a></li>
+      <li><a href="globals.html"><span>Membros&#160;dos&#160;Arquivos</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">HashFile.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="HashFile_8h.html">Vá para a documentação deste arquivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TP2_BD_TREE_HASHFILE_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define TP2_BD_TREE_HASHFILE_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Parser_8h.html">Parser.h</a>&quot;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="namespaceHashing.html">    9</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceHashing.html">Hashing</a> {</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespaceHashing.html#a39c803c2262445573c6dd1303dcc3108">   11</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="namespaceHashing.html#a39c803c2262445573c6dd1303dcc3108">HEADER_SIZE</a> = <span class="keyword">sizeof</span>(u_long);</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structHashing_1_1Address.html">   13</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structHashing_1_1Address.html">Address</a>{</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structHashing_1_1Address.html#a5fdf9448c3cd7f359bc205af025d0a44">   15</a></span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structHashing_1_1Address.html#a5fdf9448c3cd7f359bc205af025d0a44">offset</a>;        <span class="comment">// block offset of respective file (hashing|overflow)</span></div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structHashing_1_1Address.html#aa40d44e5eff7693e2ffea4037fc341e1">   16</a></span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="structHashing_1_1Address.html#aa40d44e5eff7693e2ffea4037fc341e1">blockOffset</a>; <span class="comment">// offset of the record inside a block (can be 0 or 1).. change for a char</span></div><div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structHashing_1_1Address.html#a615264c23722dbcef607000ba2b5f445">   17</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="structHashing_1_1Address.html#a615264c23722dbcef607000ba2b5f445">overflow</a> = <span class="keyword">false</span>;      <span class="comment">// is in overflow area or not</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="structHashing_1_1Address.html#a002cbfb3b8cb50c602d5a8b9635ed9ff">Address</a>();</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    };</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structHashing_1_1OverflowArea.html">   21</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structHashing_1_1OverflowArea.html">OverflowArea</a>{</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structHashing_1_1OverflowArea.html#a16efad9c2a040e68dd5c96ce5e303e42">   22</a></span>&#160;        FILE *<a class="code" href="structHashing_1_1OverflowArea.html#a16efad9c2a040e68dd5c96ce5e303e42">fp</a>;</div><div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structHashing_1_1OverflowArea.html#a0df78418b8f26082b1c36e66d5a797d2">   23</a></span>&#160;        <span class="keywordtype">unsigned</span> <a class="code" href="structHashing_1_1OverflowArea.html#a0df78418b8f26082b1c36e66d5a797d2">blocksCount</a>;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="structHashing_1_1OverflowArea.html">OverflowArea</a>();</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="structHashing_1_1OverflowArea.html">OverflowArea</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">void</span> close();</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    };</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structHashing_1_1HashInstance.html">   33</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structHashing_1_1HashInstance.html">HashInstance</a>{</div><div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structHashing_1_1HashInstance.html#a8d1d15abed8a2b480af63e958685a202">   34</a></span>&#160;        FILE *<a class="code" href="structHashing_1_1HashInstance.html#a8d1d15abed8a2b480af63e958685a202">hashingFile</a>;</div><div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structHashing_1_1HashInstance.html#afee1920815c454b8ee9930197f2e2b5d">   35</a></span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="structHashing_1_1HashInstance.html#afee1920815c454b8ee9930197f2e2b5d">buckets</a>;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="structHashing_1_1HashInstance.html">HashInstance</a>();</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="structHashing_1_1HashInstance.html">HashInstance</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">void</span> close();</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    };</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespaceHashing.html#ad6b0ab28d1f0193b8fac209fe17ff1b1">createHash</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> numberOfRecords, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> recordsPerBucket, <span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespaceHashing.html#ad646916824563b79577a706014994879">createOverflow</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *path);</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="structHashing_1_1Address.html">Address</a> <a class="code" href="namespaceHashing.html#abb08378c29c66400ac2400aac89dde8d">insertOnHashFile</a>(<a class="code" href="classArticle.html">Article</a> record, <a class="code" href="structHashing_1_1HashInstance.html">HashInstance</a> &amp;hash, <a class="code" href="structHashing_1_1OverflowArea.html">OverflowArea</a> &amp;<a class="code" href="structHashing_1_1Address.html#a615264c23722dbcef607000ba2b5f445">overflow</a>);</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespaceHashing.html#a07154768e85a0b4176acd8394bd49645">insertOnOverflow</a>(<a class="code" href="classArticle.html">Article</a> &amp;record, <a class="code" href="structHashing_1_1OverflowArea.html">OverflowArea</a> &amp;overflowArea, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;<a class="code" href="structHashing_1_1Address.html#a5fdf9448c3cd7f359bc205af025d0a44">offset</a>, <span class="keywordtype">bool</span> &amp;needsUpdate,</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                          <a class="code" href="structHashing_1_1Address.html">Address</a> &amp;address, <span class="keywordtype">bool</span> alreadyLinked=<span class="keyword">false</span>);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    pair&lt;bool, pair&lt;Article, unsigned int&gt;&gt; <a class="code" href="namespaceHashing.html#a59f8461eeea4f2ff48ef08b73ab936fa">findRecord</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>, <a class="code" href="structHashing_1_1HashInstance.html">HashInstance</a> &amp;hash, <a class="code" href="structHashing_1_1OverflowArea.html">OverflowArea</a> &amp;<a class="code" href="structHashing_1_1Address.html#a615264c23722dbcef607000ba2b5f445">overflow</a>);</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespaceHashing.html#a860cf9bf316cf334addd60e407ede7cf">lookUpForRecordInOverflow</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>, <a class="code" href="classArticle.html">Article</a> &amp;artAux,</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                                   <a class="code" href="structHashing_1_1OverflowArea.html">OverflowArea</a> &amp;<a class="code" href="structHashing_1_1Address.html#a615264c23722dbcef607000ba2b5f445">overflow</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;<a class="code" href="structHashing_1_1Address.html#a5fdf9448c3cd7f359bc205af025d0a44">offset</a>,</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                                   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;blocksPassed);</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="classArticle.html">Article</a> <a class="code" href="namespaceHashing.html#a4b95abc1f2edd1a1614edc129b0d0f80">getRecordByAddress</a>(<a class="code" href="structHashing_1_1Address.html">Address</a> address, <a class="code" href="structHashing_1_1HashInstance.html">HashInstance</a> &amp;hash, <a class="code" href="structHashing_1_1OverflowArea.html">OverflowArea</a> &amp;<a class="code" href="structHashing_1_1Address.html#a615264c23722dbcef607000ba2b5f445">overflow</a>);</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif //TP2_BD_TREE_HASHFILE_H</span></div><div class="ttc" id="structHashing_1_1Address_html_a002cbfb3b8cb50c602d5a8b9635ed9ff"><div class="ttname"><a href="structHashing_1_1Address.html#a002cbfb3b8cb50c602d5a8b9635ed9ff">Hashing::Address::Address</a></div><div class="ttdeci">Address()</div><div class="ttdef"><b>Definition:</b> HashFile.cpp:233</div></div>
+<div class="ttc" id="classArticle_html"><div class="ttname"><a href="classArticle.html">Article</a></div><div class="ttdef"><b>Definition:</b> Article.h:17</div></div>
+<div class="ttc" id="structHashing_1_1OverflowArea_html_a16efad9c2a040e68dd5c96ce5e303e42"><div class="ttname"><a href="structHashing_1_1OverflowArea.html#a16efad9c2a040e68dd5c96ce5e303e42">Hashing::OverflowArea::fp</a></div><div class="ttdeci">FILE * fp</div><div class="ttdef"><b>Definition:</b> HashFile.h:22</div></div>
+<div class="ttc" id="structHashing_1_1HashInstance_html"><div class="ttname"><a href="structHashing_1_1HashInstance.html">Hashing::HashInstance</a></div><div class="ttdef"><b>Definition:</b> HashFile.h:33</div></div>
+<div class="ttc" id="Parser_8h_html"><div class="ttname"><a href="Parser_8h.html">Parser.h</a></div></div>
+<div class="ttc" id="structHashing_1_1Address_html"><div class="ttname"><a href="structHashing_1_1Address.html">Hashing::Address</a></div><div class="ttdef"><b>Definition:</b> HashFile.h:13</div></div>
+<div class="ttc" id="namespaceHashing_html"><div class="ttname"><a href="namespaceHashing.html">Hashing</a></div><div class="ttdef"><b>Definition:</b> HashFile.h:9</div></div>
+<div class="ttc" id="structHashing_1_1HashInstance_html_a8d1d15abed8a2b480af63e958685a202"><div class="ttname"><a href="structHashing_1_1HashInstance.html#a8d1d15abed8a2b480af63e958685a202">Hashing::HashInstance::hashingFile</a></div><div class="ttdeci">FILE * hashingFile</div><div class="ttdef"><b>Definition:</b> HashFile.h:34</div></div>
+<div class="ttc" id="namespaceHashing_html_ad646916824563b79577a706014994879"><div class="ttname"><a href="namespaceHashing.html#ad646916824563b79577a706014994879">Hashing::createOverflow</a></div><div class="ttdeci">void createOverflow(const char *path)</div><div class="ttdef"><b>Definition:</b> HashFile.cpp:28</div></div>
+<div class="ttc" id="namespaceHashing_html_ad6b0ab28d1f0193b8fac209fe17ff1b1"><div class="ttname"><a href="namespaceHashing.html#ad6b0ab28d1f0193b8fac209fe17ff1b1">Hashing::createHash</a></div><div class="ttdeci">void createHash(unsigned long numberOfRecords, unsigned int recordsPerBucket, const char *path)</div><div class="ttdef"><b>Definition:</b> HashFile.cpp:4</div></div>
+<div class="ttc" id="structHashing_1_1Address_html_a615264c23722dbcef607000ba2b5f445"><div class="ttname"><a href="structHashing_1_1Address.html#a615264c23722dbcef607000ba2b5f445">Hashing::Address::overflow</a></div><div class="ttdeci">bool overflow</div><div class="ttdef"><b>Definition:</b> HashFile.h:17</div></div>
+<div class="ttc" id="namespaceHashing_html_abb08378c29c66400ac2400aac89dde8d"><div class="ttname"><a href="namespaceHashing.html#abb08378c29c66400ac2400aac89dde8d">Hashing::insertOnHashFile</a></div><div class="ttdeci">Address insertOnHashFile(Article record, HashInstance &amp;hash, OverflowArea &amp;overflow)</div><div class="ttdef"><b>Definition:</b> HashFile.cpp:41</div></div>
+<div class="ttc" id="structHashing_1_1Address_html_aa40d44e5eff7693e2ffea4037fc341e1"><div class="ttname"><a href="structHashing_1_1Address.html#aa40d44e5eff7693e2ffea4037fc341e1">Hashing::Address::blockOffset</a></div><div class="ttdeci">unsigned short blockOffset</div><div class="ttdef"><b>Definition:</b> HashFile.h:16</div></div>
+<div class="ttc" id="namespaceHashing_html_a860cf9bf316cf334addd60e407ede7cf"><div class="ttname"><a href="namespaceHashing.html#a860cf9bf316cf334addd60e407ede7cf">Hashing::lookUpForRecordInOverflow</a></div><div class="ttdeci">bool lookUpForRecordInOverflow(unsigned int id, Article &amp;artAux, OverflowArea &amp;overflow, unsigned int &amp;offset, unsigned int &amp;blocksPassed)</div><div class="ttdef"><b>Definition:</b> HashFile.cpp:163</div></div>
+<div class="ttc" id="structHashing_1_1Address_html_a5fdf9448c3cd7f359bc205af025d0a44"><div class="ttname"><a href="structHashing_1_1Address.html#a5fdf9448c3cd7f359bc205af025d0a44">Hashing::Address::offset</a></div><div class="ttdeci">unsigned int offset</div><div class="ttdef"><b>Definition:</b> HashFile.h:15</div></div>
+<div class="ttc" id="structHashing_1_1OverflowArea_html_a0df78418b8f26082b1c36e66d5a797d2"><div class="ttname"><a href="structHashing_1_1OverflowArea.html#a0df78418b8f26082b1c36e66d5a797d2">Hashing::OverflowArea::blocksCount</a></div><div class="ttdeci">unsigned blocksCount</div><div class="ttdef"><b>Definition:</b> HashFile.h:23</div></div>
+<div class="ttc" id="namespaceHashing_html_a59f8461eeea4f2ff48ef08b73ab936fa"><div class="ttname"><a href="namespaceHashing.html#a59f8461eeea4f2ff48ef08b73ab936fa">Hashing::findRecord</a></div><div class="ttdeci">pair&lt; bool, pair&lt; Article, unsigned int &gt; &gt; findRecord(unsigned int id, HashInstance &amp;hash, OverflowArea &amp;overflow)</div><div class="ttdef"><b>Definition:</b> HashFile.cpp:134</div></div>
+<div class="ttc" id="namespaceHashing_html_a4b95abc1f2edd1a1614edc129b0d0f80"><div class="ttname"><a href="namespaceHashing.html#a4b95abc1f2edd1a1614edc129b0d0f80">Hashing::getRecordByAddress</a></div><div class="ttdeci">Article getRecordByAddress(Address address, HashInstance &amp;hash, OverflowArea &amp;overflow)</div><div class="ttdef"><b>Definition:</b> HashFile.cpp:184</div></div>
+<div class="ttc" id="structHashing_1_1HashInstance_html_afee1920815c454b8ee9930197f2e2b5d"><div class="ttname"><a href="structHashing_1_1HashInstance.html#afee1920815c454b8ee9930197f2e2b5d">Hashing::HashInstance::buckets</a></div><div class="ttdeci">unsigned long buckets</div><div class="ttdef"><b>Definition:</b> HashFile.h:35</div></div>
+<div class="ttc" id="namespaceHashing_html_a07154768e85a0b4176acd8394bd49645"><div class="ttname"><a href="namespaceHashing.html#a07154768e85a0b4176acd8394bd49645">Hashing::insertOnOverflow</a></div><div class="ttdeci">void insertOnOverflow(Article &amp;record, OverflowArea &amp;overflowArea, unsigned int &amp;offset, bool &amp;needsUpdate, Address &amp;address, bool alreadyLinked=false)</div><div class="ttdef"><b>Definition:</b> HashFile.cpp:76</div></div>
+<div class="ttc" id="structHashing_1_1OverflowArea_html"><div class="ttname"><a href="structHashing_1_1OverflowArea.html">Hashing::OverflowArea</a></div><div class="ttdef"><b>Definition:</b> HashFile.h:21</div></div>
+<div class="ttc" id="namespaceHashing_html_a39c803c2262445573c6dd1303dcc3108"><div class="ttname"><a href="namespaceHashing.html#a39c803c2262445573c6dd1303dcc3108">Hashing::HEADER_SIZE</a></div><div class="ttdeci">const unsigned short HEADER_SIZE</div><div class="ttdef"><b>Definition:</b> HashFile.h:11</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

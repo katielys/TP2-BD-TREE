@@ -1,0 +1,436 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>TP2-BD-BTREE: Referência do Arquivo SecondIndexBtree.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">TP2-BD-BTREE
+   &#160;<span id="projectnumber">1</span>
+   </div>
+   <div id="projectbrief">Trabalho2deBancodeDados</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;Principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;Arquivos</span></a></li>
+      <li><a href="globals.html"><span>Membros&#160;dos&#160;Arquivos</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle">
+<div class="title">Referência do Arquivo SecondIndexBtree.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="SecondIndexBtree_8h_source.html">SecondIndexBtree.h</a>&quot;</code><br />
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Gráfico de dependência de inclusões para SecondIndexBtree.cpp:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="SecondIndexBtree_8cpp__incl.png" border="0" usemap="#SecondIndexBtree_8cpp" alt=""/></div>
+<map name="SecondIndexBtree_8cpp" id="SecondIndexBtree_8cpp">
+<area shape="rect" id="node2" href="SecondIndexBtree_8h.html" title="SecondIndexBtree.h" alt="" coords="97,80,237,107"/>
+<area shape="rect" id="node6" href="HashFile_8h.html" title="HashFile.h" alt="" coords="269,155,355,181"/>
+<area shape="rect" id="node10" href="Parser_8h.html" title="Parser.h" alt="" coords="325,229,395,256"/>
+<area shape="rect" id="node12" href="Block_8h.html" title="header from Block " alt="" coords="383,304,449,331"/>
+<area shape="rect" id="node13" href="Article_8h.html" title="Lib from class Article. " alt="" coords="358,379,429,405"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:af36613b13443442011a038ab48b78231"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#af36613b13443442011a038ab48b78231">stringToIndexNumberf</a> (string toIndex)</td></tr>
+<tr class="separator:af36613b13443442011a038ab48b78231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2041ecd04e1626ed3f38ce45e60365e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#aa2041ecd04e1626ed3f38ce45e60365e">readSecond</a> (<a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;tree, int seek, <a class="el" href="structNodeS.html">NodeS</a> &amp;node)</td></tr>
+<tr class="separator:aa2041ecd04e1626ed3f38ce45e60365e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7772e6b383f6b4154dbc47fa31d1d7e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#a7772e6b383f6b4154dbc47fa31d1d7e0">writeSecond</a> (<a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;tree, int seek, <a class="el" href="structNodeS.html">NodeS</a> &amp;node)</td></tr>
+<tr class="separator:a7772e6b383f6b4154dbc47fa31d1d7e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a589807c633ca4cd3ad49276412669930"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#a589807c633ca4cd3ad49276412669930">Kindex</a> (<a class="el" href="structNodeS.html">NodeS</a> &amp;node, int key)</td></tr>
+<tr class="separator:a589807c633ca4cd3ad49276412669930"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad43f3fca88a715bcbae0b46d0d1166c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#ad43f3fca88a715bcbae0b46d0d1166c6">endFilseSecond</a> (<a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;tree)</td></tr>
+<tr class="separator:ad43f3fca88a715bcbae0b46d0d1166c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae200b95e94c4861cfd8853d8fb169ee5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNodeS.html">NodeS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#ae200b95e94c4861cfd8853d8fb169ee5">createNewNodeSecond</a> ()</td></tr>
+<tr class="separator:ae200b95e94c4861cfd8853d8fb169ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67e5376b32b0d68219154e0f329edf70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSecondIndex.html">SecondIndex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#a67e5376b32b0d68219154e0f329edf70">createSecondIndex</a> (const char *file)</td></tr>
+<tr class="separator:a67e5376b32b0d68219154e0f329edf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70691d3d235d5e2245c9ef1fbf13035f"><td class="memItemLeft" align="right" valign="top">pair&lt; bool, <a class="el" href="structHashing_1_1Address.html">Hashing::Address</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#a70691d3d235d5e2245c9ef1fbf13035f">searchAtSecond</a> (<a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;tree, <a class="el" href="structNodeS.html">NodeS</a> &amp;node, int key)</td></tr>
+<tr class="separator:a70691d3d235d5e2245c9ef1fbf13035f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40960e423cda2acb97d2496fb95f42c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#a40960e423cda2acb97d2496fb95f42c5">loadSecondRoot</a> (<a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;t, const char *file)</td></tr>
+<tr class="separator:a40960e423cda2acb97d2496fb95f42c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadcb8c22f0e4ade5a39a4a773dd1a186"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#aadcb8c22f0e4ade5a39a4a773dd1a186">addElementSecondIndex</a> (<a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;tree, int key, <a class="el" href="structHashing_1_1Address.html">Hashing::Address</a> adress)</td></tr>
+<tr class="separator:aadcb8c22f0e4ade5a39a4a773dd1a186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac1b8fd6e25a08375fde3301ed47e18f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#aac1b8fd6e25a08375fde3301ed47e18f">splitSecond</a> (<a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;tree, <a class="el" href="structNodeS.html">NodeS</a> &amp;node)</td></tr>
+<tr class="separator:aac1b8fd6e25a08375fde3301ed47e18f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92af6c5cca9bc48cb5389c575665e1b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SecondIndexBtree_8cpp.html#a92af6c5cca9bc48cb5389c575665e1b4">saveSecondRootOffset</a> (<a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;t)</td></tr>
+<tr class="separator:a92af6c5cca9bc48cb5389c575665e1b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Funções</h2>
+<a class="anchor" id="aadcb8c22f0e4ade5a39a4a773dd1a186"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int addElementSecondIndex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structHashing_1_1Address.html">Hashing::Address</a>&#160;</td>
+          <td class="paramname"><em>adress</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae200b95e94c4861cfd8853d8fb169ee5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNodeS.html">NodeS</a> createNewNodeSecond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a67e5376b32b0d68219154e0f329edf70"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSecondIndex.html">SecondIndex</a> createSecondIndex </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad43f3fca88a715bcbae0b46d0d1166c6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int endFilseSecond </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;&#160;</td>
+          <td class="paramname"><em>tree</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Essa funcao eh responsavel por retornar onde foi a ultima posicao no arquivo secundario de indice </p><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">&amp;tree</td><td>eh o indice secundario </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a589807c633ca4cd3ad49276412669930"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Kindex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structNodeS.html">NodeS</a> &amp;&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a40960e423cda2acb97d2496fb95f42c5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loadSecondRoot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa2041ecd04e1626ed3f38ce45e60365e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int readSecond </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>seek</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structNodeS.html">NodeS</a> &amp;&#160;</td>
+          <td class="paramname"><em>node</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a92af6c5cca9bc48cb5389c575665e1b4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void saveSecondRootOffset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a70691d3d235d5e2245c9ef1fbf13035f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pair&lt;bool, <a class="el" href="structHashing_1_1Address.html">Hashing::Address</a>&gt; searchAtSecond </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structNodeS.html">NodeS</a> &amp;&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aac1b8fd6e25a08375fde3301ed47e18f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int splitSecond </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structNodeS.html">NodeS</a> &amp;&#160;</td>
+          <td class="paramname"><em>node</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af36613b13443442011a038ab48b78231"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int stringToIndexNumberf </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>toIndex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7772e6b383f6b4154dbc47fa31d1d7e0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int writeSecond </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSecondIndex.html">SecondIndex</a> &amp;&#160;</td>
+          <td class="paramname"><em>tree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>seek</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structNodeS.html">NodeS</a> &amp;&#160;</td>
+          <td class="paramname"><em>node</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

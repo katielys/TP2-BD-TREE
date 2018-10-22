@@ -4,13 +4,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include "HashFile.h"
+///\file SecondIndexBtree.h
 //tem o tamanho de 4096
 #define TS 128 //(2m * sizeof(seek) + (2m-1)* sizeof(key) + (2m-1)* sizeof(address) <= 4084 -> (4096 - 12(other attributes)))
 
 #define BTREE_OK 0
 #define BTREE_ERR -1
 
-///\file SecondIndex.cpp
+
 typedef struct NodeS{
     int count;//4
     unsigned int self;
@@ -24,14 +25,13 @@ typedef struct NodeS{
 }NodeS;
 
 typedef struct SecondIndex{
-    NodeS root;
-    FILE *fp;
+    NodeS root; ///!< raiz do indice secundaag
+    FILE *fp; ///!< ponteiro do arquivo
 
     SecondIndex();
 }SecondIndex;
-
+int endFilseSecond(SecondIndex &tree);
 int stringToIndexNumberf(string toIndex);
-//TODO vou colocar em classe deopois
 int readSecond(SecondIndex &tree, int seek, NodeS &node);
 int writeSecond(SecondIndex &tree, int seek, NodeS &node);
 NodeS createNewNodeSecond();

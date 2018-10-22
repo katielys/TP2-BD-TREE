@@ -29,15 +29,10 @@ cmake-build-debug/
 
 *.gz
 
-html/search/
-
 latex/
-
-html/
 
 file\.bak
 
-file
 
 fileHash\.bin
 
