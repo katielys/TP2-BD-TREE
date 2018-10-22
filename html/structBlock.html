@@ -112,17 +112,24 @@ Métodos Públicos</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Atributos Públicos</h2></td></tr>
 <tr class="memitem:aed391e7671f1ec70e3dc2db774d8f9cb"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBlock.html#aed391e7671f1ec70e3dc2db774d8f9cb">verificationMask</a></td></tr>
+<tr class="memdesc:aed391e7671f1ec70e3dc2db774d8f9cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">header 13 bytes  <a href="#aed391e7671f1ec70e3dc2db774d8f9cb">Mais...</a><br /></td></tr>
 <tr class="separator:aed391e7671f1ec70e3dc2db774d8f9cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abde6adf69d1e430b4229ecc9a5a0e085"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBlock.html#abde6adf69d1e430b4229ecc9a5a0e085">bytesOccupied</a></td></tr>
+<tr class="memdesc:abde6adf69d1e430b4229ecc9a5a0e085"><td class="mdescLeft">&#160;</td><td class="mdescRight">4 bytes  <a href="#abde6adf69d1e430b4229ecc9a5a0e085">Mais...</a><br /></td></tr>
 <tr class="separator:abde6adf69d1e430b4229ecc9a5a0e085"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a783f6c26c5bdd2fe9d8e28abbb52c931"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBlock.html#a783f6c26c5bdd2fe9d8e28abbb52c931">nextBlock</a></td></tr>
+<tr class="memdesc:a783f6c26c5bdd2fe9d8e28abbb52c931"><td class="mdescLeft">&#160;</td><td class="mdescRight">4 bytes offset used as reference to find the overflow (or next) block  <a href="#a783f6c26c5bdd2fe9d8e28abbb52c931">Mais...</a><br /></td></tr>
 <tr class="separator:a783f6c26c5bdd2fe9d8e28abbb52c931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1237d54d9931ab568c6560b4142765bc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBlock.html#a1237d54d9931ab568c6560b4142765bc">overflow</a></td></tr>
+<tr class="memdesc:a1237d54d9931ab568c6560b4142765bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 byte has overflow sequence or not  <a href="#a1237d54d9931ab568c6560b4142765bc">Mais...</a><br /></td></tr>
 <tr class="separator:a1237d54d9931ab568c6560b4142765bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8db96dcde15372c8f4b470d65de35459"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Block_8h.html#a4ae1dab0fb4b072a66584546209e7d58">BYTE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structBlock.html#a8db96dcde15372c8f4b470d65de35459">data</a> [<a class="el" href="Block_8h.html#af55149bc1f05cf18af067a302e31e3f9">DATA_SIZE</a>]</td></tr>
+<tr class="memdesc:a8db96dcde15372c8f4b470d65de35459"><td class="mdescLeft">&#160;</td><td class="mdescRight">array of bytes to keep the records  <a href="#a8db96dcde15372c8f4b470d65de35459">Mais...</a><br /></td></tr>
 <tr class="separator:a8db96dcde15372c8f4b470d65de35459"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Construtores &amp; Destrutores</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição Detalhada</h2>
+<div class="textblock"><p>Disk block representation, it's important to say that we've made this structure to serve as block and bucket due the simplicity that it gave to us. This structure has a special attribute (nextBlock) that serves as pointer to the next linked block, simulating the scheme of buckets and overflow blocks found in literature. </p>
+</div><h2 class="groupheader">Construtores &amp; Destrutores</h2>
 <a class="anchor" id="a37658a946bf5067ad01d68d9ff086adc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -135,6 +142,7 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>default constructor </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
 <p>!&lt;Construtor para incializar as variaveis do bloco </p>
 
 </div>
@@ -152,6 +160,7 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>returns the quantity of free space in a block </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
 
 </div>
 </div>
@@ -168,6 +177,14 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>tries to insert a record in the current block </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">article</td><td>object to be inserted </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Returns a pair&lt;bool, unsigned short&gt;, the first value indicates if the record is inserted and the second indicates the logical position (0,1,2,..) of him inside the block </dd></dl>
 
 </div>
 </div>
@@ -200,6 +217,16 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>search for a record with id passed as parameter, returns true if found or returns false if not found </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Is the identifier number of the record to be searched </td></tr>
+    <tr><td class="paramname">recordSize</td><td>Is the size of record that will be searched </td></tr>
+    <tr><td class="paramname">aux</td><td><a class="el" href="classArticle.html">Article</a> object to keep the data of the found record, only will be filled if found the record </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Returns a bool to indicate if found or not the record </dd></dl>
 
 </div>
 </div>
@@ -226,6 +253,14 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>search for a record by his offset </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>is the logical position of the record in a block, i.e. sequential position of record inside the block </td></tr>
+    <tr><td class="paramname">aux</td><td><a class="el" href="classArticle.html">Article</a> object to keep the data of the found record, only will be filled if found the record </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -240,6 +275,8 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>4 bytes </p>
+
 </div>
 </div>
 <a class="anchor" id="a8db96dcde15372c8f4b470d65de35459"></a>
@@ -251,6 +288,8 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>array of bytes to keep the records </p>
 
 </div>
 </div>
@@ -264,6 +303,8 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>4 bytes offset used as reference to find the overflow (or next) block </p>
+
 </div>
 </div>
 <a class="anchor" id="a1237d54d9931ab568c6560b4142765bc"></a>
@@ -276,6 +317,8 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>1 byte has overflow sequence or not </p>
+
 </div>
 </div>
 <a class="anchor" id="aed391e7671f1ec70e3dc2db774d8f9cb"></a>
@@ -287,6 +330,9 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>header 13 bytes </p>
+<p>4 bytes </p>
 
 </div>
 </div>

@@ -108,13 +108,18 @@ Métodos Públicos</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Atributos Públicos</h2></td></tr>
 <tr class="memitem:a5fdf9448c3cd7f359bc205af025d0a44"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1Address.html#a5fdf9448c3cd7f359bc205af025d0a44">offset</a></td></tr>
+<tr class="memdesc:a5fdf9448c3cd7f359bc205af025d0a44"><td class="mdescLeft">&#160;</td><td class="mdescRight">block offset of respective file (hashing|overflow)  <a href="#a5fdf9448c3cd7f359bc205af025d0a44">Mais...</a><br /></td></tr>
 <tr class="separator:a5fdf9448c3cd7f359bc205af025d0a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa40d44e5eff7693e2ffea4037fc341e1"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1Address.html#aa40d44e5eff7693e2ffea4037fc341e1">blockOffset</a></td></tr>
+<tr class="memdesc:aa40d44e5eff7693e2ffea4037fc341e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">offset of the record inside a block (can be 0 or 1).. change for a char  <a href="#aa40d44e5eff7693e2ffea4037fc341e1">Mais...</a><br /></td></tr>
 <tr class="separator:aa40d44e5eff7693e2ffea4037fc341e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a615264c23722dbcef607000ba2b5f445"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1Address.html#a615264c23722dbcef607000ba2b5f445">overflow</a> = false</td></tr>
+<tr class="memdesc:a615264c23722dbcef607000ba2b5f445"><td class="mdescLeft">&#160;</td><td class="mdescRight">is in overflow area or not  <a href="#a615264c23722dbcef607000ba2b5f445">Mais...</a><br /></td></tr>
 <tr class="separator:a615264c23722dbcef607000ba2b5f445"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Construtores &amp; Destrutores</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição Detalhada</h2>
+<div class="textblock"><p>Struct address is the logical address of a record in the data file, indicates the exact location of an record and is used in the index trees as "data pointers" </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
+</div><h2 class="groupheader">Construtores &amp; Destrutores</h2>
 <a class="anchor" id="a002cbfb3b8cb50c602d5a8b9635ed9ff"></a>
 <div class="memitem">
 <div class="memproto">
@@ -127,6 +132,7 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section author"><dt>Autor</dt><dd>Tiago Santos Default constructor </dd></dl>
 
 </div>
 </div>
@@ -141,6 +147,8 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>offset of the record inside a block (can be 0 or 1).. change for a char </p>
+
 </div>
 </div>
 <a class="anchor" id="a5fdf9448c3cd7f359bc205af025d0a44"></a>
@@ -153,6 +161,8 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>block offset of respective file (hashing|overflow) </p>
+
 </div>
 </div>
 <a class="anchor" id="a615264c23722dbcef607000ba2b5f445"></a>
@@ -164,6 +174,8 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>is in overflow area or not </p>
 
 </div>
 </div>

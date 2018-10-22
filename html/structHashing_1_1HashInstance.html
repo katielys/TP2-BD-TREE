@@ -98,11 +98,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Busca');
 </div><!--header-->
 <div class="contents">
 
+<p>This struct is simply used to keep a instance of the hashing file, it keeps the file pointer an a counter of buckets (a.k.a. blocks) inside.  
+ <a href="structHashing_1_1HashInstance.html#details">Mais...</a></p>
+
 <p><code>#include &lt;<a class="el" href="HashFile_8h_source.html">HashFile.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Métodos Públicos</h2></td></tr>
 <tr class="memitem:aac81a0625bd32e8d7da15ba3beae8e43"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1HashInstance.html#aac81a0625bd32e8d7da15ba3beae8e43">HashInstance</a> ()</td></tr>
+<tr class="memdesc:aac81a0625bd32e8d7da15ba3beae8e43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deafault constructor.  <a href="#aac81a0625bd32e8d7da15ba3beae8e43">Mais...</a><br /></td></tr>
 <tr class="separator:aac81a0625bd32e8d7da15ba3beae8e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5d603d5e346313991530e905999bb4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1HashInstance.html#ac5d603d5e346313991530e905999bb4f">HashInstance</a> (const char *path)</td></tr>
 <tr class="separator:ac5d603d5e346313991530e905999bb4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,11 +116,15 @@ Métodos Públicos</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Atributos Públicos</h2></td></tr>
 <tr class="memitem:a8d1d15abed8a2b480af63e958685a202"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1HashInstance.html#a8d1d15abed8a2b480af63e958685a202">hashingFile</a></td></tr>
+<tr class="memdesc:a8d1d15abed8a2b480af63e958685a202"><td class="mdescLeft">&#160;</td><td class="mdescRight">file pointer to the hashing file  <a href="#a8d1d15abed8a2b480af63e958685a202">Mais...</a><br /></td></tr>
 <tr class="separator:a8d1d15abed8a2b480af63e958685a202"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afee1920815c454b8ee9930197f2e2b5d"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1HashInstance.html#afee1920815c454b8ee9930197f2e2b5d">buckets</a></td></tr>
+<tr class="memdesc:afee1920815c454b8ee9930197f2e2b5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">buckets quantity in the current hash instance  <a href="#afee1920815c454b8ee9930197f2e2b5d">Mais...</a><br /></td></tr>
 <tr class="separator:afee1920815c454b8ee9930197f2e2b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Construtores &amp; Destrutores</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição Detalhada</h2>
+<div class="textblock"><p>This struct is simply used to keep a instance of the hashing file, it keeps the file pointer an a counter of buckets (a.k.a. blocks) inside. </p>
+</div><h2 class="groupheader">Construtores &amp; Destrutores</h2>
 <a class="anchor" id="aac81a0625bd32e8d7da15ba3beae8e43"></a>
 <div class="memitem">
 <div class="memproto">
@@ -129,6 +137,8 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Deafault constructor. </p>
 
 </div>
 </div>
@@ -153,6 +163,7 @@ Atributos Públicos</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Constructor that receives a path file and open the specified file, thus initializing the hashing file. </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
 
 </div>
 </div>
@@ -169,6 +180,7 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section author"><dt>Autor</dt><dd>Tiago Santos Closes the file pointer the hash instance </dd></dl>
 
 </div>
 </div>
@@ -183,6 +195,8 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>buckets quantity in the current hash instance </p>
+
 </div>
 </div>
 <a class="anchor" id="a8d1d15abed8a2b480af63e958685a202"></a>
@@ -194,6 +208,8 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>file pointer to the hashing file </p>
 
 </div>
 </div>

@@ -98,6 +98,7 @@ Componentes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1Address.html">Address</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1HashInstance.html">HashInstance</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This struct is simply used to keep a instance of the hashing file, it keeps the file pointer an a counter of buckets (a.k.a. blocks) inside.  <a href="structHashing_1_1HashInstance.html#details">Mais...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1OverflowArea.html">OverflowArea</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,7 +125,9 @@ Variáveis</h2></td></tr>
 <tr class="memitem:a39c803c2262445573c6dd1303dcc3108"><td class="memItemLeft" align="right" valign="top">const unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceHashing.html#a39c803c2262445573c6dd1303dcc3108">HEADER_SIZE</a> = sizeof(u_long)</td></tr>
 <tr class="separator:a39c803c2262445573c6dd1303dcc3108"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Funções</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição Detalhada</h2>
+<div class="textblock"><p>This namespace group all function that manipulate the hashing, it's important to note that in this work a buckets has the same size of a block (4096), thus the same structure is used as bucket. We decided to create two separated files, the first for the main hashing file that will contain the buckets, and the second to keep the overflow blocks. If a bucket in the main file needs a overflow block, a new overflow block will be allocated and the bucket will be updated to keep the address of his first overflow block. If needed overflow blocks can also keep address of subsequent overflow blocks, forming a logical linked list. </p>
+</div><h2 class="groupheader">Funções</h2>
 <a class="anchor" id="ad6b0ab28d1f0193b8fac209fe17ff1b1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -154,6 +157,16 @@ Variáveis</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Initiates the hash file, allocating empty buckets. The quantity of buckets is determinated by the math: (numberOfRecord/recordsPerBucket) + 1. We also, can use a prime number to avoid collisions.</p>
+<dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numberOfRecords</td><td>Is used to determinate how many buckets the file must have. </td></tr>
+    <tr><td class="paramname">recordsPerBucket</td><td>Also used to determinate how many buckets the file must have. </td></tr>
+    <tr><td class="paramname">path</td><td>Path to the physical file that will keep the buckets. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -170,6 +183,16 @@ Variáveis</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Initiates the overflow file, allocating just putting the header (quantity of blocks inside the file) that int this moment will be 0</p>
+<dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numberOfRecords</td><td>Is used to determinate how many buckets the file must have. </td></tr>
+    <tr><td class="paramname">recordsPerBucket</td><td>Also used to determinate how many buckets the file must have. </td></tr>
+    <tr><td class="paramname">path</td><td>Path to the physical file that will keep the buckets. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -266,6 +289,16 @@ Variáveis</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Inserts a record in the hash file and returns its address inside the data file. Uses the hash function (see the implementation please) to get the mapped block and tries to alloc in there. If succeeds, returns the allocated address immediately. If not, tries to alloc the record in the overflow area.</p>
+<dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">record</td><td>Record that will be allocated. </td></tr>
+    <tr><td class="paramname">hash</td><td>Current instance of the hashing. </td></tr>
+    <tr><td class="paramname">overflow</td><td>Current instance of the overflow area. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -316,6 +349,19 @@ Variáveis</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Inserts a record in the overflow file. It's a recursive implementation.</p>
+<dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">record</td><td>Record that will be allocated. </td></tr>
+    <tr><td class="paramname">overflowArea</td><td>Current instance of the overflow area. </td></tr>
+    <tr><td class="paramname">offset</td><td>Logical address (0,1,2,4,...) of the overflow block. Used to seek the block. </td></tr>
+    <tr><td class="paramname">needsUpdate</td><td>Bool that indicates if the previous block in the logical linked list will need to be updated. </td></tr>
+    <tr><td class="paramname">address</td><td><a class="el" href="structHashing_1_1Address.html">Address</a> object passed by reference to keep the final address of the allocated record. </td></tr>
+    <tr><td class="paramname">alreadyLinked</td><td>Indicates if a bucket/block already has a subsequent linked block. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -373,6 +419,7 @@ Variáveis</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Indicates the size of header, the header is summarily used to keep tracking about the number of blocks allocated in hashing/overflow file </p>
 
 </div>
 </div>

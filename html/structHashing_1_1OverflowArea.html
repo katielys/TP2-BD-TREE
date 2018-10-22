@@ -112,11 +112,15 @@ Métodos Públicos</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Atributos Públicos</h2></td></tr>
 <tr class="memitem:a16efad9c2a040e68dd5c96ce5e303e42"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1OverflowArea.html#a16efad9c2a040e68dd5c96ce5e303e42">fp</a></td></tr>
+<tr class="memdesc:a16efad9c2a040e68dd5c96ce5e303e42"><td class="mdescLeft">&#160;</td><td class="mdescRight">file pointer to the overflow file  <a href="#a16efad9c2a040e68dd5c96ce5e303e42">Mais...</a><br /></td></tr>
 <tr class="separator:a16efad9c2a040e68dd5c96ce5e303e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0df78418b8f26082b1c36e66d5a797d2"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHashing_1_1OverflowArea.html#a0df78418b8f26082b1c36e66d5a797d2">blocksCount</a></td></tr>
+<tr class="memdesc:a0df78418b8f26082b1c36e66d5a797d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">counter of blocks in the overflow area  <a href="#a0df78418b8f26082b1c36e66d5a797d2">Mais...</a><br /></td></tr>
 <tr class="separator:a0df78418b8f26082b1c36e66d5a797d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Construtores &amp; Destrutores</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descrição Detalhada</h2>
+<div class="textblock"><p>This struct is simply used to keep a instance of the overflow area, it keeps the file pointer an a counter of blocks inside the area </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
+</div><h2 class="groupheader">Construtores &amp; Destrutores</h2>
 <a class="anchor" id="ac81881ba9462c56b4055920424c2564b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -129,6 +133,7 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Default constructor </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
 
 </div>
 </div>
@@ -153,6 +158,7 @@ Atributos Públicos</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Constructor that receives a path file and open the specified file, thus initializing the overflow area. </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
 
 </div>
 </div>
@@ -169,6 +175,7 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Closes the file pointer of the overflow area </p><dl class="section author"><dt>Autor</dt><dd>Tiago Santos </dd></dl>
 
 </div>
 </div>
@@ -183,6 +190,8 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>counter of blocks in the overflow area </p>
+
 </div>
 </div>
 <a class="anchor" id="a16efad9c2a040e68dd5c96ce5e303e42"></a>
@@ -194,6 +203,8 @@ Atributos Públicos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>file pointer to the overflow file </p>
 
 </div>
 </div>
