@@ -1,16 +1,14 @@
 #include "PrimaryIndexBtree.h"
 using namespace std;
 
-//TODO : COLOCAR EM CLASSE
-//TODO: usar a funcao do tiago para pegar os dados do artigos
+///\file findrec arquivo responsavel por buscar atraves do id no arquivo de indice primario
+///\author Tiago Santos  e Katiely santos
 int main(int argc, char ** argv){
     auto idToSeek = 0000000000000;
     idToSeek = stoi(argv[1]);
     btree indexPrimary;
     btree_node node;
 
-    //cout<<sizeof(btree_node)<<endl;
-    // opening data file
     Hashing::HashInstance hash = Hashing::HashInstance("hashing.bin");
     Hashing::OverflowArea overflow = Hashing::OverflowArea("overflow.bin");
     // opening index file
@@ -21,7 +19,7 @@ int main(int argc, char ** argv){
     if(!found.first){ // not found
         cout<<"->ID: "<<idToSeek<< "   not found";
     } else{
-        cout<<"->ID :"<< idToSeek << " found xD" << endl;
+        cout<<"->ID : "<< idToSeek << " found xD" << endl;
         Article art = Hashing::getRecordByAddress(found.second, hash, overflow);
         cout << art.toString() << std::endl;
     }

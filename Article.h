@@ -8,8 +8,8 @@
 #include <cstring>
 #define MAX_SIZE_TITLE 300 //!< Tamanho maximo de um titulo de artigo
 #define MAX_SIZE_AUTOR 150 //!<Tamanho maximo da lista de artigo
-#define MAX_SIZE_SNIPPET 1024
-#define MAX_SIZE_DATE 19
+#define MAX_SIZE_SNIPPET 1024//!<tamanho maximo de um resumo
+#define MAX_SIZE_DATE 19//!<tamanho maximo de uma ultima autizacao de data e hora,este valor foi definido atraves de testes no arquivo artigo.csv
 
 using namespace std;
 
@@ -33,17 +33,50 @@ class Article{
 		char snippet[MAX_SIZE_SNIPPET] ; ///resumo textual
 		char date[MAX_SIZE_DATE]; ///data e hora das atualiza��es
 		/** Setters and getters from object article*/
+
+    /**
+* Set a year to article
+* @author Katiely Santos
+* @param  a year
+* @return void
+*/
 		void setYear(int);
+
+    /**
+* Set a total quotes
+* @author Katiely Santos
+* @param  number of citations
+* @return void
+*/
 		void setQuotes(int);
 
-		void setTitle(char[MAX_SIZE_TITLE]);	
+    /**
+* Set title from a article
+* @author Katiely Santos
+* @param  the title
+* @return void
+*/
+
+		void setTitle(char[MAX_SIZE_TITLE]);
+
+
+    /**
+* Set a snipped from a article
+* @author Katiely Santos
+* @param  the snipped from article
+* @return void
+*/
 		void setSnippet(char[MAX_SIZE_SNIPPET]);
+
+    /**
+* Set the authors to a article
+* @author Katiely Santos
+* @param  the authors
+* @return void
+*/
 		void setAutors(char[ MAX_SIZE_AUTOR]);
 		void setDate(char [ MAX_SIZE_DATE]);
-
-
 		int getQuotes();
-
 		char* getAutors();
 		char* getSnipped();
 		char* getDate();

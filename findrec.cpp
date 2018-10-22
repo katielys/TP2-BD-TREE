@@ -1,6 +1,7 @@
 #include <iostream>
 #include "HashFile.h"
-///\autor: Katiely
+///\file findrec arquivo responsavel por buscar no hash dado o id
+///\author Tiago Santos
 
 using namespace std;
 
