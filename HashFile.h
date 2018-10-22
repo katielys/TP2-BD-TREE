@@ -73,8 +73,8 @@
         /// @author Tiago Santos
         explicit HashInstance(const char *path);
 
-        /// @author Tiago Santos
         /// Closes the file pointer the hash instance
+        /// @author Tiago Santos
         void close();
     };
      /**
@@ -125,12 +125,14 @@
     void insertOnOverflow(Article &record, OverflowArea &overflowArea, unsigned int &offset, bool &needsUpdate,
                           Address &address, bool alreadyLinked=false);
 
-    pair<bool, pair<Article, unsigned int>> findRecord(unsigned int id, HashInstance &hash, OverflowArea &overflow);
+     /// @author Tiago Santos
+     pair<bool, pair<Article, unsigned int>> findRecord(unsigned int id, HashInstance &hash, OverflowArea &overflow);
 
-    bool lookUpForRecordInOverflow(unsigned int id, Article &artAux,
+     /// @author Tiago Santos
+     bool lookUpForRecordInOverflow(unsigned int id, Article &artAux,
                                    OverflowArea &overflow, unsigned int &offset,
                                    unsigned int &blocksPassed);
-
+    /// @author Tiago Santos
     Article getRecordByAddress(Address address, HashInstance &hash, OverflowArea &overflow);
 
 };
