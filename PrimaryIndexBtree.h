@@ -34,9 +34,11 @@ typedef struct btree{
 
 int addElement(btree &tree, int key, Hashing::Address adress);
 int btree_split(btree &tree, btree_node &node);
+///\author Tiago Santos
 std::pair<bool, Hashing::Address> btree_search(btree &tree, btree_node &node, int key);
 btree createIndex(const char *file);
 void loadRoot(btree &t,const char *file);
+///\author Tiago Santos
 void saveRootOffset(btree &t);
 unsigned int btree_end_seek_of_file(btree &tree);
 #endif

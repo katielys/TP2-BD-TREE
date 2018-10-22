@@ -45,7 +45,9 @@ NodeS createNewNodeSecond();
 int addElementSecondIndex(SecondIndex &tree, int key, Hashing::Address adress);
 int splitSecond(SecondIndex &tree, NodeS &node);
 pair<bool, Hashing::Address> searchAtSecond(SecondIndex &tree, NodeS &node, int key);
+/// @author Tiago Santos e katiely dos santos
 SecondIndex createSecondIndex(const char *file);
+/// @author Tiago Santos e katiely dos santos
 void loadSecondRoot(SecondIndex &t,const char *file);
 /// @author Tiago Santos 
 void saveSecondRootOffset(SecondIndex &t);
