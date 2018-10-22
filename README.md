@@ -1,3 +1,4 @@
+#Relatório
 Autores:
  * Katiely dos Santos Oliveira Moreira - 21600808
  * Tiago dos Santos de Souza - 21600650
@@ -9,32 +10,25 @@ O projeto foi desenvolvido em C++ no linux, para compilar todos os arquivos use 
 isso gerará 4 executaveis: `upload`, `findrec`, `seek1`, `seek2`
 
  * O executavel `upload` recebe como parametro o caminho do arquivo de dados que será indexado.
-Esse executável é responsavel por indexar todos os dados. Portanto, deve ser o primeiro a ser executado.
-Exemplo de execução:
+Esse executável é responsavel por indexar todos os dados. Portanto, deve ser o primeiro a ser executado. Exemplo de execução:
 ``` 
 ./upload /home/taigo/Documents/2018.2/BD/TP2-BD-TREE/data/arquivo.entrada.tp2.bd1.artigos.csv
 
 ```
 
- * O executavel `findrec` recebe como parametro um id de registro, retornando-o se o encontrar juntamente com a quantidade de blocos lidos para tal.
- 
- Exemplo de execução:
+ * O executavel `findrec` recebe como parametro um id de registro, retornando-o se o encontrar juntamente com a quantidade de blocos lidos para tal. Exemplo de execução:
 ``` 
 ./finrec 123
 
 ```
 
-* O executavel `seek1` recebe como parametro um id de registro, retornando-o se o encontrar juntamente com a quantidade de blocos lidos para tal e a quantidade total de blocos do arquivo de indice.
- 
- Exemplo de execução:
+* O executavel `seek1` recebe como parametro um id de registro, retornando-o se o encontrar juntamente com a quantidade de blocos lidos para tal e a quantidade total de blocos do arquivo de indice. Exemplo de execução:
 ``` 
 ./seek1 123
 
 ```
 
-* O executavel `seek2` recebe como parametro o titulo de um registro, retornando-o se o encontrar juntamente com a quantidade de blocos lidos para tal e a quantidade total de blocos do arquivo de indice.
- 
- Exemplo de execução:
+* O executavel `seek2` recebe como parametro o titulo de um registro, retornando-o se o encontrar juntamente com a quantidade de blocos lidos para tal e a quantidade total de blocos do arquivo de indice. Exemplo de execução:
 ``` 
 ./seek2 "Poster: 3D"
 
