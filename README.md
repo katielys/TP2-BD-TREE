@@ -9,6 +9,12 @@ Este trabalho consiste na implementação de programas para armazenamento e pesq
 O projeto foi desenvolvido em C++ no linux, para compilar todos os arquivos use no terminal make, 
 isso gerará 4 executaveis: `upload`, `findrec`, `seek1`, `seek2`
 
+ * Exemplo de utilização do make:
+ ```
+ cmake .
+ make
+ ```
+
  * O executavel `upload` recebe como parametro o caminho do arquivo de dados que será indexado.
 Esse executável é responsavel por indexar todos os dados. Portanto, deve ser o primeiro a ser executado. Exemplo de execução:
 ``` 
@@ -62,6 +68,20 @@ Para mais detalhes, tanto das estruturas de dados quanto as dependencias de arqu
  
 O tamanho dos registros a forma de implementar foi preferida fixa e ainda foi feita organização não espalhada de bloco.
  Foi escolhida a função hash através de experimentos já que era necessario geral algumas colisões.
+ A estutura do no das arvores foram feitas da seguinte maneira:
+ ```
+ typedef struct btree_node{
+    int key_num; //!<4 bytes = quantidade de chaves ja inseridas no nodo
+    unsigned int self; //4bytes;
+    int parent;// //!< 4 bytes , para saber quem sao os pais dele
+    Hashing::Address adress[2 * T - 1]; //!< os ponteiros para o arquivo de dados
+    int key[2 * T - 1]; // !<o vetor de chaves 
+    int seek[2 * T]; //!< ORDEM DA arvoreB primaria, ponteiros virtuais para os filhos
+
+
+    btree_node();
+}btree_node;
+```
 Nas arvores tanto primaria quanto secundaria foi feito um ponteiro para o nó pai que comumente em implementações em memoria principal não existe entretanto a equipe notou a necessidade em memoria secundaria.
 
 

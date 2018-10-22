@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['findrec_2ecpp',['findrec.cpp',['../findrec_8cpp.html',1,'']]]
+  ['hashfile_2ecpp',['HashFile.cpp',['../HashFile_8cpp.html',1,'']]],
+  ['hashfile_2eh',['HashFile.h',['../HashFile_8h.html',1,'']]]
 ];

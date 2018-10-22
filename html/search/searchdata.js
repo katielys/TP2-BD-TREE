@@ -3,12 +3,12 @@ var indexSectionsWithContent =
   0: "abcdefghiklmnoprstuvw~",
   1: "abhnops",
   2: "h",
-  3: "abcfhprstu",
+  3: "abfhprstu",
   4: "abcefghiklmnoprstw~",
   5: "abcdfhknoprsv",
   6: "bns",
   7: "bdhmt",
-  8: "t"
+  8: "r"
 };
 
 var indexSectionNames =
@@ -26,14 +26,14 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "Todos",
+  0: "All",
   1: "Classes",
   2: "Namespaces",
-  3: "Arquivos",
-  4: "Funções",
-  5: "Variáveis",
-  6: "Definições de Tipos",
-  7: "Definições e Macros",
-  8: "Páginas"
+  3: "Files",
+  4: "Functions",
+  5: "Variables",
+  6: "Typedefs",
+  7: "Macros",
+  8: "Pages"
 };
 

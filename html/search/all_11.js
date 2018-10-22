@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['tp2_2dbd_2dtree',['TP2-BD-TREE',['../md_README.html',1,'']]],
   ['t',['T',['../PrimaryIndexBtree_8h.html#a0acb682b8260ab1c60b918599864e2e5',1,'PrimaryIndexBtree.h']]],
   ['testable_2ecpp',['testable.cpp',['../testable_8cpp.html',1,'']]],
   ['teste',['teste',['../testable_8cpp.html#afeaa13fccafa3d13f12de8ec9ae1e152',1,'testable.cpp']]],
