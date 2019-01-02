@@ -1,4 +1,4 @@
-#Relatório
+# Relatório
 Autores:
  * Katiely dos Santos Oliveira Moreira - 21600808
  * Tiago dos Santos de Souza - 21600650
@@ -41,7 +41,7 @@ Esse executável é responsavel por indexar todos os dados. Portanto, deve ser o
 ```
  
 
-##Decisoes de Projeto
+## Decisoes de Projeto
 
 Foi escolhido implementar em linguagem C++, ambos os autores possuem mais experiencia ao trabalhar com arquivos em linguagem C++.
  
