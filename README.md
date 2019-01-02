@@ -5,7 +5,7 @@ Autores:
 ## Objetivo
 Este trabalho consiste na implementação de programas para armazenamento e pesquisa de dados utilizando as estruturas de arquivo e índice estudadas em sala de aula. Os programas devem fornecer suporte para a inserção, assim como diferentes meios de busca, seguindo as técnicas  de organização e indexação de arquivos.
 
-##Como Executar
+## Como Executar
 O projeto foi desenvolvido em C++ no linux, para compilar todos os arquivos use no terminal make, 
 isso gerará 4 executaveis: `upload`, `findrec`, `seek1`, `seek2`
 
@@ -28,13 +28,13 @@ Esse executável é responsavel por indexar todos os dados. Portanto, deve ser o
 
 ```
 
-* O executavel `seek1` recebe como parametro um id de registro, retornando-o se o encontrar juntamente com a quantidade de blocos lidos para tal e a quantidade total de blocos do arquivo de indice. Exemplo de execução:
+ * O executavel `seek1` recebe como parametro um id de registro, retornando-o se o encontrar juntamente com a quantidade de blocos lidos para tal e a quantidade total de blocos do arquivo de indice. Exemplo de execução:
 ``` 
 ./seek1 123
 
 ```
 
-* O executavel `seek2` recebe como parametro o titulo de um registro, retornando-o se o encontrar juntamente com a quantidade de blocos lidos para tal e a quantidade total de blocos do arquivo de indice. Exemplo de execução:
+ * O executavel `seek2` recebe como parametro o titulo de um registro, retornando-o se o encontrar juntamente com a quantidade de blocos lidos para tal e a quantidade total de blocos do arquivo de indice. Exemplo de execução:
 ``` 
 ./seek2 "Poster: 3D"
 
